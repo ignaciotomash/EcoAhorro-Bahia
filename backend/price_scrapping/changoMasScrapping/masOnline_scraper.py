@@ -74,7 +74,7 @@ async def main():
                 logger.info(f"\n--- EXPLORANDO: Categoría {category_index} (ID: {category_id}) ---")
                 page_number = 1
 
-                while page_number<=2:
+                while True:
                     paginated_url = f"{url_categoria}?map=productClusterIds&page={page_number}"
                     logger.info(f"Página {page_number} -> {paginated_url}")
                     
