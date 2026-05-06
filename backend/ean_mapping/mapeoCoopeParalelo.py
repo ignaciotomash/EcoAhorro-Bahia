@@ -3,8 +3,8 @@ import csv
 from eanScrappingCoope import obtenerCodigoCoope
 
 # Configuración de rutas (strings directos)
-ARCHIVO_ENTRADA = "../data_base/catalogo_productos.csv"
-ARCHIVO_SALIDA = "mapeo_codigo_coope.csv"
+ARCHIVO_ENTRADA = "catalogo_unificado.csv"
+ARCHIVO_SALIDA = "mapeo_codigo_coope2.csv"
 
 # Configuración de concurrencia
 CONCURRENCIA_MAXIMA = 10  # Ajusta este número según la estabilidad del sitio

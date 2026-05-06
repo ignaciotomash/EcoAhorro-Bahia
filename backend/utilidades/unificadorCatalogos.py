@@ -4,9 +4,9 @@ import os
 # ==========================================
 # VARIABLES DE ARCHIVOS
 # ==========================================
-ARCHIVO_BASE = 'catalogo_productos.csv'
-ARCHIVO_NUEVOS = 'productos_labanderita_2026-04-30_11-53-23.csv'
-ARCHIVO_SALIDA = 'catalogo_unificado.csv'
+ARCHIVO_BASE = 'productos_coope-vea-mas.csv'
+ARCHIVO_NUEVOS = 'productos_labanderita.csv'
+ARCHIVO_SALIDA = 'productos_coope-vea-mas-labanderita.csv'
 # ==========================================
 
 def unificar_catalogos():
