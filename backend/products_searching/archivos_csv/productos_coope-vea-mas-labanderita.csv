@@ -1,294 +1,294 @@
 "ID/EAN","NOMBRE","MARCA","PRESENTACION","ID_CATEGORIA"
-"7790070036223","Milanesas de Soja Lucchetti 290 Gr","LUCCHETTI","290.0 gr","010101"
-"7790360967794","Milanesa de Soja Jamon y Queso Swift 4 Un","SWIFT","4.0 un","010101"
-"7790360967824","Milanesa de Soja Prefrita Swift 4 Un","SWIFT","4.0 un","010101"
-"7790070036032","Milanesas de Soja Rellenas de Espinaca y Queso Granja Del Sol 380 Gr","GRANJA DEL SOL","380.0 gr","010101"
-"7790070036179","Milanesa Soja Grande Sabor Fugazzeta Lucchetti 4 Un","LUCCHETTI","4.0 un","010101"
-"7790670052371","Medallones de Carne Congelados Express Paty 4 Un","PATY","4.0 un","010301"
-"7790360966841","Medallones de Carne Clasicos Supercongelados Swift 4 Un 276 Gr","SWIFT","276.0 gr","010301"
-"7790360026590","Hamburguesas de Carne Clasicas Swift 12 Un 960 Gr","SWIFT","960.0 gr","010301"
-"7790360026606","Hamburguesas de Carne Clasicas Swift 2 Un","SWIFT","2.0 un","010301"
-"7790670050667","Hamburguesas de Carne Clasicas sin TACC Paty 12 Un 960 Gr","PATY","960.0 gr","010301"
-"7790670050674","Hamburguesas de Carne Clasicas Paty 2 Un 160 Gr","PATY","110.0 gr","010301"
-"7790360966797","Medallones de Carne Supercongelados Swift 2 Un","SWIFT","2.0 un","010301"
-"7790670050612","Hamburguesas de Carne Grandes Paty 2 Un","PATY","2.0 un","010301"
-"7790670050728","Hamburguesas de Carne Finitas Paty 2 Un 110 Gr","PATY","110.0 gr","010301"
-"7790360967701","Hamburguesa Tipo Casera Swift 240 Gr","SWIFT","240.0 gr","010301"
-"7790670050780","Hamburguesas de Carne Vacuna sin TACC Paty 20 Un 1.6 Kg","PATY","1.6 kg","010301"
-"7790670052289","Hamburguesas de Carne Light Caja Paty 4 Un","PATY","4.0 un","010301"
-"7790360026682","Medallones de Carne Vacuna Swift 4 Un 332 Gr","SWIFT","320.0 gr","010301"
-"7790670050605","Hamburguesas de Carne Grandes Paty 4 Un 480 Gr","PATY","480.0 gr","010301"
-"7790670052265","Hamburguesas de Carne Grandes de Cancha Paty 10 Un","PATY","10.0 un","010301"
-"7790360967404","Hamburguesa Clasica La Blanca 4 Un 276 Gr","LA BLANCA","276.0 gr","010301"
-"7790360967763","Medallon de Carne Doble Swift 4 Un","SWIFT","4.0 un","010301"
-"7790670051312","Hamburguesa con Queso Provolone Paty 2 Un","PATY","2.0 un","010301"
-"7790670051329","Hamburguesa con Cebolla Paty 2 Un","PATY","2.0 un","010301"
-"7790670051336","Hamburguesa con Morron Paty 2 Un","PATY","2.0 un","010301"
-"7790070036261","Medallon de Arroz Yamani y Cebolla Caramelizada Veggies Granja Del Sol 440 Gr","GRANJA DEL SOL","440.0 gr","010301"
-"7792180142122","Pizza Congelada Mozzarella Pietro 470 Gr","PIETRO","470.0 gr","010601"
-"7790070035950","Bocaditos de Pollo Rebozados +100 Gr Gratis Patitas 1.1 Kg","PATITAS","1.1 kg","010701"
-"7790070034410","Nuggets de Pollo Bolsa Granja Del Sol 400 Gr","GRANJA DEL SOL","400.0 gr","010701"
-"7790070036148","Supremitas de Pollo Rebozadas Granja Del Sol 480 Gr","GRANJA DEL SOL","480.0 gr","010701"
-"7790360967558","Medallones de Pollo Swift 4 Un 320 Gr","SWIFT","320.0 gr","010701"
-"7790360971135","Bocaditos de Pollo Swift 260 Gr","SWIFT","260.0 gr","010701"
-"7891515571351","Bocaditos Nuggets de Pollo Crocante Sadia 300 Gr","SADIA","300.0 gr","010701"
-"7891515547059","Bocaditos Nuggets de Pollo Sadia 900 Gr","SADIA","900.0 gr","010701"
-"7790079019708","Medallones de Pollo con Jamon y Queso Paladini 2 Un 170 Gr","PALADINI","170.0 gr","010701"
-"7790079019692","Medallones de Pollo Flowpack Paladini 2 Un 150 Gr","PALADINI","150.0 gr","010701"
-"7891515547066","Supremitas de Pollo Rebozadas Congeladas Sadia 720 Gr","SADIA","720.0 gr","010701"
-"7790079020773","Medallon de Pollo especial Paladini 170 Gr","PALADINI","170.0 gr","010701"
-"7797906000700","Papas Prefritas Supercongeladas Mc Cain 400 Gr","MC CAIN","400.0 gr","010801"
-"7790070036278","Espinaca Congelada Granja Del Sol 500 Gr","GRANJA DEL SOL","500.0 gr","010801"
-"7797906054826","Papas Clasicas Tradicional Familiar Mc Cain 700 Gr","MC CAIN","700.0 gr","010801"
-"7797906054819","Papas Clasicas Tradicional Familiar Mc Cain 1.4 Kg","MC CAIN","1.4 kg","010801"
-"7797906054864","Papas Baston Horneables Corte Tradicional Bolsa Mc Cain 700 Gr","MC CAIN","700.0 gr","010801"
-"7790070036292","Acelga Congelada Granja Del Sol 500 Gr","GRANJA DEL SOL","500.0 gr","010801"
-"7790070036308","Brocoli Congelado Granja Del Sol 400 Gr","GRANJA DEL SOL","400.0 gr","010801"
-"7797906054857","Papas Baston Horneables Artesanal Bolsa Mc Cain 700 Gr","MC CAIN","700.0 gr","010801"
-"7790070036384","Arvejas Congeladas Bolsa Granja Del Sol Bolsa 300 Gr","GRANJA DEL SOL","300.0 gr","010801"
-"7790070036414","Arvejas Congeladas Bolsa Lucchetti 300 Gr","LUCCHETTI","300.0 gr","010801"
-"7790070036391","Ensalada Primavera Congelada Granja del Sol 400 Gr","GRANJA DEL SOL","400.0 gr","010801"
-"7797906054833","Papas Baston Corte Crinkle Bolsa Mc Cain 600 Gr","MC CAIN","600.0 gr","010801"
-"7790079021459","Papas Baston Paladini 700 Gr","PALADINI","700.0 gr","010801"
-"7790272001029","Aceite de Girasol Natura 1.5 Lt","NATURA","1.5 lt","020102"
-"7790070012050","Aceite de Girasol Cocinero 900 Ml","COCINERO","900.0 ml","020102"
-"7792180001665","Aceite de Girasol Cañuelas 1.5 Lt","CAÑUELAS","1.5 lt","020102"
-"7790272001005","Aceite de Girasol Natura 900 Ml","NATURA","900.0 ml","020102"
-"7792180001641","Aceite de Girasol Cañuelas 900 Cc","CAÑUELAS","900.0 cc","020102"
-"7790070231420","Aceite de Girasol Lira 1.5 Lt","LIRA","1.5 lt","020102"
-"7790272000794","Aceite de Maiz Mazola 900 Ml","MAZOLA","900.0 ml","020103"
-"7790060234868","Aceite Mezcla Cocinero 900 Cc","COCINERO","900.0 cc","020104"
-"7790070265142","Aceite Oliva Puro sin TACC Cocinero 500 Ml","COCINERO","500.0 ml","020105"
-"7798080520077","Aceite de Oliva Extra Virgen La Toscana 500 Cc","LA TOSCANA","500.0 cc","020105"
-"7790070231833","Aceite de Oliva Extra Virgen Lira 500 Ml","LIRA","500.0 ml","020105"
-"7798080520534","Aceite de Oliva con Albahaca La Toscana 250 Ml","LA TOSCANA","250.0 ml","020105"
-"7790199603757","Aceite Oliva Extra Virgen Morixe 500 Ml","MORIXE","500.0 ml","020105"
-"7798080521760","Aceitunas Negras La Toscana 580 Gr","LA TOSCANA","580.0 gr","020201"
-"7798080521685","Aceitunas Verdes sin Carozo La Toscana 300 Gr","LA TOSCANA","300.0 gr","020203"
-"7798080521678","Aceitunas Verdes La Toscana 300 Gr","LA TOSCANA","300.0 gr","020203"
-"7790199603030","Aceitunas Verdes Enteras Morixe 300 Gr","MORIXE","300.0 gr","020203"
-"7790199603054","Aceitunas Verdes Descarozadas Morixe 300 Gr","MORIXE","300.0 gr","020203"
-"7792070001133","Aceitunas Verdes en Doypack Nucete 800 Gr","NUCETE","800.0 gr","020203"
-"7792070054351","Aceitunas Verdes Rodajas Doypack Nucete 220 Gr","NUCETE","220.0 gr","020203"
-"7798080521692","Aceitunas Verdes Rodajas La Toscana 300 Gr","LA TOSCANA","300.0 gr","020203"
-"7798080521739","Aceitunas Verdes sin Carozo La Toscana 580 Gr","LA TOSCANA","580.0 gr","020203"
-"7790139000448","Aceto Balsamico Clasico Casalta 250 Ml","CASALTA","250.0 ml","020301"
-"7790139003418","Aceto Balsamico Reduccion Casalta 400 Ml","CASALTA","400.0 ml","020301"
-"7790139101466","Aceto Balsamico Reduccion Casalta 250 Ml","CASALTA","250.0 ml","020301"
-"7790139101640","Aceto Balsamico Reduccion Casalta 500 Cc","CASALTA","500.0 cc","020301"
-"7792900000251","Aceto Balsamico Dos Anclas 250 Cc","DOS ANCLAS","250.0 cc","020301"
-"7790139004941","Aceto Espeso Favinco 250 Ml","FAVINCO","250.0 ml","020301"
-"7790139101763","Aceto Balsamico Casalta 500 Cc","CASALTA","500.0 cc","020301"
-"7790150564844","Pimenton Dulce Sobre Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790150570180","Provenzal Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790150435380","Canela Molida Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790150411391","Ajo Triturado Deshidratado Alicante 50 Gr","ALICANTE","50.0 gr","020302"
-"7794000006140","Espinaca Deshidratada Knorr 50 Gr","KNORR","50.0 gr","020302"
-"7790150497081","Condimento para Milanesas Sobre Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7794000006133","Morron Deshidratado Knorr 75 Gr","KNORR","75.0 gr","020302"
-"7790150532706","Condimento Sabor a las Brasas Alicante 108 Un 25 Gr","ALICANTE","25.0 gr","020302"
-"7790150420331","Anis en Grano Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790150470350","Condimento para Arroz Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790150480243","Condimento para Carnes Sobre Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790150440360","Cebolla Deshidratada Alicante 50 Gr","ALICANTE","50.0 gr","020302"
-"7794000006119","Cebolla Deshidratada Knorr 100 Gr","KNORR","100.0 gr","020302"
-"7790150406953","Aji Molido Sobre Alicante 50 Gr","ALICANTE","50.0 gr","020302"
-"7790150490471","Condimento para Pizza Alicante 25 Un 50 Gr","ALICANTE","50.0 gr","020302"
-"7790150465479","Comino Molido Sobre Alicante 50 Gr","ALICANTE","50.0 gr","020302"
-"7790150545287","Perejil Deshidratado Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790580135737","Condimento para Pizza La Campagnola 23 Gr","LA CAMPAGNOLA","23.0 gr","020302"
-"7790150570371","Provenzal sin TACC Alicante 50 Gr","ALICANTE","50.0 gr","020302"
-"7790150540336","Oregano Sobre Alicante 50 Gr","ALICANTE","50.0 gr","020302"
-"7790150532607","Mix Especias Oriental Alicante 108 Un 50 Gr","ALICANTE","50.0 gr","020302"
-"7790150532508","Mix Especias Italiano Alicante 12 Un 20 Gr","ALICANTE","20.0 gr","020302"
-"7790150532300","Especias Mix Criollo Alicante 108 Un 25 Gr","ALICANTE","25.0 gr","020302"
-"7790150436080","Canela en Rama Alicante 20 Gr","ALICANTE","20.0 gr","020302"
-"7790150531181","Laurel en Hojas Alicante 10 Gr","ALICANTE","10.0 gr","020302"
-"7790150573280","Romero Alicante 15 Gr","ALICANTE","15.0 gr","020302"
-"7790150535394","Nuez Moscada Molida Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790598091742","Romero Don Ubaldo 15 Gr","DON UBALDO","15.0 gr","020302"
-"7790598091162","Aji Molido Picante Don Ubaldo 1 Un","DON UBALDO","1.0 un","020302"
-"7793360124945","Tomillo La Campagnola 15 Gr","LA CAMPAGNOLA","15.0 gr","020302"
-"7790598015090","Pimenton en Sobre Don Ubaldo 25 Gr","DON UBALDO","25.0 gr","020302"
-"7790150497272","Condimento para Empanadas Alicante 25 Gr","ALICANTE","25.0 gr","020302"
-"7790598000010","Albahaca en Especias Don Ubaldo 1 Un","DON UBALDO","1.0 un","020302"
-"7790580136734","Provenzal La Campagnola 48 Gr","LA CAMPAGNOLA","48.0 gr","020302"
-"7790598000133","Oregano Don Ubaldo 25 Gr","DON UBALDO","25.0 gr","020302"
-"7790598000140","Oregano Don Ubaldo 50 Gr","DON UBALDO","50.0 gr","020302"
-"7790598000331","Perejil en Sobre Don Ubaldo 25 Gr","DON UBALDO","25.0 gr","020302"
-"7790598000430","Provenzal Sobre Don Ubaldo 25 Gr","DON UBALDO","25.0 gr","020302"
-"7790598010064","Condimento para Pizza Don Ubaldo 25 Gr","CARREFOUR","25.0 gr","020302"
-"7790598010217","Aji Molido Don Ubaldo 25 Gr","CARREFOUR","25.0 gr","020302"
-"7790598012136","Comino Don Ubaldo 1 Un","DON UBALDO","1.0 un","020302"
-"7790598021701","Provenzal Don Ubaldo 50 Gr","DON UBALDO","50.0 gr","020302"
-"7796373112701","Salvia La Parmesana 20 Gr","LA PARMESANA","20.0 gr","020302"
-"7891132001705","Condimento para Arroz Blanco Tempero Sazon Ajinomoto 60 Gr","SAZON","60.0 gr","020302"
-"7791866001203","Mayonesa Doypack Natura 237 Gr","NATURA","237.0 gr","020303"
-"7794000006072","Mayonesa Regular Doypack Hellmanns 475 Gr","HELLMANNS","475.0 gr","020303"
-"7791866001364","Mayonesa Doypack Natura 500 Ml","NATURA","500.0 ml","020303"
-"7791866003283","Mayonesa con Aceite de Oliva Mayoliva 227 Gr","MAYOLIVA","237.0 gr","020303"
-"7794000006058","Mayonesa Clasica Doypack Hellmanns 950 Gr","HELLMANNS","950.0 gr","020303"
-"7798146138178","Mayonesa Heinz 350 Gr","HEINZ","350.0 gr","020303"
-"7794000006553","Aderezo a Base de Aceite con Ajo Doypack Hellmann's 250 Gr","HELLMANN'S","250.0 gr","020303"
-"7791620187662","Mayonesa Pouch Danica 500 Gr","DÁNICA","500.0 gr","020303"
-"7792180142009","Mayonesa con Jugo de Limon Cañuelas 500 Ml","CAÑUELAS","500.0 ml","020303"
-"7790580135454","Mayonesa Light con Jugo de Limon Doypack Bc La Campagnola 500 Gr","LA CAMPAGNOLA","500.0 gr","020303"
-"7790580135430","Mayonesa Light Bc Doypack La Campagnola 1 Kg","LA CAMPAGNOLA","1.0 kg","020303"
-"7798146138857","Mayonesa Heinz Light Dp 200 Gr","HEINZ","200.0 gr","020303"
-"7791866004211","Mostaza Doypack Natura 250 Gr","NATURA","250.0 gr","020304"
-"7791620187686","Mostaza Danica 220 Gr","DÁNICA","220.0 gr","020304"
-"7794000004917","Saborizador Carne con Bolsa para Horno Ajo Cebolla Sobre Knorr 21 Gr","KNORR","21.0 gr","020305"
-"7792900990699","Aderezo para Ensaladas Caesar Dos Anclas 350 Gr","DOS ANCLAS","350.0 gr","020305"
-"7794000004887","Saborizador Pollo Limon y Oregano con Bolsa para Horno Sobre Knorr 21 Gr","KNORR","21.0 gr","020305"
-"7794000004924","Saborizante y Bolsa para Horno Tipo Criollo Knorr 21 Gr","KNORR","21.0 gr","020305"
-"7790150432440","Saborizador en Polvo Gallina Alicante 4 Un","ALICANTE","4.0 un","020305"
-"7790150431443","Saborizador para Carne Alicante 4 Un","ALICANTE","4.0 un","020305"
-"7790150437803","Saborizador Albahaca y Ajo Alicante 4 Un","ALICANTE","4.0 un","020305"
-"7794000004931","Saborizador y Bolsa para Horno Barbacoa Knorr 35 Gr","KNORR","35.0 gr","020305"
-"7790150433430","Saborizador para Verdura Alicante 30 Gr","ALICANTE","30.0 gr","020305"
-"7790150438305","Saborizador Champignones Hongos Sobre Alicante 4 Un","ALICANTE","4.0 un","020305"
-"7891132011018","Resaltador de Sabor en Frasco Ajinomoto 100 Gr","AJINOMOTO","100.0 gr","020305"
-"7891132012015","Resaltador de Sabor Umami Ajinomoto 100 Gr","AJINOMOTO","100.0 gr","020305"
-"7791004000099","Sal Gruesa en Paquete Celusal 1 Kg","CELUSAL","1.0 kg","020306"
-"7791004000051","Sal Entrefina en Paquete Celusal 1 Kg","CELUSAL","1.0 kg","020306"
-"7791004000839","Sal Entrefina Parrilla Celusal 500 Gr","CELUSAL","500.0 gr","020306"
-"7790072001014","Sal Fina en Paquete Celusal 500 Gr","CELUSAL","500.0 gr","020306"
-"7793433000497","Sal Fina Modificada 66% Menos de Sodio Genser 300 Gr","GENSER","300.0 gr","020306"
-"7791004000822","Sal Gruesa en Paquete Celusal 500 Gr","CELUSAL","500.0 gr","020306"
-"7790150550465","Pimienta Blanca Molida Alicante 50 Gr","ALICANTE","50.0 gr","020306"
-"7792900000428","Sal Fina en Paquete Trilaminado Dos Anclas 500 Gr","DOS ANCLAS","500.0 gr","020306"
-"7792900092683","Sal Entrefina Parrillera en Estuche Dos Anclas 500 Gr","DOS ANCLAS","500.0 gr","020306"
-"7792900000138","Sal Fina en Estuche Dos Anclas 500 Gr","DOS ANCLAS","500.0 gr","020306"
-"7790598000355","Pimienta Negra Grano Don Ubaldo 25 Gr","DON UBALDO","25.0 gr","020306"
-"7790580136239","Pimienta Blanca Molida La Campagnola 25 Gr","LA CAMPAGNOLA","25.0 gr","020306"
-"7790580136116","Pimienta Blanca en Grano La Campagnola 23 Gr","LA CAMPAGNOLA","23.0 gr","020306"
-"7790150556740","Pimienta Negra Grano Molinillo Alicantge 45 Gr","ALICANTE","45.0 gr","020306"
-"7790580136079","Pimienta Negra Molida L. CP 23 Gr","SIN MARCA","23.0 gr","020306"
-"7790598012600","Pimienta Negra Molida Don Ubaldo 25 Gr","DON UBALDO","25.0 gr","020306"
-"7790598012617","Pimienta Blanca Molida Don Ubaldo 25 Gr","DON UBALDO","25.0 gr","020306"
-"7794000006164","Aderezo de Ketchup Doypack Hellman's 500 Gr","HELLMAN'S","500.0 gr","020307"
-"7791866000480","Salsa Golf Natura 250 Cc","NATURA","250.0 cc","020307"
-"7791620187693","Ketchup Doypack Danica 220 Gr","DÁNICA","220.0 gr","020307"
-"7790150445365","Chimichurri Alicante 12 Un 25 Gr","ALICANTE","25.0 gr","020308"
-"7792900990774","Aderezo para Ensaladas Alioli Dos Anclas 340 Gr","DOS ANCLAS","340.0 gr","020308"
-"7798146139045","Aderezo para Ensaladas Cheddar Tau 300 Gr","TAU","300.0 gr","020308"
-"7798146139229","Salsa de Soja Tradicional Dos Anclas 500 Ml","DOS ANCLAS","500.0 ml","020308"
-"7791620187716","Salsa Barbacoa Doypack Danica 220 Gr","DÁNICA","220.0 gr","020308"
-"7798146139052","Aderezo para Ensaladas Coleslaw Pet Tau 310 Gr","TAU","310.0 gr","020308"
-"7793360123474","Salsa Barbacoa Lc 250 Gr","LC","250.0 gr","020308"
-"7790150445396","Condimento para Preparar Chicmichurri Sobre Alicante 50 Gr","ALICANTE","50.0 gr","020308"
-"7790580136215","Condimento para Preparar Chimichurri La Campagnola 25 Gr","LA CAMPAGNOLA","25.0 gr","020308"
-"7792900990705","Salsa Caesar Light sin TACC Dos Anclas 360 Gr","DOS ANCLAS","360.0 gr","020308"
-"7796373002934","Salsa Picante Roja en Frasco La Parmesana 180 Cc","LA PARMESANA","180.0 cc","020308"
-"7798146139038","Aderezo Barbacoa Tau Delta 340 Gr","TAU DELTA","340.0 gr","020308"
-"7891132001675","Aderezo para Aves Pescados y Arroz Sazon 60 Gr","SAZON","60.0 gr","020308"
-"7891132001682","Aderezo para Verduras Legumbres y Arroz Sazon 60 Gr","SAZON","60.0 gr","020308"
-"7798146138963","Aderezo Caesar Pet Tau Delta 300 Gr","TAU DELTA","300.0 gr","020308"
-"7891132001699","Aderezo para Pastas Papas y Arroz Sazon 60 Gr","SAZON","60.0 gr","020308"
-"7891132001668","Aderezo para Carnes Legumbres y Arroz Sazon 60 Gr","SAZON","60.0 gr","020308"
-"7790139003173","Vinagre de Alcohol Clasico Casalta 1 Lt","CASALTA","500.0 ml","020309"
-"7792900093246","Vinagre de Alcohol Dos Anclas 1 Lt","DOS ANCLAS","1.0 lt","020309"
-"7792900092980","Vinagre de Vino Dos Anclas 500 Cc","DOS ANCLAS","500.0 cc","020309"
-"7790139003166","Vinagre de Alcohol Clasico Casalta 500 Cc","CASALTA","500.0 cc","020309"
-"7790139101145","Vinagre de Alcohol sin TACC Favinco 500 Ml","FAVINCO","500.0 ml","020309"
-"7790139101183","Vinagre de Manzana sin TACC Favinco 500 Ml","FAVINCO","500.0 ml","020309"
-"7792900093024","Vinagre de Alcohol Dos Anclas 500 Cc","DOS ANCLAS","500.0 cc","020309"
-"7790070431486","Arroz Largo Fino Luchetti 1 Kg","LUCCHETTI","1.0 kg","020401"
-"7791120031557","Arroz Largo Fino 00000 Molinos Ala 1 Kg","MOLINOS ALA","1.0 kg","020401"
-"7790070431448","Arroz Largo Fino Gallo 1 Kg","GALLO","1.0 kg","020401"
-"7790070431493","Arroz Largo Fino Luchetti 500 Gr","LUCCHETTI","500.0 gr","020401"
-"7790503199112","Arroz Doble Dos Hermanos 1 Kg","DOS HERMANOS","1.0 kg","020401"
-"7790503000081","Arroz Pulido Grano Mediano Carnaroli Dos Hermanos 500 Gr","DOS HERMANOS","500.0 gr","020401"
-"7791120098888","Arroz Integral sin TACC Cormillot Molinos Ala 1 Kg","MOLINOS ALA","1.0 kg","020402"
-"7790503000265","Arroz Integral Yamani 00000 Dos Hermanos 500 Gr","DOS HERMANOS","500.0 gr","020402"
-"7790503199105","Arroz Integral Dos Hermanos 1 Kg","DOS HERMANOS","1.0 kg","020402"
-"7792180139573","Arroz Integral Cañuelas 1 Kg","CAÑUELAS","1.0 kg","020402"
-"7790070432261","Arroz Preparado sabor Queso Gallo 240 Gr","GALLO","240.0 gr","020403"
-"7790070432254","Arroz Preparado sabor Verdeo Gallo 240 Gr","GALLO","240.0 gr","020403"
-"7798334587030","Risotto de Hongos sin TACC Mole 200 Gr","MOLÉ","200.0 gr","020403"
-"7798334587078","Risotto al Pesto sin TACC Mole 200 Gr","MOLÉ","200.0 gr","020403"
-"7798334587009","Arroz al Curry sin TACC Mole 200 Gr","MOLÉ","200.0 gr","020403"
-"7798334587061","Risotto Napolitano sin TACC Mole 200 Gr","MOLÉ","200.0 gr","020403"
-"7790070321565","Arroz Preparado sabor Cheddar Lucchetti 240 Gr","LUCCHETTI","240.0 gr","020403"
-"7793433000640","Semillas de Chia Doypack Genser 150 Gr","GENSER","150.0 gr","020406"
-"7793433000688","Mix Multisemillas Doypack Genser 120 Gr","GENSER","120.0 gr","020406"
-"7790150611074","Mix Semilla para Ensaladas sin TACC Alicante 150 Gr","ALICANTE","150.0 gr","020406"
-"7793433000671","Semillas Mix Ensaladas y Sopas Doypack Genser 150 Gr","GENSER","150.0 gr","020406"
-"7792750000937","Filet de Anchoas en Aceite Marbella 90 Gr","MARBELLA","90.0 gr","020501"
-"7790580131364","Atun al Natural Libre de Gluten sin TACC La Campagnola 170 Gr","LA CAMPAGNOLA","170.0 gr","020502"
-"7793360129940","Atun Desmenuzado al Aceite La Campagnola 170 Gr","LA CAMPAGNOLA","170.0 gr","020502"
-"7793360129957","Atun al Natural Desmuzasdo La Campagnola 170 Gr","LA CAMPAGNOLA","170.0 gr","020502"
-"7891167831100","Lomo de Atun Natural Gomes da Costa 170 Gr","GOMES DA COSTA","170.0 gr","020502"
-"7891167831117","Lomo de Atun en Aceite Gomes da Costa 170 Gr","GOMES DA COSTA","170.0 gr","020502"
-"7790748266167","Atun en Aceite Puglisi 170 Gr","PUGLISI","170.0 gr","020502"
-"7790748266204","Atun al Natural Puglisi 170 Gr","PUGLISI","170.0 gr","020502"
-"7798262020104","Pure de Fruta Sabor Pera Zummy Pou 90 Gr","ZUMMY","90.0 gr","020504"
-"7798262020043","Pure de Fruta Sabor Durazno Zummy Pou 90 Gr","ZUMMY","90.0 gr","020504"
-"7798132920435","Coctel de 4 Frutas Alco 820 Gr","ALCO","820.0 gr","020504"
-"7790360720115","Picadillo de Carne en Lata Swift 90 Gr","SWIFT","90.0 gr","020506"
-"7790360720382","Pate de Foie Swift Lata 90 Gr","SWIFT","90.0 gr","020506"
-"7796953511153","Pate Bocatti de Panceta Ahumada 90 Gr","BOCATTI","90.0 gr","020506"
-"7796953304120","Pate a La Pimienta Verde Bocatti 90 Gr","BOCATTI","90.0 gr","020506"
-"7796953301129","Pate al Champignon Bocatti 90 Gr","BOCATTI","90.0 gr","020506"
-"7790360720122","Picadillo de Carne en Lata La Blanca 90 Gr","LA BLANCA","90.0 gr","020506"
-"7790360965127","Pate de Foie en Lata La Blanca 90 Gr","LA BLANCA","90.0 gr","020506"
-"7790580567903","Tomate Pelado Perita en Lata Arcor 400 Gr","ARCOR","400.0 gr","020508"
-"7794940000536","Azucar Light Doypack Hileret 500 Gr","HILERET","500.0 gr","020601"
-"7794940000550","Azucar Light Doypack Hileret 250 Gr","HILERET","250.0 gr","020601"
-"7792540293754","Azucar sin Tacc Ledesma Light 500 Gr","LEDESMA","500.0 gr","020601"
-"7792540294607","Azucar Rubio Mascabo Ledesma 800 Gr","LEDESMA","800.0 gr","020601"
-"8445290559975","Cacao Menos Azucar Nesquik 300 Gr","NESQUIK","300.0 gr","020602"
-"7790170903692","Cafe en Capsula Colombia Morenita 10 Un","MORENITA","10.0 un","020603"
-"7790170903654","Cafe en Capsulas Blen Tipo Italiano Morenita 10 Un","MORENITA","10.0 un","020603"
-"7790150080825","Cafe en Capsulas Espresso Equilibrado La Virginia 10 Un","LA VIRGINIA","10.0 un","020603"
-"8445291082212","Cafe Instantaneo Origen Frasco Dolca 170 Gr","NESCAFÉ","170.0 gr","020604"
-"7790150100806","Cafe Instantaneo Clasico Doypack La Virginia 10 Un 100 Gr","LA VIRGINIA","100.0 gr","020604"
-"7613036312752","Cafe Soluble NesCafe Espresso Frasco 100 Gr","NESCAFÉ","100.0 gr","020604"
-"7790150100462","Cafe Instantaneo Clasico Doypack La Virginia 170 Gr","LA VIRGINIA","170.0 gr","020604"
-"7790150100783","Cafe Instantaneo Clasico La Virginia 100 Gr","LA VIRGINIA","100.0 gr","020604"
-"7790150101476","Cafe Instantaneo Suave Doypack La Virginia 170 Gr","LA VIRGINIA","170.0 gr","020604"
-"7790150161227","Capuccino Dulce de Leche Doypack La Virginia 155 Gr","LA VIRGINIA","155.0 gr","020604"
-"7790550011290","Cafe en Saquitos Cabrales 18 Un","CABRALES","18.0 un","020604"
-"7891000108819","Cafe Instantaneo Clasico NesCafe 170 Gr","NESCAFÉ","170.0 gr","020604"
-"7613035379213","Cafe Instantaneo Descafeinado NesCafe 100 Gr","NESCAFÉ","100.0 gr","020604"
-"7790150161401","Cafe Cortado Sobres La Virginia 10 Un","LA VIRGINIA","10.0 un","020604"
-"7790070933645","Cafe Soluble Seleccion Suave Arlistan 100 Gr","ARLISTÁN","100.0 gr","020604"
-"7791118000503","Malta Instantanea El Pocillo 170 Gr","EL POCILLO","170.0 gr","020604"
-"7790150110386","Cafe Instantaneo Descafeinado Kalma 170 Gr","LA VIRGINIA","170.0 gr","020604"
-"7790550000157","Cafe Molido Torrado en Bolsa Cabrales 250 Gr","CABRALES","250.0 gr","020605"
-"7790150006320","Cafe Molido Clasico Bolsa La Virginia 250 Gr","LA VIRGINIA","250.0 gr","020605"
-"7790550022456","Cafe Molido Tostado Peru Cabrales 250 Gr","CABRALES","250.0 gr","020605"
-"7798169802681","Almohaditas Rellenas Sabor Mousse Limon Lasfor 200 Gr","LASFOR","200.0 gr","020606"
-"7790787153664","Dulce de Leche Clasico Ilolay 400 Gr","ILOLAY","400.0 gr","020607"
-"7798067031275","Dulce de Leche Tradicional Fraz 1 Kg","FRANZ","1.0 kg","020607"
-"7794940000857","Edulcorante Liquido Hileret Zucra 200 Cc","HILERET","200.0 cc","020608"
-"7794940000765","Edulcorante en Sobres Hileret Stevia 100 Un","HILERET","100.0 un","020608"
-"7790490998019","Edulcorante Liquido Mate Hileret 400 Ml","HILERET","400.0 ml","020608"
-"7792129004559","Edulcorante Liquido con Stevia Chuker 200 Ml","CHUKER","200.0 ml","020608"
-"7799086000266","Edulcorante con Stevia en Sobres Ledesma 50 Un","LEDESMA","50.0 un","020608"
-"7622201761288","Galletitas Mini Oreo 50 Gr","OREO","50.0 gr","020611"
-"7790040142985","Galletitas Chocolate Blanco Chocolinas 245 Gr","CHOCOLINAS","245.0 gr","020611"
-"7622300829728","Galletitas Chocolate con Relleno de Limon Melba 120 Gr","MELBA","120.0 gr","020611"
-"7790040139657","Galletitas Merengadas 88 Gr","MERENGADAS","88.0 gr","020611"
-"7790040139930","Galletitas Chocolate con Relleno Vainilla Formis 102 Gr","FORMIS","102.0 gr","020611"
-"7622201808860","Galletitas Dulces Boca de Dama Terrabusi 170 Gr","TERRABUSI","170.0 gr","020611"
-"7891000379073","Oblea Rellena y Cubierta de Chocolate Dark Kit Kat 41 Gr","KIT KAT","41.0 gr","020611"
-"7790040139176","Galletitas Vainilla Rellenas Frutilla Polvorita 81 Gr","POLVORITA","81.0 gr","020611"
-"7622201735319","Galletitas Dulces Clasicas Lincoln 219 Gr","LINCOLN","219.0 gr","020611"
-"7891962032306","Obleas con Relleno de Vainilla Bauducco 140 Gr","BAUDUCCO","140.0 gr","020611"
-"7790040133242","Galletitas Vainilla Rellenas Chocolate Mana 152 Gr","MANÁ","152.0 gr","020611"
-"7790263119665","Galletitas Naranja y Chips Molino Natural Okebon 238 Gr","OKEBON","238.0 gr","020611"
-"7798181511004","Galletitas Con Chips de Chocolate Smams 150 Gr","SMAMS","150.0 gr","020611"
-"7793450000364","Galletitas Dulces de Hojaldre Palmeritas Hojalmar 150 Gr","HOJALMAR","150.0 gr","020611"
-"7798125811023","Galletitas Dulces con Chips de Chocolate Tostex 270 Gr","TOSTEX","270.0 gr","020611"
-"7798126070931","Obleas Clasica Vainilla Gaona Sinfonia 100 Gr","GAONA","100.0 gr","020611"
-"7790040132955","Galletitas de Salvado Hogareñas Tripack Arcor 600 Gr","ARCOR","600.0 gr","020612"
-"7795735000328","Bizcochitos con Grasa Salados Don Satur 200 Gr","DON SATUR","200.0 gr","020612"
-"7795735000342","Bizcocho Negrito Don Satur 200 Gr","DON SATUR","200.0 gr","020612"
-"7790040377707","Galletitas Original Crackers Criollitas 100 Gr","CRIOLLITAS","100.0 gr","020612"
-"7792180006455","Mini Crackers Salvado Paseo 300 Gr","PASEO","300.0 gr","020612"
-"7792200000777","Bizcochitos Light 9 de Oro 170 Gr","9 DE ORO","170.0 gr","020612"
-"7798125810521","Cintitas Jamon Tostex 125 Gr","TOSTEX","125.0 gr","020612"
+"7790070036223","Milanesas de Soja Lucchetti 290 Gr","LUCCHETTI","290.0 gr",frescos_y_congelados
+"7790360967794","Milanesa de Soja Jamon y Queso Swift 4 Un","SWIFT","4.0 un",frescos_y_congelados
+"7790360967824","Milanesa de Soja Prefrita Swift 4 Un","SWIFT","4.0 un",frescos_y_congelados
+"7790070036032","Milanesas de Soja Rellenas de Espinaca y Queso Granja Del Sol 380 Gr","GRANJA DEL SOL","380.0 gr",frescos_y_congelados
+"7790070036179","Milanesa Soja Grande Sabor Fugazzeta Lucchetti 4 Un","LUCCHETTI","4.0 un",frescos_y_congelados
+"7790670052371","Medallones de Carne Congelados Express Paty 4 Un","PATY","4.0 un",frescos_y_congelados
+"7790360966841","Medallones de Carne Clasicos Supercongelados Swift 4 Un 276 Gr","SWIFT","276.0 gr",frescos_y_congelados
+"7790360026590","Hamburguesas de Carne Clasicas Swift 12 Un 960 Gr","SWIFT","960.0 gr",frescos_y_congelados
+"7790360026606","Hamburguesas de Carne Clasicas Swift 2 Un","SWIFT","2.0 un",frescos_y_congelados
+"7790670050667","Hamburguesas de Carne Clasicas sin TACC Paty 12 Un 960 Gr","PATY","960.0 gr",frescos_y_congelados
+"7790670050674","Hamburguesas de Carne Clasicas Paty 2 Un 160 Gr","PATY","110.0 gr",frescos_y_congelados
+"7790360966797","Medallones de Carne Supercongelados Swift 2 Un","SWIFT","2.0 un",frescos_y_congelados
+"7790670050612","Hamburguesas de Carne Grandes Paty 2 Un","PATY","2.0 un",frescos_y_congelados
+"7790670050728","Hamburguesas de Carne Finitas Paty 2 Un 110 Gr","PATY","110.0 gr",frescos_y_congelados
+"7790360967701","Hamburguesa Tipo Casera Swift 240 Gr","SWIFT","240.0 gr",frescos_y_congelados
+"7790670050780","Hamburguesas de Carne Vacuna sin TACC Paty 20 Un 1.6 Kg","PATY","1.6 kg",frescos_y_congelados
+"7790670052289","Hamburguesas de Carne Light Caja Paty 4 Un","PATY","4.0 un",frescos_y_congelados
+"7790360026682","Medallones de Carne Vacuna Swift 4 Un 332 Gr","SWIFT","320.0 gr",frescos_y_congelados
+"7790670050605","Hamburguesas de Carne Grandes Paty 4 Un 480 Gr","PATY","480.0 gr",frescos_y_congelados
+"7790670052265","Hamburguesas de Carne Grandes de Cancha Paty 10 Un","PATY","10.0 un",frescos_y_congelados
+"7790360967404","Hamburguesa Clasica La Blanca 4 Un 276 Gr","LA BLANCA","276.0 gr",frescos_y_congelados
+"7790360967763","Medallon de Carne Doble Swift 4 Un","SWIFT","4.0 un",frescos_y_congelados
+"7790670051312","Hamburguesa con Queso Provolone Paty 2 Un","PATY","2.0 un",frescos_y_congelados
+"7790670051329","Hamburguesa con Cebolla Paty 2 Un","PATY","2.0 un",frescos_y_congelados
+"7790670051336","Hamburguesa con Morron Paty 2 Un","PATY","2.0 un",frescos_y_congelados
+"7790070036261","Medallon de Arroz Yamani y Cebolla Caramelizada Veggies Granja Del Sol 440 Gr","GRANJA DEL SOL","440.0 gr",frescos_y_congelados
+"7792180142122","Pizza Congelada Mozzarella Pietro 470 Gr","PIETRO","470.0 gr",frescos_y_congelados
+"7790070035950","Bocaditos de Pollo Rebozados +100 Gr Gratis Patitas 1.1 Kg","PATITAS","1.1 kg",frescos_y_congelados
+"7790070034410","Nuggets de Pollo Bolsa Granja Del Sol 400 Gr","GRANJA DEL SOL","400.0 gr",frescos_y_congelados
+"7790070036148","Supremitas de Pollo Rebozadas Granja Del Sol 480 Gr","GRANJA DEL SOL","480.0 gr",frescos_y_congelados
+"7790360967558","Medallones de Pollo Swift 4 Un 320 Gr","SWIFT","320.0 gr",frescos_y_congelados
+"7790360971135","Bocaditos de Pollo Swift 260 Gr","SWIFT","260.0 gr",frescos_y_congelados
+"7891515571351","Bocaditos Nuggets de Pollo Crocante Sadia 300 Gr","SADIA","300.0 gr",frescos_y_congelados
+"7891515547059","Bocaditos Nuggets de Pollo Sadia 900 Gr","SADIA","900.0 gr",frescos_y_congelados
+"7790079019708","Medallones de Pollo con Jamon y Queso Paladini 2 Un 170 Gr","PALADINI","170.0 gr",frescos_y_congelados
+"7790079019692","Medallones de Pollo Flowpack Paladini 2 Un 150 Gr","PALADINI","150.0 gr",frescos_y_congelados
+"7891515547066","Supremitas de Pollo Rebozadas Congeladas Sadia 720 Gr","SADIA","720.0 gr",frescos_y_congelados
+"7790079020773","Medallon de Pollo especial Paladini 170 Gr","PALADINI","170.0 gr",frescos_y_congelados
+"7797906000700","Papas Prefritas Supercongeladas Mc Cain 400 Gr","MC CAIN","400.0 gr",frescos_y_congelados
+"7790070036278","Espinaca Congelada Granja Del Sol 500 Gr","GRANJA DEL SOL","500.0 gr",frescos_y_congelados
+"7797906054826","Papas Clasicas Tradicional Familiar Mc Cain 700 Gr","MC CAIN","700.0 gr",frescos_y_congelados
+"7797906054819","Papas Clasicas Tradicional Familiar Mc Cain 1.4 Kg","MC CAIN","1.4 kg",frescos_y_congelados
+"7797906054864","Papas Baston Horneables Corte Tradicional Bolsa Mc Cain 700 Gr","MC CAIN","700.0 gr",frescos_y_congelados
+"7790070036292","Acelga Congelada Granja Del Sol 500 Gr","GRANJA DEL SOL","500.0 gr",frescos_y_congelados
+"7790070036308","Brocoli Congelado Granja Del Sol 400 Gr","GRANJA DEL SOL","400.0 gr",frescos_y_congelados
+"7797906054857","Papas Baston Horneables Artesanal Bolsa Mc Cain 700 Gr","MC CAIN","700.0 gr",frescos_y_congelados
+"7790070036384","Arvejas Congeladas Bolsa Granja Del Sol Bolsa 300 Gr","GRANJA DEL SOL","300.0 gr",frescos_y_congelados
+"7790070036414","Arvejas Congeladas Bolsa Lucchetti 300 Gr","LUCCHETTI","300.0 gr",frescos_y_congelados
+"7790070036391","Ensalada Primavera Congelada Granja del Sol 400 Gr","GRANJA DEL SOL","400.0 gr",frescos_y_congelados
+"7797906054833","Papas Baston Corte Crinkle Bolsa Mc Cain 600 Gr","MC CAIN","600.0 gr",frescos_y_congelados
+"7790079021459","Papas Baston Paladini 700 Gr","PALADINI","700.0 gr",frescos_y_congelados
+"7790272001029","Aceite de Girasol Natura 1.5 Lt","NATURA","1.5 lt",almacen
+"7790070012050","Aceite de Girasol Cocinero 900 Ml","COCINERO","900.0 ml",almacen
+"7792180001665","Aceite de Girasol Cañuelas 1.5 Lt","CAÑUELAS","1.5 lt",almacen
+"7790272001005","Aceite de Girasol Natura 900 Ml","NATURA","900.0 ml",almacen
+"7792180001641","Aceite de Girasol Cañuelas 900 Cc","CAÑUELAS","900.0 cc",almacen
+"7790070231420","Aceite de Girasol Lira 1.5 Lt","LIRA","1.5 lt",almacen
+"7790272000794","Aceite de Maiz Mazola 900 Ml","MAZOLA","900.0 ml",almacen
+"7790060234868","Aceite Mezcla Cocinero 900 Cc","COCINERO","900.0 cc",almacen
+"7790070265142","Aceite Oliva Puro sin TACC Cocinero 500 Ml","COCINERO","500.0 ml",almacen
+"7798080520077","Aceite de Oliva Extra Virgen La Toscana 500 Cc","LA TOSCANA","500.0 cc",almacen
+"7790070231833","Aceite de Oliva Extra Virgen Lira 500 Ml","LIRA","500.0 ml",almacen
+"7798080520534","Aceite de Oliva con Albahaca La Toscana 250 Ml","LA TOSCANA","250.0 ml",almacen
+"7790199603757","Aceite Oliva Extra Virgen Morixe 500 Ml","MORIXE","500.0 ml",almacen
+"7798080521760","Aceitunas Negras La Toscana 580 Gr","LA TOSCANA","580.0 gr",almacen
+"7798080521685","Aceitunas Verdes sin Carozo La Toscana 300 Gr","LA TOSCANA","300.0 gr",almacen
+"7798080521678","Aceitunas Verdes La Toscana 300 Gr","LA TOSCANA","300.0 gr",almacen
+"7790199603030","Aceitunas Verdes Enteras Morixe 300 Gr","MORIXE","300.0 gr",almacen
+"7790199603054","Aceitunas Verdes Descarozadas Morixe 300 Gr","MORIXE","300.0 gr",almacen
+"7792070001133","Aceitunas Verdes en Doypack Nucete 800 Gr","NUCETE","800.0 gr",almacen
+"7792070054351","Aceitunas Verdes Rodajas Doypack Nucete 220 Gr","NUCETE","220.0 gr",almacen
+"7798080521692","Aceitunas Verdes Rodajas La Toscana 300 Gr","LA TOSCANA","300.0 gr",almacen
+"7798080521739","Aceitunas Verdes sin Carozo La Toscana 580 Gr","LA TOSCANA","580.0 gr",almacen
+"7790139000448","Aceto Balsamico Clasico Casalta 250 Ml","CASALTA","250.0 ml",almacen
+"7790139003418","Aceto Balsamico Reduccion Casalta 400 Ml","CASALTA","400.0 ml",almacen
+"7790139101466","Aceto Balsamico Reduccion Casalta 250 Ml","CASALTA","250.0 ml",almacen
+"7790139101640","Aceto Balsamico Reduccion Casalta 500 Cc","CASALTA","500.0 cc",almacen
+"7792900000251","Aceto Balsamico Dos Anclas 250 Cc","DOS ANCLAS","250.0 cc",almacen
+"7790139004941","Aceto Espeso Favinco 250 Ml","FAVINCO","250.0 ml",almacen
+"7790139101763","Aceto Balsamico Casalta 500 Cc","CASALTA","500.0 cc",almacen
+"7790150564844","Pimenton Dulce Sobre Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790150570180","Provenzal Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790150435380","Canela Molida Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790150411391","Ajo Triturado Deshidratado Alicante 50 Gr","ALICANTE","50.0 gr",almacen
+"7794000006140","Espinaca Deshidratada Knorr 50 Gr","KNORR","50.0 gr",almacen
+"7790150497081","Condimento para Milanesas Sobre Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7794000006133","Morron Deshidratado Knorr 75 Gr","KNORR","75.0 gr",almacen
+"7790150532706","Condimento Sabor a las Brasas Alicante 108 Un 25 Gr","ALICANTE","25.0 gr",almacen
+"7790150420331","Anis en Grano Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790150470350","Condimento para Arroz Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790150480243","Condimento para Carnes Sobre Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790150440360","Cebolla Deshidratada Alicante 50 Gr","ALICANTE","50.0 gr",almacen
+"7794000006119","Cebolla Deshidratada Knorr 100 Gr","KNORR","100.0 gr",almacen
+"7790150406953","Aji Molido Sobre Alicante 50 Gr","ALICANTE","50.0 gr",almacen
+"7790150490471","Condimento para Pizza Alicante 25 Un 50 Gr","ALICANTE","50.0 gr",almacen
+"7790150465479","Comino Molido Sobre Alicante 50 Gr","ALICANTE","50.0 gr",almacen
+"7790150545287","Perejil Deshidratado Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790580135737","Condimento para Pizza La Campagnola 23 Gr","LA CAMPAGNOLA","23.0 gr",almacen
+"7790150570371","Provenzal sin TACC Alicante 50 Gr","ALICANTE","50.0 gr",almacen
+"7790150540336","Oregano Sobre Alicante 50 Gr","ALICANTE","50.0 gr",almacen
+"7790150532607","Mix Especias Oriental Alicante 108 Un 50 Gr","ALICANTE","50.0 gr",almacen
+"7790150532508","Mix Especias Italiano Alicante 12 Un 20 Gr","ALICANTE","20.0 gr",almacen
+"7790150532300","Especias Mix Criollo Alicante 108 Un 25 Gr","ALICANTE","25.0 gr",almacen
+"7790150436080","Canela en Rama Alicante 20 Gr","ALICANTE","20.0 gr",almacen
+"7790150531181","Laurel en Hojas Alicante 10 Gr","ALICANTE","10.0 gr",almacen
+"7790150573280","Romero Alicante 15 Gr","ALICANTE","15.0 gr",almacen
+"7790150535394","Nuez Moscada Molida Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790598091742","Romero Don Ubaldo 15 Gr","DON UBALDO","15.0 gr",almacen
+"7790598091162","Aji Molido Picante Don Ubaldo 1 Un","DON UBALDO","1.0 un",almacen
+"7793360124945","Tomillo La Campagnola 15 Gr","LA CAMPAGNOLA","15.0 gr",almacen
+"7790598015090","Pimenton en Sobre Don Ubaldo 25 Gr","DON UBALDO","25.0 gr",almacen
+"7790150497272","Condimento para Empanadas Alicante 25 Gr","ALICANTE","25.0 gr",almacen
+"7790598000010","Albahaca en Especias Don Ubaldo 1 Un","DON UBALDO","1.0 un",almacen
+"7790580136734","Provenzal La Campagnola 48 Gr","LA CAMPAGNOLA","48.0 gr",almacen
+"7790598000133","Oregano Don Ubaldo 25 Gr","DON UBALDO","25.0 gr",almacen
+"7790598000140","Oregano Don Ubaldo 50 Gr","DON UBALDO","50.0 gr",almacen
+"7790598000331","Perejil en Sobre Don Ubaldo 25 Gr","DON UBALDO","25.0 gr",almacen
+"7790598000430","Provenzal Sobre Don Ubaldo 25 Gr","DON UBALDO","25.0 gr",almacen
+"7790598010064","Condimento para Pizza Don Ubaldo 25 Gr","CARREFOUR","25.0 gr",almacen
+"7790598010217","Aji Molido Don Ubaldo 25 Gr","CARREFOUR","25.0 gr",almacen
+"7790598012136","Comino Don Ubaldo 1 Un","DON UBALDO","1.0 un",almacen
+"7790598021701","Provenzal Don Ubaldo 50 Gr","DON UBALDO","50.0 gr",almacen
+"7796373112701","Salvia La Parmesana 20 Gr","LA PARMESANA","20.0 gr",almacen
+"7891132001705","Condimento para Arroz Blanco Tempero Sazon Ajinomoto 60 Gr","SAZON","60.0 gr",almacen
+"7791866001203","Mayonesa Doypack Natura 237 Gr","NATURA","237.0 gr",almacen
+"7794000006072","Mayonesa Regular Doypack Hellmanns 475 Gr","HELLMANNS","475.0 gr",almacen
+"7791866001364","Mayonesa Doypack Natura 500 Ml","NATURA","500.0 ml",almacen
+"7791866003283","Mayonesa con Aceite de Oliva Mayoliva 227 Gr","MAYOLIVA","237.0 gr",almacen
+"7794000006058","Mayonesa Clasica Doypack Hellmanns 950 Gr","HELLMANNS","950.0 gr",almacen
+"7798146138178","Mayonesa Heinz 350 Gr","HEINZ","350.0 gr",almacen
+"7794000006553","Aderezo a Base de Aceite con Ajo Doypack Hellmann's 250 Gr","HELLMANN'S","250.0 gr",almacen
+"7791620187662","Mayonesa Pouch Danica 500 Gr","DÁNICA","500.0 gr",almacen
+"7792180142009","Mayonesa con Jugo de Limon Cañuelas 500 Ml","CAÑUELAS","500.0 ml",almacen
+"7790580135454","Mayonesa Light con Jugo de Limon Doypack Bc La Campagnola 500 Gr","LA CAMPAGNOLA","500.0 gr",almacen
+"7790580135430","Mayonesa Light Bc Doypack La Campagnola 1 Kg","LA CAMPAGNOLA","1.0 kg",almacen
+"7798146138857","Mayonesa Heinz Light Dp 200 Gr","HEINZ","200.0 gr",almacen
+"7791866004211","Mostaza Doypack Natura 250 Gr","NATURA","250.0 gr",almacen
+"7791620187686","Mostaza Danica 220 Gr","DÁNICA","220.0 gr",almacen
+"7794000004917","Saborizador Carne con Bolsa para Horno Ajo Cebolla Sobre Knorr 21 Gr","KNORR","21.0 gr",almacen
+"7792900990699","Aderezo para Ensaladas Caesar Dos Anclas 350 Gr","DOS ANCLAS","350.0 gr",almacen
+"7794000004887","Saborizador Pollo Limon y Oregano con Bolsa para Horno Sobre Knorr 21 Gr","KNORR","21.0 gr",almacen
+"7794000004924","Saborizante y Bolsa para Horno Tipo Criollo Knorr 21 Gr","KNORR","21.0 gr",almacen
+"7790150432440","Saborizador en Polvo Gallina Alicante 4 Un","ALICANTE","4.0 un",almacen
+"7790150431443","Saborizador para Carne Alicante 4 Un","ALICANTE","4.0 un",almacen
+"7790150437803","Saborizador Albahaca y Ajo Alicante 4 Un","ALICANTE","4.0 un",almacen
+"7794000004931","Saborizador y Bolsa para Horno Barbacoa Knorr 35 Gr","KNORR","35.0 gr",almacen
+"7790150433430","Saborizador para Verdura Alicante 30 Gr","ALICANTE","30.0 gr",almacen
+"7790150438305","Saborizador Champignones Hongos Sobre Alicante 4 Un","ALICANTE","4.0 un",almacen
+"7891132011018","Resaltador de Sabor en Frasco Ajinomoto 100 Gr","AJINOMOTO","100.0 gr",almacen
+"7891132012015","Resaltador de Sabor Umami Ajinomoto 100 Gr","AJINOMOTO","100.0 gr",almacen
+"7791004000099","Sal Gruesa en Paquete Celusal 1 Kg","CELUSAL","1.0 kg",almacen
+"7791004000051","Sal Entrefina en Paquete Celusal 1 Kg","CELUSAL","1.0 kg",almacen
+"7791004000839","Sal Entrefina Parrilla Celusal 500 Gr","CELUSAL","500.0 gr",almacen
+"7790072001014","Sal Fina en Paquete Celusal 500 Gr","CELUSAL","500.0 gr",almacen
+"7793433000497","Sal Fina Modificada 66% Menos de Sodio Genser 300 Gr","GENSER","300.0 gr",almacen
+"7791004000822","Sal Gruesa en Paquete Celusal 500 Gr","CELUSAL","500.0 gr",almacen
+"7790150550465","Pimienta Blanca Molida Alicante 50 Gr","ALICANTE","50.0 gr",almacen
+"7792900000428","Sal Fina en Paquete Trilaminado Dos Anclas 500 Gr","DOS ANCLAS","500.0 gr",almacen
+"7792900092683","Sal Entrefina Parrillera en Estuche Dos Anclas 500 Gr","DOS ANCLAS","500.0 gr",almacen
+"7792900000138","Sal Fina en Estuche Dos Anclas 500 Gr","DOS ANCLAS","500.0 gr",almacen
+"7790598000355","Pimienta Negra Grano Don Ubaldo 25 Gr","DON UBALDO","25.0 gr",almacen
+"7790580136239","Pimienta Blanca Molida La Campagnola 25 Gr","LA CAMPAGNOLA","25.0 gr",almacen
+"7790580136116","Pimienta Blanca en Grano La Campagnola 23 Gr","LA CAMPAGNOLA","23.0 gr",almacen
+"7790150556740","Pimienta Negra Grano Molinillo Alicantge 45 Gr","ALICANTE","45.0 gr",almacen
+"7790580136079","Pimienta Negra Molida L. CP 23 Gr","SIN MARCA","23.0 gr",almacen
+"7790598012600","Pimienta Negra Molida Don Ubaldo 25 Gr","DON UBALDO","25.0 gr",almacen
+"7790598012617","Pimienta Blanca Molida Don Ubaldo 25 Gr","DON UBALDO","25.0 gr",almacen
+"7794000006164","Aderezo de Ketchup Doypack Hellman's 500 Gr","HELLMAN'S","500.0 gr",almacen
+"7791866000480","Salsa Golf Natura 250 Cc","NATURA","250.0 cc",almacen
+"7791620187693","Ketchup Doypack Danica 220 Gr","DÁNICA","220.0 gr",almacen
+"7790150445365","Chimichurri Alicante 12 Un 25 Gr","ALICANTE","25.0 gr",almacen
+"7792900990774","Aderezo para Ensaladas Alioli Dos Anclas 340 Gr","DOS ANCLAS","340.0 gr",almacen
+"7798146139045","Aderezo para Ensaladas Cheddar Tau 300 Gr","TAU","300.0 gr",almacen
+"7798146139229","Salsa de Soja Tradicional Dos Anclas 500 Ml","DOS ANCLAS","500.0 ml",almacen
+"7791620187716","Salsa Barbacoa Doypack Danica 220 Gr","DÁNICA","220.0 gr",almacen
+"7798146139052","Aderezo para Ensaladas Coleslaw Pet Tau 310 Gr","TAU","310.0 gr",almacen
+"7793360123474","Salsa Barbacoa Lc 250 Gr","LC","250.0 gr",almacen
+"7790150445396","Condimento para Preparar Chicmichurri Sobre Alicante 50 Gr","ALICANTE","50.0 gr",almacen
+"7790580136215","Condimento para Preparar Chimichurri La Campagnola 25 Gr","LA CAMPAGNOLA","25.0 gr",almacen
+"7792900990705","Salsa Caesar Light sin TACC Dos Anclas 360 Gr","DOS ANCLAS","360.0 gr",almacen
+"7796373002934","Salsa Picante Roja en Frasco La Parmesana 180 Cc","LA PARMESANA","180.0 cc",almacen
+"7798146139038","Aderezo Barbacoa Tau Delta 340 Gr","TAU DELTA","340.0 gr",almacen
+"7891132001675","Aderezo para Aves Pescados y Arroz Sazon 60 Gr","SAZON","60.0 gr",almacen
+"7891132001682","Aderezo para Verduras Legumbres y Arroz Sazon 60 Gr","SAZON","60.0 gr",almacen
+"7798146138963","Aderezo Caesar Pet Tau Delta 300 Gr","TAU DELTA","300.0 gr",almacen
+"7891132001699","Aderezo para Pastas Papas y Arroz Sazon 60 Gr","SAZON","60.0 gr",almacen
+"7891132001668","Aderezo para Carnes Legumbres y Arroz Sazon 60 Gr","SAZON","60.0 gr",almacen
+"7790139003173","Vinagre de Alcohol Clasico Casalta 1 Lt","CASALTA","500.0 ml",almacen
+"7792900093246","Vinagre de Alcohol Dos Anclas 1 Lt","DOS ANCLAS","1.0 lt",almacen
+"7792900092980","Vinagre de Vino Dos Anclas 500 Cc","DOS ANCLAS","500.0 cc",almacen
+"7790139003166","Vinagre de Alcohol Clasico Casalta 500 Cc","CASALTA","500.0 cc",almacen
+"7790139101145","Vinagre de Alcohol sin TACC Favinco 500 Ml","FAVINCO","500.0 ml",almacen
+"7790139101183","Vinagre de Manzana sin TACC Favinco 500 Ml","FAVINCO","500.0 ml",almacen
+"7792900093024","Vinagre de Alcohol Dos Anclas 500 Cc","DOS ANCLAS","500.0 cc",almacen
+"7790070431486","Arroz Largo Fino Luchetti 1 Kg","LUCCHETTI","1.0 kg",almacen
+"7791120031557","Arroz Largo Fino 00000 Molinos Ala 1 Kg","MOLINOS ALA","1.0 kg",almacen
+"7790070431448","Arroz Largo Fino Gallo 1 Kg","GALLO","1.0 kg",almacen
+"7790070431493","Arroz Largo Fino Luchetti 500 Gr","LUCCHETTI","500.0 gr",almacen
+"7790503199112","Arroz Doble Dos Hermanos 1 Kg","DOS HERMANOS","1.0 kg",almacen
+"7790503000081","Arroz Pulido Grano Mediano Carnaroli Dos Hermanos 500 Gr","DOS HERMANOS","500.0 gr",almacen
+"7791120098888","Arroz Integral sin TACC Cormillot Molinos Ala 1 Kg","MOLINOS ALA","1.0 kg",almacen
+"7790503000265","Arroz Integral Yamani 00000 Dos Hermanos 500 Gr","DOS HERMANOS","500.0 gr",almacen
+"7790503199105","Arroz Integral Dos Hermanos 1 Kg","DOS HERMANOS","1.0 kg",almacen
+"7792180139573","Arroz Integral Cañuelas 1 Kg","CAÑUELAS","1.0 kg",almacen
+"7790070432261","Arroz Preparado sabor Queso Gallo 240 Gr","GALLO","240.0 gr",almacen
+"7790070432254","Arroz Preparado sabor Verdeo Gallo 240 Gr","GALLO","240.0 gr",almacen
+"7798334587030","Risotto de Hongos sin TACC Mole 200 Gr","MOLÉ","200.0 gr",almacen
+"7798334587078","Risotto al Pesto sin TACC Mole 200 Gr","MOLÉ","200.0 gr",almacen
+"7798334587009","Arroz al Curry sin TACC Mole 200 Gr","MOLÉ","200.0 gr",almacen
+"7798334587061","Risotto Napolitano sin TACC Mole 200 Gr","MOLÉ","200.0 gr",almacen
+"7790070321565","Arroz Preparado sabor Cheddar Lucchetti 240 Gr","LUCCHETTI","240.0 gr",almacen
+"7793433000640","Semillas de Chia Doypack Genser 150 Gr","GENSER","150.0 gr",almacen
+"7793433000688","Mix Multisemillas Doypack Genser 120 Gr","GENSER","120.0 gr",almacen
+"7790150611074","Mix Semilla para Ensaladas sin TACC Alicante 150 Gr","ALICANTE","150.0 gr",almacen
+"7793433000671","Semillas Mix Ensaladas y Sopas Doypack Genser 150 Gr","GENSER","150.0 gr",almacen
+"7792750000937","Filet de Anchoas en Aceite Marbella 90 Gr","MARBELLA","90.0 gr",almacen
+"7790580131364","Atun al Natural Libre de Gluten sin TACC La Campagnola 170 Gr","LA CAMPAGNOLA","170.0 gr",almacen
+"7793360129940","Atun Desmenuzado al Aceite La Campagnola 170 Gr","LA CAMPAGNOLA","170.0 gr",almacen
+"7793360129957","Atun al Natural Desmuzasdo La Campagnola 170 Gr","LA CAMPAGNOLA","170.0 gr",almacen
+"7891167831100","Lomo de Atun Natural Gomes da Costa 170 Gr","GOMES DA COSTA","170.0 gr",almacen
+"7891167831117","Lomo de Atun en Aceite Gomes da Costa 170 Gr","GOMES DA COSTA","170.0 gr",almacen
+"7790748266167","Atun en Aceite Puglisi 170 Gr","PUGLISI","170.0 gr",almacen
+"7790748266204","Atun al Natural Puglisi 170 Gr","PUGLISI","170.0 gr",almacen
+"7798262020104","Pure de Fruta Sabor Pera Zummy Pou 90 Gr","ZUMMY","90.0 gr",almacen
+"7798262020043","Pure de Fruta Sabor Durazno Zummy Pou 90 Gr","ZUMMY","90.0 gr",almacen
+"7798132920435","Coctel de 4 Frutas Alco 820 Gr","ALCO","820.0 gr",almacen
+"7790360720115","Picadillo de Carne en Lata Swift 90 Gr","SWIFT","90.0 gr",almacen
+"7790360720382","Pate de Foie Swift Lata 90 Gr","SWIFT","90.0 gr",almacen
+"7796953511153","Pate Bocatti de Panceta Ahumada 90 Gr","BOCATTI","90.0 gr",almacen
+"7796953304120","Pate a La Pimienta Verde Bocatti 90 Gr","BOCATTI","90.0 gr",almacen
+"7796953301129","Pate al Champignon Bocatti 90 Gr","BOCATTI","90.0 gr",almacen
+"7790360720122","Picadillo de Carne en Lata La Blanca 90 Gr","LA BLANCA","90.0 gr",almacen
+"7790360965127","Pate de Foie en Lata La Blanca 90 Gr","LA BLANCA","90.0 gr",almacen
+"7790580567903","Tomate Pelado Perita en Lata Arcor 400 Gr","ARCOR","400.0 gr",almacen
+"7794940000536","Azucar Light Doypack Hileret 500 Gr","HILERET","500.0 gr",almacen
+"7794940000550","Azucar Light Doypack Hileret 250 Gr","HILERET","250.0 gr",almacen
+"7792540293754","Azucar sin Tacc Ledesma Light 500 Gr","LEDESMA","500.0 gr",almacen
+"7792540294607","Azucar Rubio Mascabo Ledesma 800 Gr","LEDESMA","800.0 gr",almacen
+"8445290559975","Cacao Menos Azucar Nesquik 300 Gr","NESQUIK","300.0 gr",almacen
+"7790170903692","Cafe en Capsula Colombia Morenita 10 Un","MORENITA","10.0 un",almacen
+"7790170903654","Cafe en Capsulas Blen Tipo Italiano Morenita 10 Un","MORENITA","10.0 un",almacen
+"7790150080825","Cafe en Capsulas Espresso Equilibrado La Virginia 10 Un","LA VIRGINIA","10.0 un",almacen
+"8445291082212","Cafe Instantaneo Origen Frasco Dolca 170 Gr","NESCAFÉ","170.0 gr",almacen
+"7790150100806","Cafe Instantaneo Clasico Doypack La Virginia 10 Un 100 Gr","LA VIRGINIA","100.0 gr",almacen
+"7613036312752","Cafe Soluble NesCafe Espresso Frasco 100 Gr","NESCAFÉ","100.0 gr",almacen
+"7790150100462","Cafe Instantaneo Clasico Doypack La Virginia 170 Gr","LA VIRGINIA","170.0 gr",almacen
+"7790150100783","Cafe Instantaneo Clasico La Virginia 100 Gr","LA VIRGINIA","100.0 gr",almacen
+"7790150101476","Cafe Instantaneo Suave Doypack La Virginia 170 Gr","LA VIRGINIA","170.0 gr",almacen
+"7790150161227","Capuccino Dulce de Leche Doypack La Virginia 155 Gr","LA VIRGINIA","155.0 gr",almacen
+"7790550011290","Cafe en Saquitos Cabrales 18 Un","CABRALES","18.0 un",almacen
+"7891000108819","Cafe Instantaneo Clasico NesCafe 170 Gr","NESCAFÉ","170.0 gr",almacen
+"7613035379213","Cafe Instantaneo Descafeinado NesCafe 100 Gr","NESCAFÉ","100.0 gr",almacen
+"7790150161401","Cafe Cortado Sobres La Virginia 10 Un","LA VIRGINIA","10.0 un",almacen
+"7790070933645","Cafe Soluble Seleccion Suave Arlistan 100 Gr","ARLISTÁN","100.0 gr",almacen
+"7791118000503","Malta Instantanea El Pocillo 170 Gr","EL POCILLO","170.0 gr",almacen
+"7790150110386","Cafe Instantaneo Descafeinado Kalma 170 Gr","LA VIRGINIA","170.0 gr",almacen
+"7790550000157","Cafe Molido Torrado en Bolsa Cabrales 250 Gr","CABRALES","250.0 gr",almacen
+"7790150006320","Cafe Molido Clasico Bolsa La Virginia 250 Gr","LA VIRGINIA","250.0 gr",almacen
+"7790550022456","Cafe Molido Tostado Peru Cabrales 250 Gr","CABRALES","250.0 gr",almacen
+"7798169802681","Almohaditas Rellenas Sabor Mousse Limon Lasfor 200 Gr","LASFOR","200.0 gr",almacen
+"7790787153664","Dulce de Leche Clasico Ilolay 400 Gr","ILOLAY","400.0 gr",almacen
+"7798067031275","Dulce de Leche Tradicional Fraz 1 Kg","FRANZ","1.0 kg",almacen
+"7794940000857","Edulcorante Liquido Hileret Zucra 200 Cc","HILERET","200.0 cc",almacen
+"7794940000765","Edulcorante en Sobres Hileret Stevia 100 Un","HILERET","100.0 un",almacen
+"7790490998019","Edulcorante Liquido Mate Hileret 400 Ml","HILERET","400.0 ml",almacen
+"7792129004559","Edulcorante Liquido con Stevia Chuker 200 Ml","CHUKER","200.0 ml",almacen
+"7799086000266","Edulcorante con Stevia en Sobres Ledesma 50 Un","LEDESMA","50.0 un",almacen
+"7622201761288","Galletitas Mini Oreo 50 Gr","OREO","50.0 gr",almacen
+"7790040142985","Galletitas Chocolate Blanco Chocolinas 245 Gr","CHOCOLINAS","245.0 gr",almacen
+"7622300829728","Galletitas Chocolate con Relleno de Limon Melba 120 Gr","MELBA","120.0 gr",almacen
+"7790040139657","Galletitas Merengadas 88 Gr","MERENGADAS","88.0 gr",almacen
+"7790040139930","Galletitas Chocolate con Relleno Vainilla Formis 102 Gr","FORMIS","102.0 gr",almacen
+"7622201808860","Galletitas Dulces Boca de Dama Terrabusi 170 Gr","TERRABUSI","170.0 gr",almacen
+"7891000379073","Oblea Rellena y Cubierta de Chocolate Dark Kit Kat 41 Gr","KIT KAT","41.0 gr",almacen
+"7790040139176","Galletitas Vainilla Rellenas Frutilla Polvorita 81 Gr","POLVORITA","81.0 gr",almacen
+"7622201735319","Galletitas Dulces Clasicas Lincoln 219 Gr","LINCOLN","219.0 gr",almacen
+"7891962032306","Obleas con Relleno de Vainilla Bauducco 140 Gr","BAUDUCCO","140.0 gr",almacen
+"7790040133242","Galletitas Vainilla Rellenas Chocolate Mana 152 Gr","MANÁ","152.0 gr",almacen
+"7790263119665","Galletitas Naranja y Chips Molino Natural Okebon 238 Gr","OKEBON","238.0 gr",almacen
+"7798181511004","Galletitas Con Chips de Chocolate Smams 150 Gr","SMAMS","150.0 gr",almacen
+"7793450000364","Galletitas Dulces de Hojaldre Palmeritas Hojalmar 150 Gr","HOJALMAR","150.0 gr",almacen
+"7798125811023","Galletitas Dulces con Chips de Chocolate Tostex 270 Gr","TOSTEX","270.0 gr",almacen
+"7798126070931","Obleas Clasica Vainilla Gaona Sinfonia 100 Gr","GAONA","100.0 gr",almacen
+"7790040132955","Galletitas de Salvado Hogareñas Tripack Arcor 600 Gr","ARCOR","600.0 gr",almacen
+"7795735000328","Bizcochitos con Grasa Salados Don Satur 200 Gr","DON SATUR","200.0 gr",almacen
+"7795735000342","Bizcocho Negrito Don Satur 200 Gr","DON SATUR","200.0 gr",almacen
+"7790040377707","Galletitas Original Crackers Criollitas 100 Gr","CRIOLLITAS","100.0 gr",almacen
+"7792180006455","Mini Crackers Salvado Paseo 300 Gr","PASEO","300.0 gr",almacen
+"7792200000777","Bizcochitos Light 9 de Oro 170 Gr","9 DE ORO","170.0 gr",almacen
+"7798125810521","Cintitas Jamon Tostex 125 Gr","TOSTEX","125.0 gr",almacen
 "7793360131554","Mermelada de Naranja Bc La Campagnola 390 Gr","LA CAMPAGNOLA","390.0 gr","020615"
 "7792260639689","Mermelada Light de Durazno Pro Light Orieta 420 Gr","ORIETA","420.0 gr","020615"
 "7793046008477","Mermelada de Ciruela Dulcor 454 Gr","DULCOR","454.0 gr","020615"
