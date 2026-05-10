@@ -3,11 +3,34 @@ import re
 import logging
 import csv
 import aiohttp
+import os
+from datetime import datetime
 from playwright.async_api import async_playwright
 
 # Configuración de Logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
 logger = logging.getLogger()
+
+def format_price(price_val):
+    """Convierte un valor numérico o string a formato: 1.234,56"""
+    try:
+        if isinstance(price_val, str):
+            price_val = price_val.replace('$', '').replace(' ', '').strip()
+            if ',' in price_val:
+                price_val = price_val.replace('.', '').replace(',', '.')
+            elif '.' in price_val:
+                if price_val.count('.') > 1:
+                    price_val = price_val.replace('.', '')
+                else:
+                    partes = price_val.split('.')
+                    # Si tiene 3 dígitos después del punto y la parte entera es corta, es probable que sea miles (La Banderita style)
+                    # Pero para VTEX (636.75) es decimal.
+                    if len(partes[1]) == 3 and len(partes[0]) <= 3:
+                        price_val = price_val.replace('.', '')
+        val = float(price_val)
+        return "{:,.2f}".format(val).replace(",", "X").replace(".", ",").replace("X", ".")
+    except:
+        return "0,00"
 
 async def consultar_producto(session, ean):
     """Consulta la API de VTEX para obtener detalles del producto."""
@@ -20,25 +43,25 @@ async def consultar_producto(session, ean):
                     product = data[0]
                     items = product.get('items', [])
                     # Estructuramos la fila para el CSV
+                    raw_price = items[0]['sellers'][0]['commertialOffer']['Price'] if items and items[0].get('sellers') else 0
                     return [
                         ean, 
-                        product.get('productName', 'N/A'), 
-                        product.get('brand', 'N/A'), 
-                        items[0].get('name', 'N/A') if items else 'N/A',
-                        product.get('categoryId', 'N/A'),
-                        items[0]['sellers'][0]['commertialOffer']['Price'] if items and items[0].get('sellers') else 0
+                        format_price(raw_price)
                     ]
     except Exception as e:
         logger.error(f"Error en API para EAN {ean}: {e}")
     return None
 
 async def main():
-    output_file = "productos_chango_mas.csv"
+    os.makedirs("resultados", exist_ok=True)
+    timestamp_file = datetime.now().strftime('%Y%m%d_%H%M%S')
+    output_file = f"resultados/precios_changomas_{timestamp_file}.csv"
+
     
     # 1. Preparamos el CSV (Encabezados)
     with open(output_file, mode='w', newline='', encoding='utf-8') as csv_file:
         writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-        writer.writerow(["ID/EAN", "NOMBRE", "MARCA", "PRESENTACION", "ID_CATEGORIA", "PRECIO"])
+        writer.writerow(["EAN", "PRECIO"])
 
     # 2. Mapeo de Categorías de ChangoMas (changoMas identifica en la url a su categoría con un número)
     mapeo_categorias = {

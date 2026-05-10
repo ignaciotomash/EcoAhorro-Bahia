@@ -22,6 +22,25 @@ TARGET_URL = "https://www.labanderita.ar/shop"
 def is_valid_ean(value: str) -> bool:
     return bool(re.match(r'^\d{8,}$', value.strip()))
 
+def format_price(price_val):
+    """Convierte un valor numérico o string a formato: 1.234,56"""
+    try:
+        if isinstance(price_val, str):
+            price_val = price_val.replace('$', '').replace(' ', '').strip()
+            if ',' in price_val:
+                price_val = price_val.replace('.', '').replace(',', '.')
+            elif '.' in price_val:
+                if price_val.count('.') > 1:
+                    price_val = price_val.replace('.', '')
+                else:
+                    partes = price_val.split('.')
+                    if len(partes[1]) == 3 and len(partes[0]) <= 3:
+                        price_val = price_val.replace('.', '')
+        val = float(price_val)
+        return "{:,.2f}".format(val).replace(",", "X").replace(".", ",").replace("X", ".")
+    except:
+        return "0,00"
+
 def get_html() -> str:
     options = Options()
     options.add_argument("--headless")
@@ -101,21 +120,23 @@ def extract_products(html: str) -> list[dict]:
             continue
         seen.add(key)
 
-        results.append({'ean': ean, 'nombre': name, 'precio': price})
+        results.append({'EAN': ean, 'PRECIO': format_price(price)})
 
     return results
 
 def save_csv(products: list[dict], filename: str):
+    import os
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=['ean', 'nombre', 'precio'])
+        writer = csv.DictWriter(f, fieldnames=['EAN', 'PRECIO'])
         writer.writeheader()
         writer.writerows(products)
     print(f"\nGuardado: {filename} ({len(products)} productos)")
 
 if __name__ == '__main__':
     # Usamos un formato seguro para nombres de archivo
-    timestamp_file = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    output_filename = f"productos_labanderita_{timestamp_file}.csv"
+    timestamp_file = datetime.now().strftime('%Y%m%d_%H%M%S')
+    output_filename = f"resultados/precios_labanderita_{timestamp_file}.csv"
     
     print(f"Inicio: {timestamp_file}\n")
 

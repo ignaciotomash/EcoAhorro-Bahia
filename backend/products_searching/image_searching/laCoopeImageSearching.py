@@ -2,12 +2,8 @@
 Scraper - La Coope en Casa
 URL base: https://www.lacoopeencasa.coop/listado/categoria/{categoria}/pagina--{n}
 
-Extrae: codigo_interno, precio_producto
-Salida:  precios_lacoope_YYYYMMDD_HHMMSS.csv
-
-Requisitos:
-    pip install playwright beautifulsoup4
-    python -m playwright install chromium
+Extrae: codigo_interno, nombre_producto, precio_producto, url_imagen
+Salida: precios_lacoope_YYYYMMDD_HHMMSS.csv
 """
 
 import csv
@@ -48,7 +44,6 @@ def scroll_to_bottom(page) -> None:
     """
     Scrollea paso a paso para que el lazy loading de Angular renderice
     cada producto a medida que entra al viewport.
-    Repite pasadas hasta que el DOM deja de crecer.
     """
     prev_height = -1
     while True:
@@ -70,10 +65,7 @@ def scroll_to_bottom(page) -> None:
 
 def has_next_page(soup: BeautifulSoup) -> bool:
     """
-    Devuelve True si hay una pagina siguiente.
-    La SPA muestra una flecha derecha (#derecha) en el paginador
-    mientras haya mas paginas. Cuando desaparece, estamos en la ultima.
-    Adicionalmente, si la pagina no tiene productos tampoco hay mas.
+    Devuelve True si hay una pagina siguiente mediante el paginador.
     """
     ul = soup.find("ul", class_="pagination")
     if not ul:
@@ -83,23 +75,24 @@ def has_next_page(soup: BeautifulSoup) -> bool:
 
 def parse_products(soup: BeautifulSoup) -> list[dict]:
     """
-    Extrae productos del HTML renderizado.
-    Estructura: id="tarjeta-articulo-{codigo}"
-                div.precio-entero + div.precio-decimal
+    Extrae productos del HTML renderizado incluyendo la URL de la imagen.
     """
     productos = []
+    # Busca el contenedor principal de cada producto por su ID
     for tarjeta in soup.find_all(id=re.compile(r"^tarjeta-articulo-\d+$")):
+        # Extraer codigo interno desde el ID
         m = re.search(r"tarjeta-articulo-(\d+)", tarjeta["id"])
         if not m:
             continue
         codigo = m.group(1)
 
-        entero_tag  = tarjeta.find(class_="precio-entero")
-        decimal_tag = tarjeta.find(class_="precio-decimal")
-
+        # Extraer nombre
         nombre_tag = tarjeta.find(class_="articulo-descripcion")
         nombre = nombre_tag.get_text(strip=True).rstrip("...").strip() if nombre_tag else ""
 
+        # Extraer precio
+        entero_tag  = tarjeta.find(class_="precio-entero")
+        decimal_tag = tarjeta.find(class_="precio-decimal")
         if entero_tag:
             entero  = entero_tag.get_text(strip=True).replace("$", "").strip()
             decimal = decimal_tag.get_text(strip=True) if decimal_tag else "00"
@@ -107,14 +100,22 @@ def parse_products(soup: BeautifulSoup) -> list[dict]:
         else:
             precio = ""
 
-        productos.append({"codigo_interno": codigo, "nombre_producto": nombre, "precio_producto": precio})
+        # Extraer URL de la imagen (src)
+        img_tag = tarjeta.find("img")
+        url_imagen = img_tag.get("src") if img_tag and img_tag.has_attr("src") else ""
+
+        productos.append({
+            "codigo_interno": codigo, 
+            "nombre_producto": nombre, 
+            "precio_producto": precio,
+            "url_imagen": url_imagen
+        })
     return productos
 
 
 def fetch_fresh_page(browser, url: str) -> str | None:
     """
-    Abre una pagina nueva (contexto fresco) para cada URL.
-    Esto evita que la SPA Angular acumule productos de paginas anteriores en el DOM.
+    Abre una pagina nueva para cada URL para evitar acumulacion de DOM.
     """
     for intento in range(1, MAX_RETRIES + 1):
         page = browser.new_page()
@@ -192,13 +193,20 @@ def scrape_all():
 # ── Guardar CSV ────────────────────────────────────────────────────────────────
 
 def guardar_csv(productos: list[dict], timestamp: datetime) -> str:
-    nombre = f"precios_lacoope_{timestamp.strftime('%Y%m%d_%H%M%S')}.csv"
+    nombre = f"imagenes_laCoope.csv"
     with open(nombre, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow([f"# Timestamp scraping: {timestamp.strftime('%Y-%m-%d %H:%M:%S')}"])
-        w.writerow(["codigo_interno", "nombre_producto", "precio_producto"])
+        # Se inicia directamente con la cabecera sin timestamp interno
+        w.writerow(["codigo_interno", "nombre_producto", "precio_producto", "url_imagen"])
+        
         for p in productos:
-            w.writerow([p["codigo_interno"], p["nombre_producto"], p["precio_producto"]])
+            w.writerow([
+                p["codigo_interno"], 
+                p["nombre_producto"], 
+                p["precio_producto"], 
+                p["IMAGEN"]
+            ])
+            
     print(f"Archivo guardado: {nombre}")
     return nombre
 
