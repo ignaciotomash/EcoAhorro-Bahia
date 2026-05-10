@@ -27,7 +27,7 @@ export default function HomePage() {
           <div className="flex-1 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4"
               style={{ backgroundColor: 'rgba(255,107,53,0.2)', color: '#FFCBB5' }}>
-              🏪 Bahía Blanca · 4 supermercados
+              Bahía Blanca · 4 supermercados
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-3"
               style={{ fontFamily: "'Oswald', sans-serif" }}>

@@ -11,6 +11,7 @@ export default function Navbar() {
   const links = [
     { href: '/', label: 'Inicio' },
     { href: '/catalogo', label: 'Catálogo' },
+    { href: '/sucursales', label: 'Sucursales' },
   ];
 
   return (
@@ -18,16 +19,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-4 group">
           <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 group-hover:scale-105 transition-transform">
             <Image src="/logo.png" alt="Eco Ahorro Bahía" width={36} height={36} className="object-cover w-full h-full" />
           </div>
           <div className="leading-none">
-            <span className="text-base font-black tracking-tight block" style={{ color: '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
-              ECO AHORRO
-            </span>
-            <span className="text-[9px] font-semibold tracking-widest uppercase text-gray-400">
-              Bahía Blanca
+            <span className="text-sm font-black tracking-tight block" style={{ color: '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
+              ECO AHORRO BAHIA
             </span>
           </div>
         </Link>
