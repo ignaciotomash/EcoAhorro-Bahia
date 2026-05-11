@@ -24,10 +24,20 @@ model Producto {
 }
 
 model Supermercado {
-  id                Int                 @id
+  id                Int                 @id @default(autoincrement())
   nombre            String              @unique
-  sucursales        Int
+  sucursales        Sucursal[]
   preciosUnificados PreciosUnificados[] @relation("nombreDelSuper")
+}
+
+model Sucursal {
+  id             Int          @id @default(autoincrement())
+  nombre         String       
+  direccion      String
+  latitud        Float
+  longitud       Float
+  supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
+  supermercadoId Int
 }
 
 model HistorialPrecios {
