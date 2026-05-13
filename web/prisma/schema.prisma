@@ -35,7 +35,6 @@ model HistorialPrecios {
   fechaGuardado  DateTime
   precioPromedio Decimal
   producto       Producto @relation("tieneHistorial", fields: [id], references: [id])
-
   @@id([id, fechaGuardado])
 }
 
@@ -44,7 +43,6 @@ model precioDolar {
   fechaGuardado  DateTime
   precioPromedio Decimal
   producto       Producto @relation("historialDolar", fields: [id], references: [id])
-
   @@id([id, fechaGuardado])
 }
 
