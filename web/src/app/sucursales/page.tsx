@@ -1,6 +1,10 @@
 'use client';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import banderita from "./data-pipeline/location_scraping/sucursales_banderita.json";
+import vea from './data-pipeline/location_scraping/sucursales_vea.json';
+import coope from './data-pipeline/location_scraping/sucursales_coope.json';
+import changoMas from './data-pipeline/location_scraping/sucursales_changoMas.json';
 
 // Importación dinámica para evitar errores de SSR con Leaflet
 const MapaSucursales = dynamic(() => import('@/src/components/MapaSucursales'), { 

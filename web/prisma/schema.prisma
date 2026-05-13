@@ -36,8 +36,9 @@ model Sucursal {
   direccion      String
   latitud        Float
   longitud       Float
-  supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
   supermercadoId Int
+
+  supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
 }
 
 model HistorialPrecios {

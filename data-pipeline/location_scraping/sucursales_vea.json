@@ -4,13 +4,13 @@
         "direccion": "CAPITAN MAETINEZ 1356  - 8000 - BAHIA BLANCA - BUENOS AIRES",
         "latitud": -38.73015,
         "longitud": -62.25027,
-        "supermercadoId": 3
+        "supermercadoId": 1
     },
     {
         "nombre": "Vea - Vea Bahia Blanca Eliseo Casanova 472",
         "direccion": "CASANOVA ELISEO 472  - B8000HWJ - BAHIA BLANCA - BUENOS AIRES",
         "latitud": -38.708194,
         "longitud": -62.2686687,
-        "supermercadoId": 3
+        "supermercadoId": 1
     }
 ]

@@ -1,7 +1,0 @@
-Hasta aqui traigo creados los scrapers de las locaciones de las sucursales de VEA y Cooperativa obrera.
-Para VEA fue facil porque expone el endpoint de la api que le provee los datos geograficos. 
-Para la coope fue malisimo.
-Tuve que buscar en DevTools (apreté f12 en la pagina xd) manualmente el JSON que trae todos los datos, copiarlo todo en el proyecto y que un programa python lo procese.
-Ambos scrapers tanto vea como coope ahora proveen un json con los datos limpios listos para mandarlos a nuestra base de datos
-
-firma tomi.
