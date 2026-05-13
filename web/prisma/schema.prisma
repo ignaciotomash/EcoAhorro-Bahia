@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client-js"
   output   = "/prisma"
@@ -14,30 +9,49 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Producto {
-  id              Int                 @id
-  nombreProducto  String
-  marca           String
-  presentacion    String
-  idCategoria     Int
-  imagen          String?
-  historialPrecio HistorialPrecios[]  @relation("tieneHistorial")
-  precios         PreciosUnificados[] @relation("preciosSupers")
-  precioDolars    precioDolar[]       @relation("historialDolar")
-  categoria       Categoria           @relation(fields: [idCategoria], references: [id])
+model Carrito {
+  id                Int                 @id @default(autoincrement())
+  usuarioId         Int                 @unique
+  Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
+  PreciosUnificados PreciosUnificados[] @relation("CarritoPrecios")
 }
 
 model Categoria {
-  id        Int        @id
-  nombre    String     @unique
-  productos Producto[]
+  id       Int        @id
+  nombre   String     @unique
+  Producto Producto[]
 }
 
-model Supermercado {
-  id                Int                 @id
-  nombre            String              @unique
-  sucursales        Sucursal[]
-  preciosUnificados PreciosUnificados[] @relation("nombreDelSuper")
+model HistorialPrecios {
+  id             BigInt
+  fechaGuardado  DateTime
+  precioPromedio Decimal
+  Producto       Producto @relation(fields: [id], references: [id])
+  @@id([id, fechaGuardado])
+}
+
+model PreciosUnificados {
+  id             BigInt       @id @default(autoincrement())
+  idProducto     BigInt
+  idSupermercado Int
+  precio         Float        @db.Real
+  actualizacion  DateTime     @default(now())
+  Producto       Producto     @relation(fields: [idProducto], references: [id])
+  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Carrito        Carrito[]    @relation("CarritoPrecios")
+}
+
+model Producto {
+  id                BigInt              @id
+  nombreProducto    String
+  marca             String
+  imagen            String?
+  presentacion      String
+  idCategoria       Int
+  HistorialPrecios  HistorialPrecios[]
+  PreciosUnificados PreciosUnificados[]
+  Categoria         Categoria           @relation(fields: [idCategoria], references: [id])
+  precioDolar       precioDolar[]
 }
 
 model Sucursal {
@@ -47,37 +61,14 @@ model Sucursal {
   latitud        Float
   longitud       Float
   supermercadoId Int
-  supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
+  Supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
 }
 
-model HistorialPrecios {
-  id             Int
-  fechaGuardado  DateTime
-  precioPromedio Decimal
-  producto       Producto @relation("tieneHistorial", fields: [id], references: [id])
-
-  @@id([id, fechaGuardado])
-}
-
-model precioDolar {
-  id             Int
-  fechaGuardado  DateTime
-  precioPromedio Decimal
-  producto       Producto @relation("historialDolar", fields: [id], references: [id])
-
-  @@id([id, fechaGuardado])
-}
-
-//precioDolar - misma idea historial de precios.x
-model PreciosUnificados {
-  id            Int          @id @default(autoincrement())
-  idProducto    Int
-  nombreSuper   String
-  precio        Decimal
-  actualizacion DateTime     @default(now())
-  producto      Producto     @relation("preciosSupers", fields: [idProducto], references: [id])
-  nomSuper      Supermercado @relation("nombreDelSuper", fields: [nombreSuper], references: [nombre])
-  carritos      Carrito[]    @relation("CarritoPrecios")
+model Supermercado {
+  id                Int                 @id
+  nombre            String              @unique
+  PreciosUnificados PreciosUnificados[]
+  Sucursal          Sucursal[]
 }
 
 model Usuario {
@@ -85,12 +76,14 @@ model Usuario {
   nombreUsuario String
   email         String   @unique
   telefono      Int      @unique
-  carrito       Carrito?
+  Carrito       Carrito?
 }
 
-model Carrito {
-  id        Int                 @id @default(autoincrement())
-  usuarioId Int                 @unique
-  usuario   Usuario             @relation(fields: [usuarioId], references: [id])
-  precios   PreciosUnificados[] @relation("CarritoPrecios")
+model precioDolar {
+  id             BigInt
+  fechaGuardado  DateTime
+  precioPromedio Decimal
+  Producto       Producto @relation(fields: [id], references: [id])
+
+  @@id([id, fechaGuardado])
 }
