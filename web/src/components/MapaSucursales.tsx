@@ -4,50 +4,52 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect } from 'react';
 
-const icon = L.icon({
+// --- ICONOS ---
+const iconDefault = L.icon({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
 });
 
-const iconCoope = L.icon({
-  iconUrl: 'web/public/icono_coope.jpg', 
-  iconSize: [35, 35],
-  iconAnchor: [17, 35],
-  popupAnchor: [0, -35],
+const iconCoope = L.icon({ 
+  iconUrl: "/icono_coope.png",      
+  iconSize: [30, 30],
+  iconAnchor: [15, 30],
+  popupAnchor: [0, -30],
 });
 
 const iconVea = L.icon({
-  iconUrl: 'web/public/icono_vea.jpg',  
-  iconSize: [35, 35],
-  iconAnchor: [17, 35],
-  popupAnchor: [0, -35],
+  iconUrl: "/icono_vea.jpg",       
+  iconSize: [30, 30],
+  iconAnchor: [15, 30],
+  popupAnchor: [0, -30],
 });
 
-const iconCarrefour = L.icon({
-  iconUrl: 'web/public/icono_changoMas.jpg',
-  iconSize: [35, 35],
-  iconAnchor: [17, 35],
-  popupAnchor: [0, -35],
+const iconChangoMas = L.icon({
+  iconUrl: '/icono_changoMas.png',  
+  iconSize: [30, 30],
+  iconAnchor: [15, 30],
+  popupAnchor: [0, -30],
 });
 
 const iconBanderita = L.icon({
-  iconUrl: 'web/public/icono_banderita.jpg',
-  iconSize: [35, 35],
-  iconAnchor: [17, 35],
-  popupAnchor: [0, -35],
+  iconUrl: '/icono_banderita.png',  
+  iconSize: [30, 30],
+  iconAnchor: [15, 30],
+  popupAnchor: [0, -30],
 });
 
-// Componente para recentrar el mapa suavemente
+// --- COMPONENTE AUXILIAR ---
 function RecenterMap({ coords }: { coords: [number, number] }) {
   const map = useMap();
   useEffect(() => {
-    map.setView(coords, 14);
+    map.setView(coords, 15); // Zoom un poco más cerca al seleccionar una tienda
   }, [coords, map]);
   return null;
 }
 
+// --- INTERFACES ---
 interface Sucursal {
   id: number;
   nombre: string;
@@ -57,25 +59,27 @@ interface Sucursal {
   supermercadoId: number;
 }
 
+interface MapaProps {
+  sucursales: Sucursal[];
+  userLocation: [number, number] | null;
+  selectedLocation: [number, number] | null; 
+}
+
 export default function MapaSucursales({ 
   sucursales, 
-  userLocation 
-}: { 
-  sucursales: Sucursal[], 
-  userLocation: [number, number] | null 
-}) {
-  const centroInicial: [number, number] = [-38.7183, -62.2663]; // Bahía Blanca
+  userLocation,
+  selectedLocation 
+}: MapaProps) {
+  const centroInicial: [number, number] = [-38.7183, -62.2663];
 
   const getIcon = (id: number) => {
-        
     switch (id) {
-      case 1: return iconCarrefour;
-      case 2: return iconCoope;
-      case 3: return iconVea;
+      case 1: return iconCoope;
+      case 2: return iconVea;
+      case 3: return iconChangoMas;
       case 4: return iconBanderita;
     }
   };
-
 
   return (
     <MapContainer 
@@ -97,20 +101,21 @@ export default function MapaSucursales({
             {s.direccion}
           </Popup>
         </Marker>
-))}
+      ))}
 
       {/* Marcador del Usuario */}
       {userLocation && (
         <>
-          <Marker position={userLocation} icon={icon}>
+          <Marker position={userLocation} icon={iconDefault}>
             <Popup>Tu ubicación actual</Popup>
           </Marker>
           <RecenterMap coords={userLocation} />
         </>
       )}
+
+      {/* RECENTRAR AL HACER CLICK EN LA LISTA */}
+      {selectedLocation && <RecenterMap coords={selectedLocation} />}
+      
     </MapContainer>
   );
-
-
-
 }

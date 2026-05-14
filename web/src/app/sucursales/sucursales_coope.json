@@ -1,0 +1,205 @@
+[
+    {
+        "nombre": "Cooperativa Obrera - Villa Mitre",
+        "direccion": "WASHINGTON 437 437",
+        "latitud": -38.728791630262535,
+        "longitud": -62.2442264146805,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Noroeste",
+        "direccion": "Avellaneda 826",
+        "latitud": -38.7225,
+        "longitud": -62.289499999999975,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Centro",
+        "direccion": "Belgrano 45",
+        "latitud": -38.71971751065668,
+        "longitud": -62.26284139881136,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Almafuerte",
+        "direccion": "9 DE JULIO 136",
+        "latitud": -38.72414512676858,
+        "longitud": -62.276518136698655,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° San Martín",
+        "direccion": "Brickman 882",
+        "latitud": -38.7364,
+        "longitud": -62.2697,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - España",
+        "direccion": "España 737",
+        "latitud": -38.7289,
+        "longitud": -62.27109999999999,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Villa Rosas",
+        "direccion": "Perito Moreno 2132",
+        "latitud": -38.754831697437496,
+        "longitud": -62.265606122684574,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Universitario",
+        "direccion": "Paraguay 445",
+        "latitud": -38.70776946221014,
+        "longitud": -62.26739162209924,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Sócrates",
+        "direccion": "Sócrates 2642",
+        "latitud": -38.73543138360701,
+        "longitud": -62.23040688095091,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Alsina",
+        "direccion": "Alsina 645",
+        "latitud": -38.71263348653015,
+        "longitud": -62.257506122684504,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Roca",
+        "direccion": "Roca 34",
+        "latitud": -38.715759146929834,
+        "longitud": -62.27162326850896,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Pedro Pico",
+        "direccion": "Thompson 1133",
+        "latitud": -38.73337836454684,
+        "longitud": -62.26018774515978,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° San Roque",
+        "direccion": "Vieytes 2139",
+        "latitud": -38.7022,
+        "longitud": -62.29160000000002,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Colón",
+        "direccion": "Av. Colón 1380",
+        "latitud": -38.731251517754664,
+        "longitud": -62.282264373016346,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Hiper Aguado",
+        "direccion": "Guatemala 533",
+        "latitud": -38.69972750987872,
+        "longitud": -62.275134404754624,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Rosendo López",
+        "direccion": "Rincón 3490",
+        "latitud": -38.73870376143402,
+        "longitud": -62.21698734722139,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Pampa Central",
+        "direccion": "M. Rodríguez 1446",
+        "latitud": -38.7185,
+        "longitud": -62.299800000000005,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Pacífico",
+        "direccion": "Charlone 253",
+        "latitud": -38.7126,
+        "longitud": -62.281499999999994,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Hiper Shopping",
+        "direccion": "Sarmiento 2153",
+        "latitud": -38.6986,
+        "longitud": -62.2441,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Villa Libre",
+        "direccion": "Láinez 2251",
+        "latitud": -38.72810880771607,
+        "longitud": -62.22958583068851,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Richieri",
+        "direccion": "Almafuerte 2544",
+        "latitud": -38.7055,
+        "longitud": -62.3028,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Villa Ressia",
+        "direccion": "Tte. Farías 1283",
+        "latitud": -38.7417,
+        "longitud": -62.2672,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Bella Vista",
+        "direccion": "Av. Pringles 50",
+        "latitud": -38.71603014882896,
+        "longitud": -62.248820006716414,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - General Paz",
+        "direccion": "General Paz 249",
+        "latitud": -38.72,
+        "longitud": -62.257799999999975,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Yrigoyen",
+        "direccion": "H. Yrigoyen 361",
+        "latitud": -38.7144,
+        "longitud": -62.262,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - B° Patagonia",
+        "direccion": "14 de Julio 4099",
+        "latitud": -38.6987,
+        "longitud": -62.2114,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Alem",
+        "direccion": "Alem 3170",
+        "latitud": -38.68393932708354,
+        "longitud": -62.29150968720205,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Zelarrayán",
+        "direccion": "Zelarrayan",
+        "latitud": -38.715215546949175,
+        "longitud": -62.26692634759752,
+        "supermercadoId": 1
+    },
+    {
+        "nombre": "Cooperativa Obrera - Undiano y Gral. Arias",
+        "direccion": "Undiano 1927",
+        "latitud": -38.740451875579524,
+        "longitud": -62.2814696983365,
+        "supermercadoId": 1
+    }
+]

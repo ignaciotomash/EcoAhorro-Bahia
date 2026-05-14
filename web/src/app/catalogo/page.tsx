@@ -1,4 +1,3 @@
-import React from 'react';
 import ProductCard from '../../components/ProductCard';
 import { PRODUCTOS_MOCK } from '../../constants/productos';
 

@@ -1,25 +1,38 @@
 'use client';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import banderita from "./data-pipeline/location_scraping/sucursales_banderita.json";
-import vea from './data-pipeline/location_scraping/sucursales_vea.json';
-import coope from './data-pipeline/location_scraping/sucursales_coope.json';
-import changoMas from './data-pipeline/location_scraping/sucursales_changoMas.json';
 
-// Importación dinámica para evitar errores de SSR con Leaflet
+import banderita from "../sucursales/sucursales_banderita.json";
+import vea from "../sucursales/sucursales_vea.json";
+import coope from "../sucursales/sucursales_coope.json";
+import changoMas from "../sucursales/sucursales_changoMas.json";
+
 const MapaSucursales = dynamic(() => import('@/src/components/MapaSucursales'), { 
   ssr: false,
   loading: () => <div className="h-[500px] bg-gray-100 animate-pulse flex items-center justify-center">Cargando mapa...</div>
 });
 
-const SUCURSALES_HARDCODED = [
-  { id: 1, nombre: "Vea - Capitán Martínez", lat: -38.7123, lng: -62.2543, direccion: "Capitán Martínez 1234" },
-  { id: 2, nombre: "Cooperativa Obrera - Centro", lat: -38.7190, lng: -62.2620, direccion: "Zelarrayán 560" },
-  { id: 3, nombre: "Carrefour - Shopping", lat: -38.6980, lng: -62.2450, direccion: "Av. Sarmiento 2153" },
-];
-
 export default function SucursalesPage() {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<[number, number] | null>(null);
+
+  const todasLasSucursales = useMemo(() => {
+    const combinadas = [
+      ...(banderita || []),
+      ...(vea || []),
+      ...(coope || []),
+      ...(changoMas || [])
+    ];
+
+    return combinadas.map((s, index) => ({
+      id: index + 1, 
+      nombre: s.nombre,
+      direccion: s.direccion,
+      lat: s.latitud,   
+      lng: s.longitud,  
+      supermercadoId: s.supermercadoId
+    }));
+  }, []);
 
   const handleGetLocation = () => {
     if (!navigator.geolocation) {
@@ -39,26 +52,35 @@ export default function SucursalesPage() {
 
   return (
     <div className="p-8 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Encuentra tu sucursal más cercana</h1>
+      <h1 className="text-2xl font-bold mb-4 text-gray-800">Encuentra tu sucursal más cercana</h1>
       
       <button 
         onClick={handleGetLocation}
-        className="mb-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+        className="mb-6 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-md flex items-center gap-2"
       >
         📍 Usar mi ubicación actual
       </button>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 shadow-lg border rounded-xl overflow-hidden">
-          <MapaSucursales sucursales={SUCURSALES_HARDCODED} userLocation={userLocation} />
+        <div className="md:col-span-2 shadow-xl border rounded-2xl overflow-hidden">
+          {/* Ahora pasamos la lista unificada y procesada */}
+          <MapaSucursales 
+              sucursales={todasLasSucursales} 
+              userLocation={userLocation} 
+              selectedLocation={selectedLocation} // Nueva prop
+          />
         </div>
 
-        <div className="bg-white p-4 border rounded-xl shadow-sm">
-          <h2 className="font-semibold mb-3 border-b pb-2">Tiendas disponibles</h2>
-          <ul className="space-y-3">
-            {SUCURSALES_HARDCODED.map(s => (
-              <li key={s.id} className="text-sm">
-                <p className="font-medium">{s.nombre}</p>
+        <div className="bg-white p-5 border rounded-2xl shadow-sm h-[500px] flex flex-col">
+          <h2 className="font-semibold mb-3 border-b pb-2 text-lg">Tiendas disponibles ({todasLasSucursales.length})</h2>
+          <ul className="space-y-4 overflow-y-auto pr-2 custom-scrollbar">
+            {todasLasSucursales.map(s => (
+              <li 
+                key={s.id} 
+                onClick={() => setSelectedLocation([s.lat, s.lng])}
+                className="cursor-pointer text-sm p-2 hover:bg-gray-50 rounded-lg transition-colors border-l-4 border-blue-500"
+              >
+                <p className="font-bold text-gray-900">{s.nombre}</p>
                 <p className="text-gray-500">{s.direccion}</p>
               </li>
             ))}
