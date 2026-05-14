@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "/prisma"
 }
 
 datasource db {
@@ -10,30 +9,31 @@ datasource db {
 }
 
 model Carrito {
-  id                Int                 @id @default(autoincrement())
-  usuarioId         Int                 @unique
+  id                String              @id
+  usuarioId         String              @unique
   Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
   PreciosUnificados PreciosUnificados[] @relation("CarritoPrecios")
 }
 
 model Categoria {
-  id       Int        @id
+  id       String     @id
   nombre   String     @unique
   Producto Producto[]
 }
 
 model HistorialPrecios {
-  id             BigInt
+  id             String
   fechaGuardado  DateTime
   precioPromedio Decimal
   Producto       Producto @relation(fields: [id], references: [id])
+
   @@id([id, fechaGuardado])
 }
 
 model PreciosUnificados {
-  id             BigInt       @id @default(autoincrement())
-  idProducto     BigInt
-  idSupermercado Int
+  id             String       @id
+  idProducto     String
+  idSupermercado String
   precio         Float        @db.Real
   actualizacion  DateTime     @default(now())
   Producto       Producto     @relation(fields: [idProducto], references: [id])
@@ -42,12 +42,12 @@ model PreciosUnificados {
 }
 
 model Producto {
-  id                BigInt              @id
+  id                String              @id
   nombreProducto    String
   marca             String
-  imagen            String?
   presentacion      String
-  idCategoria       Int
+  idCategoria       String
+  imagen            String?
   HistorialPrecios  HistorialPrecios[]
   PreciosUnificados PreciosUnificados[]
   Categoria         Categoria           @relation(fields: [idCategoria], references: [id])
@@ -55,32 +55,32 @@ model Producto {
 }
 
 model Sucursal {
-  id             Int          @id @default(autoincrement())
+  id             String       @id
   nombre         String
   direccion      String
   latitud        Float
   longitud       Float
-  supermercadoId Int
+  supermercadoId String
   Supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
 }
 
 model Supermercado {
-  id                Int                 @id
+  id                String              @id
   nombre            String              @unique
   PreciosUnificados PreciosUnificados[]
   Sucursal          Sucursal[]
 }
 
 model Usuario {
-  id            Int      @id
+  id            String   @id
   nombreUsuario String
   email         String   @unique
-  telefono      Int      @unique
+  telefono      String   @unique
   Carrito       Carrito?
 }
 
 model precioDolar {
-  id             BigInt
+  id             String
   fechaGuardado  DateTime
   precioPromedio Decimal
   Producto       Producto @relation(fields: [id], references: [id])
