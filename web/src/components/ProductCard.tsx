@@ -7,9 +7,9 @@ export default function ProductCard({ producto }: { producto: any }) {
   const { addToCart, items } = useCart();
   const [added, setAdded] = useState(false);
 
-  const precioMasBajo = producto.precios[0];
-  const otrosPrecios = producto.precios.slice(1);
-  const enCarrito = items.find(i => i.producto.id === producto.id);
+  const precioMasBajo = producto.precios?.[0];
+  const otrosPrecios = producto.precios?.slice(1) || [];
+  const enCarrito = items.find((i: any) => i.producto.id === producto.id);
 
   const handleAdd = () => {
     addToCart(producto);
@@ -23,7 +23,7 @@ export default function ProductCard({ producto }: { producto: any }) {
 
       {/* IMAGEN */}
       <div className="relative w-full h-44 rounded-t-2xl overflow-hidden flex items-center justify-center bg-gray-50">
-        {producto.imagen
+        {producto.imagen && producto.imagen !== 'https://placehold.co/400x400/f3f4f6/6b7280?text=Sin+Imagen'
           ? <img src={producto.imagen} alt={producto.nombre} className="object-contain w-full h-full p-3 hover:scale-105 transition-transform duration-300" />
           : <span className="text-gray-300 text-xs">Sin imagen</span>
         }
@@ -46,17 +46,23 @@ export default function ProductCard({ producto }: { producto: any }) {
         <p className="text-xs text-gray-400 mb-3">{producto.marca}</p>
 
         {/* MEJOR PRECIO — verde */}
-        <div className="rounded-xl p-3 mb-3 bg-green-50 border border-green-100">
-          <div className="flex justify-between items-center mb-0.5">
-            <span className="text-[10px] font-bold text-green-700 uppercase tracking-wide">Mejor precio</span>
-            <span className="text-[10px] font-semibold text-green-600 bg-white px-1.5 py-0.5 rounded-full border border-green-100">
-              {precioMasBajo.super}
-            </span>
+        {precioMasBajo ? (
+          <div className="rounded-xl p-3 mb-3 bg-green-50 border border-green-100">
+            <div className="flex justify-between items-center mb-0.5">
+              <span className="text-[10px] font-bold text-green-700 uppercase tracking-wide">Mejor precio</span>
+              <span className="text-[10px] font-semibold text-green-600 bg-white px-1.5 py-0.5 rounded-full border border-green-100">
+                {precioMasBajo.super}
+              </span>
+            </div>
+            <div className="text-2xl font-black text-green-700" style={{ fontFamily: "'Oswald', sans-serif" }}>
+              ${precioMasBajo.valor.toLocaleString('es-AR')}
+            </div>
           </div>
-          <div className="text-2xl font-black text-green-700" style={{ fontFamily: "'Oswald', sans-serif" }}>
-            ${precioMasBajo.valor.toLocaleString('es-AR')}
+        ) : (
+          <div className="rounded-xl p-3 mb-3 bg-gray-50 border border-gray-200 flex items-center justify-center">
+            <span className="text-sm text-gray-400 font-medium">Sin precios registrados</span>
           </div>
-        </div>
+        )}
 
         {/* COMPARATIVA */}
         <div className="flex-1 space-y-1.5 mb-4">
