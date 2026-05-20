@@ -131,3 +131,25 @@ export async function fetchProductoPorEAN(ean: string): Promise<ProductoDetalle 
   await new Promise(r => setTimeout(r, 800));
   return MOCK_DB[ean] ?? null;
 }
+
+const MOCK_SUPERMERCADOS: Supermercado[] = [
+  { idSucursal: 1, nombre: 'Vea',         ubicacionMaps: 'https://maps.google.com' },
+  { idSucursal: 2, nombre: 'ChangoMás',   ubicacionMaps: 'https://maps.google.com' },
+  { idSucursal: 3, nombre: 'LaBanderita', ubicacionMaps: 'https://maps.google.com' },
+  { idSucursal: 4, nombre: 'Cooperativa', ubicacionMaps: 'https://maps.google.com' },
+];
+
+export async function fetchSupermercados(): Promise<Supermercado[]> {
+  await new Promise(r => setTimeout(r, 300));
+  return MOCK_SUPERMERCADOS;
+}
+
+// ============================================================
+// import { prisma } from '@/lib/prisma';
+//
+// export async function fetchSupermercados(): Promise<Supermercado[]> {
+//   return prisma.supermercado.findMany({
+//     orderBy: { nombre: 'asc' },
+//   });
+// }
+// ============================================================

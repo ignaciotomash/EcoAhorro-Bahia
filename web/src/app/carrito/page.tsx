@@ -1,31 +1,50 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../context/CartContext';
+import { fetchSupermercados, Supermercado } from '../../services/api';
+import { calcularTotalesPorSuper } from '../../utils/cartOptimizer';
+import FiltroSupermercados from '../../components/carrito/FiltroSupermercados';
 
 export default function CarritoPage() {
   const { items, removeFromCart, updateCantidad, clearCart } = useCart();
 
-  const todosLosSupermarketsSet = new Set<string>();
-  items.forEach(item => item.producto.precios.forEach(p => todosLosSupermarketsSet.add(p.super)));
-  const supermercados = Array.from(todosLosSupermarketsSet).sort();
+  // ── Supermercados ──────────────────────────────────────────
+  const [supermercados, setSupermercados] = useState<Supermercado[]>([]);
+  const [seleccionados, setSeleccionados] = useState<string[]>([]);   // estado del filtro (puede tener cambios pendientes)
+  const [aplicados, setAplicados] = useState<string[]>([]);           // los que realmente se usan en el cálculo
+  const [hayCambios, setHayCambios] = useState(false);
 
-  const calcularTotalSuper = (superNombre: string) =>
-    items.reduce((total, item) => {
-      const precio = item.producto.precios.find(p => p.super === superNombre);
-      const val = precio ? precio.valor : Math.max(...item.producto.precios.map(p => p.valor));
-      return total + val * item.cantidad;
-    }, 0);
+  useEffect(() => {
+    fetchSupermercados().then(data => {
+      setSupermercados(data);
+      const nombres = data.map(s => s.nombre);
+      setSeleccionados(nombres);
+      setAplicados(nombres);
+    });
+  }, []);
 
-  const totalesPorSuper = supermercados
-    .map(s => ({ nombre: s, total: calcularTotalSuper(s) }))
-    .sort((a, b) => a.total - b.total);
+  const handleFiltroChange = (nuevos: string[]) => {
+    setSeleccionados(nuevos);
+    setHayCambios(
+      nuevos.length !== aplicados.length ||
+      nuevos.some(s => !aplicados.includes(s))
+    );
+  };
 
+  const handleOptimizar = () => {
+    setAplicados(seleccionados);
+    setHayCambios(false);
+  };
+
+  // ── Cálculo de totales (siempre con `aplicados`) ───────────
+  const totalesPorSuper = calcularTotalesPorSuper(items, aplicados);
   const superMasBarato = totalesPorSuper[0];
   const superMasCaro = totalesPorSuper[totalesPorSuper.length - 1];
   const ahorro = superMasCaro && superMasBarato ? superMasCaro.total - superMasBarato.total : 0;
 
+  // ── Carrito vacío ──────────────────────────────────────────
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-5 px-4">
@@ -71,7 +90,11 @@ export default function CarritoPage() {
           </div>
 
           {items.map(item => {
-            const precioMasBajo = item.producto.precios[0];
+            const preciosFiltrados = item.producto.precios
+              .filter((p: any) => seleccionados.includes(p.super))
+              .sort((a: any, b: any) => a.valor - b.valor);
+            const precioMasBajo = preciosFiltrados[0] ?? item.producto.precios[0];
+
             return (
               <div key={item.producto.id} className="bg-white rounded-2xl p-4 flex gap-4 items-start"
                 style={{ border: '1px solid #E5E7EB', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
@@ -87,7 +110,7 @@ export default function CarritoPage() {
                   <h3 className="font-bold text-gray-900 text-sm leading-tight truncate">{item.producto.nombre}</h3>
                   <p className="text-xs text-gray-400 mb-2">{item.producto.marca}</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {item.producto.precios.map((p: any, i: number) => (
+                    {preciosFiltrados.map((p: any, i: number) => (
                       <span key={i} className="text-[10px] px-2 py-0.5 rounded-full font-semibold"
                         style={i === 0
                           ? { backgroundColor: '#dcfce7', color: '#15803d', border: '1px solid #bbf7d0' }
@@ -121,8 +144,32 @@ export default function CarritoPage() {
           })}
         </div>
 
-        {/* TOTALES */}
+        {/* SIDEBAR */}
         <div className="space-y-4">
+
+          {/* FILTRO */}
+          <FiltroSupermercados
+            supermercados={supermercados}
+            seleccionados={seleccionados}
+            onChange={handleFiltroChange}
+          />
+
+          {/* BOTÓN OPTIMIZAR */}
+          <button
+            onClick={handleOptimizar}
+            disabled={!hayCambios}
+            className="w-full py-3 rounded-2xl font-black text-sm transition-all"
+            style={{
+              fontFamily: "'Oswald', sans-serif",
+              backgroundColor: hayCambios ? '#1A237E' : '#E5E7EB',
+              color: hayCambios ? 'white' : '#9CA3AF',
+              cursor: hayCambios ? 'pointer' : 'default',
+            }}
+          >
+            OPTIMIZAR CARRITO
+          </button>
+
+          {/* COMPARATIVA */}
           <h2 className="font-black text-gray-800" style={{ fontFamily: "'Oswald', sans-serif" }}>COMPARATIVA</h2>
 
           {ahorro > 0 && (
