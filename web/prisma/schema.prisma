@@ -18,14 +18,14 @@ model HistorialPrecios {
 }
 
 model PreciosUnificados {
-  id             String       @id
+  id             String        @id
   idProducto     String
   idSupermercado String
-  precio         Float        @db.Real
-  actualizacion  DateTime     @default(now())
-  Producto       Producto     @relation(fields: [idProducto], references: [id])
-  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Carrito        Carrito[]    @relation("CarritoPrecios")
+  precio         Float         @db.Real
+  actualizacion  DateTime      @default(now())
+  Producto       Producto      @relation(fields: [idProducto], references: [id])
+  Supermercado   Supermercado  @relation(fields: [idSupermercado], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Carrito        Carrito[]     @relation("CarritoPrecios")
 }
 
 model Producto {
@@ -54,8 +54,8 @@ model Sucursal {
 model Supermercado {
   id                String              @id
   nombre            String              @unique
-  PreciosUnificados PreciosUnificados[]
-  Sucursal          Sucursal[]
+  sucursales        Sucursal[]
+  preciosUnificados PreciosUnificados[]
 }
 
 model Usuario {
@@ -80,10 +80,6 @@ model Categoria {
 }
 
 model precioDolar {
-  id             String
-  fechaGuardado  DateTime
-  precioPromedio Decimal
-  Producto       Producto @relation(fields: [id], references: [id])
-
-  @@id([id, fechaGuardado])
+  fechaGuardado  DateTime  @id
+  productoId     String?
 }
