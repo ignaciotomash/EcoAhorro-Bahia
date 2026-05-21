@@ -8,19 +8,6 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Carrito {
-  id                String              @id
-  usuarioId         String              @unique
-  Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
-  PreciosUnificados PreciosUnificados[] @relation("CarritoPrecios")
-}
-
-model Categoria {
-  id       String     @id
-  nombre   String     @unique
-  Producto Producto[]
-}
-
 model HistorialPrecios {
   id             String
   fechaGuardado  DateTime
@@ -77,6 +64,19 @@ model Usuario {
   email         String   @unique
   telefono      String   @unique
   Carrito       Carrito?
+}
+
+model Carrito {
+  id                String              @id
+  usuarioId         String              @unique
+  Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
+  PreciosUnificados PreciosUnificados[] @relation("CarritoPrecios")
+}
+
+model Categoria {
+  id       String     @id
+  nombre   String     @unique
+  Producto Producto[]
 }
 
 model precioDolar {
