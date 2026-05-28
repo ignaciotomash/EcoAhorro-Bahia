@@ -3,43 +3,10 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
 }
 
-model Carrito {
-  id                String              @id
-  usuarioId         String              @unique
-  Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
-  PreciosUnificados PreciosUnificados[] @relation("CarritoPrecios")
-}
 
-model Categoria {
-  id       String     @id
-  nombre   String     @unique
-  Producto Producto[]
-}
-
-model HistorialPrecios {
-  id             String
-  fechaGuardado  DateTime
-  precioPromedio Decimal
-  Producto       Producto @relation(fields: [id], references: [id])
-
-  @@id([id, fechaGuardado])
-}
-
-model PreciosUnificados {
-  id             String       @id
-  idProducto     String
-  idSupermercado String
-  precio         Float        @db.Real
-  actualizacion  DateTime     @default(now())
-  Producto       Producto     @relation(fields: [idProducto], references: [id])
-  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  Carrito        Carrito[]    @relation("CarritoPrecios")
-}
 
 model Producto {
   id                String              @id
@@ -48,10 +15,18 @@ model Producto {
   presentacion      String
   idCategoria       String
   imagen            String?
+
   HistorialPrecios  HistorialPrecios[]
   PreciosUnificados PreciosUnificados[]
   Categoria         Categoria           @relation(fields: [idCategoria], references: [id])
-  precioDolar       precioDolar[]
+}
+
+model Supermercado {
+  id                String              @id
+  nombre            String              @unique
+
+  PreciosUnificados PreciosUnificados[]
+  Sucursal          Sucursal[]
 }
 
 model Sucursal {
@@ -61,14 +36,41 @@ model Sucursal {
   latitud        Float
   longitud       Float
   supermercadoId String
+
   Supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
 }
 
-model Supermercado {
-  id                String              @id
-  nombre            String              @unique
-  PreciosUnificados PreciosUnificados[]
-  Sucursal          Sucursal[]
+model HistorialPrecios {
+  id             String
+  fechaGuardado  DateTime
+  precioPromedio Decimal
+
+  Producto       Producto @relation(fields: [id], references: [id])
+  @@id([id, fechaGuardado])
+}
+
+model precioDolar {
+  fechaGuardado  DateTime @id
+  precioPromedio Decimal
+}
+
+model Categoria {
+  id       String     @id
+  nombre   String     @unique
+
+  Producto Producto[]
+}
+
+model PreciosUnificados {
+  id             String       @id
+  idProducto     String
+  idSupermercado String
+  precio         Float        @db.Real
+  actualizacion  DateTime     @default(now())
+
+  Carrito        Carrito[] 
+  Producto       Producto     @relation(fields: [idProducto], references: [id])
+  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id])  
 }
 
 model Usuario {
@@ -79,11 +81,12 @@ model Usuario {
   Carrito       Carrito?
 }
 
-model precioDolar {
-  id             String
-  fechaGuardado  DateTime
-  precioPromedio Decimal
-  Producto       Producto @relation(fields: [id], references: [id])
+model Carrito {
+  id                String              @id
+  usuarioId         String              @unique
 
-  @@id([id, fechaGuardado])
+  Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
+  PreciosUnificados PreciosUnificados[] 
 }
+
+

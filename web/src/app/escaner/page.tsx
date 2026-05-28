@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import { fetchProductoPorEAN, type ProductoDetalle } from '../../services/api';
+import { fetchProductoPorEAN, type ProductoDetalle } from '../../services/productos';
 import { useCart } from '../../context/CartContext';
 
 const BarcodeScanner = dynamic(() => import('../../components/BarcodeScanner'), { ssr: false });
