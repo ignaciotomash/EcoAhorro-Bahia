@@ -35,14 +35,14 @@ export async function getProductosCatalogo(page = 1, limit = 100, categoriasInpu
     prisma.producto.count({ where }),
   ]);
 
-  const productosTransformados = productosDb.map((p) => {
+  const productosTransformados = productosDb.map((p: any) => {
     return {
       id: p.id,
       nombre: p.nombreProducto,
       marca: p.marca,
       categoria: p.Categoria?.nombre || 'General',
       imagen: p.imagen || 'https://placehold.co/400x400/f3f4f6/6b7280?text=Sin+Imagen',
-      precios: p.PreciosUnificados.map((precio) => ({
+      precios: p.PreciosUnificados.map((precio: any) => ({
         super: precio.Supermercado.nombre,
         valor: precio.precio,
       })),
