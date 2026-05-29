@@ -1,17 +1,28 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useTransition } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function CategoryFilter({ categorias }: { categorias: { id: string, nombre: string }[] }) {
+// Función para formatear nombres de categorías 
+const formatearNombreCategoria = (nombre: string): string => {
+  const texto = nombre.replace(/_/g, ' ');
+
+  return texto.replace(/[a-zA-Záéíóúñ]/, letra => letra.toUpperCase());
+};
+
+export default function CategoryFilter({
+  categorias,
+  selectedCategorias,
+  onChange,
+}: {
+  categorias: { id: string; nombre: string }[];
+  selectedCategorias: string[];
+  onChange: (categorias: string[]) => void;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // Obtener categorías seleccionadas actualmente de la URL
-  const currentCategorias = searchParams.get('categoria')?.split(',') || [];
+  const currentCategorias = selectedCategorias || [];
 
   // Cerrar al hacer clic afuera
   useEffect(() => {
@@ -24,30 +35,21 @@ export default function CategoryFilter({ categorias }: { categorias: { id: strin
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const toggleCategoria = (nombre: string) => {
+  const toggleCategoria = (categoriaId: string) => {
     let nuevasCategorias: string[];
     
-    if (nombre === 'Todas') {
+    if (categoriaId === 'Todas') {
       nuevasCategorias = [];
     } else {
-      if (currentCategorias.includes(nombre)) {
-        nuevasCategorias = currentCategorias.filter(c => c !== nombre);
+      if (currentCategorias.includes(categoriaId)) {
+        nuevasCategorias = currentCategorias.filter(c => c !== categoriaId);
       } else {
-        nuevasCategorias = [...currentCategorias, nombre];
+        nuevasCategorias = [...currentCategorias, categoriaId];
       }
     }
 
-    // Actualizar URL con transición para evitar bloqueos
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('page', '1');
-    if (nuevasCategorias.length > 0) {
-      params.set('categoria', nuevasCategorias.join(','));
-    } else {
-      params.delete('categoria');
-    }
-    
     startTransition(() => {
-      router.push(`/catalogo?${params.toString()}`);
+      onChange(nuevasCategorias);
     });
   };
 
@@ -91,18 +93,18 @@ export default function CategoryFilter({ categorias }: { categorias: { id: strin
             <div className="h-px bg-gray-100 my-1 mx-4"></div>
 
             {categorias.map((cat) => {
-              const isSelected = currentCategorias.includes(cat.nombre);
+              const isSelected = currentCategorias.includes(cat.id);
               return (
                 <button
                   key={cat.id}
-                  onClick={() => toggleCategoria(cat.nombre)}
+                  onClick={() => toggleCategoria(cat.id)}
                   className={`flex items-center justify-between w-full px-4 py-3 text-sm text-left transition-colors ${isSelected ? 'bg-orange-50 text-[#FF6B35]' : 'text-gray-600 hover:bg-gray-50'}`}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-colors ${isSelected ? 'bg-[#FF6B35] border-[#FF6B35]' : 'border-gray-200 bg-white'}`}>
                       {isSelected && <span className="text-white text-[10px]">✓</span>}
                     </div>
-                    <span className={isSelected ? 'font-bold' : 'font-medium'}>{cat.nombre}</span>
+                    <span className={isSelected ? 'font-bold' : 'font-medium'}>{formatearNombreCategoria(cat.nombre)}</span>
                   </div>
                 </button>
               );

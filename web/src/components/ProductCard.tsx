@@ -10,8 +10,10 @@ export default function ProductCard({ producto }: { producto: any }) {
   const precioMasBajo = producto.precios?.[0];
   const otrosPrecios = producto.precios?.slice(1) || [];
   const enCarrito = items.find((i: any) => i.producto.id === producto.id);
+  const tienePrecionValido = precioMasBajo && precioMasBajo.valor > 0;
 
   const handleAdd = () => {
+    if (!tienePrecionValido) return;
     addToCart(producto);
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
@@ -78,13 +80,14 @@ export default function ProductCard({ producto }: { producto: any }) {
         {/* BOTÓN */}
         <button
           onClick={handleAdd}
-          className="w-full py-2.5 rounded-xl text-sm font-bold text-white transition-all duration-200"
+          disabled={!tienePrecionValido}
+          className="w-full py-2.5 rounded-xl text-sm font-bold text-white transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           style={{
-            backgroundColor: added ? '#16a34a' : '#1A237E',
+            backgroundColor: !tienePrecionValido ? '#999999' : (added ? '#16a34a' : '#1A237E'),
             transform: added ? 'scale(0.97)' : 'scale(1)',
           }}
         >
-          {added ? '✓ Añadido' : enCarrito ? `Añadir otro (${enCarrito.cantidad})` : 'Añadir al carrito'}
+          {!tienePrecionValido ? 'Precio no disponible' : (added ? '✓ Añadido' : enCarrito ? `Añadir otro (${enCarrito.cantidad})` : 'Añadir al carrito')}
         </button>
       </div>
     </div>
