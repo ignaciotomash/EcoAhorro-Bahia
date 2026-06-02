@@ -58,7 +58,7 @@ export default function CategoryFilter({
       <div>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`inline-flex justify-between items-center w-full md:w-72 px-5 py-3 bg-white border-2 rounded-2xl text-sm font-bold transition-all focus:outline-none shadow-sm ${
+          className={`inline-flex justify-between items-center w-full md:w-72 px-4 md:px-5 py-2.5 md:py-3 bg-white border-2 rounded-2xl text-xs md:text-sm font-bold transition-all focus:outline-none shadow-sm flex-shrink-0 ${
             isPending ? 'border-orange-200 opacity-70 cursor-wait' : 'border-gray-100 text-gray-700 hover:border-[#FF6B35]'
           }`}
         >

@@ -84,19 +84,19 @@ export default function EscanerPage() {
     <div className="min-h-screen bg-white">
       {/* HEADER */}
       <div style={{ background: 'linear-gradient(135deg, #0D1554 0%, #1A237E 60%, #283593 100%)' }}>
-        <div className="max-w-2xl mx-auto px-4 py-10">
-          <p className="text-sm font-medium mb-1" style={{ color: '#FFCBB5' }}>Eco Ahorro Bahía</p>
-          <h1 className="text-3xl font-black text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
+        <div className="max-w-2xl mx-auto px-4 py-6 md:py-10">
+          <p className="text-xs md:text-sm font-medium mb-1" style={{ color: '#FFCBB5' }}>Eco Ahorro Bahía</p>
+          <h1 className="text-2xl md:text-3xl font-black text-white" style={{ fontFamily: "'Oswald', sans-serif" }}>
             BUSCADOR POR CÓDIGO
           </h1>
-          <p className="text-blue-200 text-sm mt-1">Ingresá o escaneá el EAN del producto</p>
+          <p className="text-blue-200 text-xs md:text-sm mt-1">Ingresá o escaneá el EAN del producto</p>
         </div>
       </div>
 
-      <div className="max-w-2xl mx-auto px-4 py-8 space-y-5">
+      <div className="max-w-2xl mx-auto px-4 py-5 md:py-8 space-y-4 md:space-y-5">
 
         {/* INPUT */}
-        <div className="bg-white rounded-2xl p-5" style={{ border: '1px solid #E5E7EB', boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}>
+        <div className="bg-white rounded-2xl p-4 md:p-5" style={{ border: '1px solid #E5E7EB', boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}>
           <label className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2 block">
             Código de barras (EAN)
           </label>
@@ -226,20 +226,20 @@ export default function EscanerPage() {
           <div className="space-y-4">
 
             {/* Info del producto */}
-            <div className="bg-white rounded-2xl p-4 flex gap-4 items-start" style={{ border: '1px solid #E5E7EB' }}>
-              <div className="w-20 h-20 flex-shrink-0 rounded-xl bg-gray-50 overflow-hidden flex items-center justify-center border border-gray-100">
+            <div className="bg-white rounded-2xl p-3 md:p-4 flex gap-3 md:gap-4 items-start" style={{ border: '1px solid #E5E7EB' }}>
+              <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-xl bg-gray-50 overflow-hidden flex items-center justify-center border border-gray-100">
                 {producto.imagen
                   ? <img src={producto.imagen} alt={producto.nombreProducto} className="object-contain w-full h-full p-1" />
                   : <span className="text-gray-200 text-xs">—</span>
                 }
               </div>
-              <div className="flex-1">
-                <span className="text-[9px] font-semibold text-gray-400 uppercase tracking-widest">{producto.categoria}</span>
-                <h2 className="text-xl font-black leading-tight" style={{ color: '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
+              <div className="flex-1 min-w-0">
+                <span className="text-[8px] md:text-[9px] font-semibold text-gray-400 uppercase tracking-widest">{producto.categoria}</span>
+                <h2 className="text-base md:text-xl font-black leading-tight truncate" style={{ color: '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
                   {producto.nombreProducto}
                 </h2>
-                <p className="text-sm text-gray-400">{producto.marca}</p>
-                <p className="text-[10px] font-mono text-gray-300 mt-0.5">EAN: {producto.ean}</p>
+                <p className="text-xs md:text-sm text-gray-400">{producto.marca}</p>
+                <p className="text-[9px] md:text-[10px] font-mono text-gray-300 mt-0.5">EAN: {producto.ean}</p>
               </div>
             </div>
 
@@ -255,15 +255,15 @@ export default function EscanerPage() {
                     return (
                       <div key={superItem.supermercado} className="bg-white rounded-2xl overflow-hidden"
                         style={{ border: esMejor ? '2px solid #16a34a' : '1px solid #E5E7EB' }}>
-                        <div className="px-4 py-3 flex justify-between items-center"
+                        <div className="px-3 md:px-4 py-2.5 md:py-3 flex flex-col sm:flex-row justify-between sm:items-center gap-1"
                           style={{ backgroundColor: esMejor ? '#f0fdf4' : '#FAFAFA' }}>
                           <div className="flex items-center gap-2">
-                            {esMejor && <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-green-600 text-white">MEJOR</span>}
-                            <span className="font-bold text-sm" style={{ color: esMejor ? '#15803d' : '#1A237E' }}>
+                            {esMejor && <span className="text-[8px] md:text-[9px] font-bold px-1.5 py-0.5 rounded bg-green-600 text-white">MEJOR</span>}
+                            <span className="font-bold text-xs md:text-sm" style={{ color: esMejor ? '#15803d' : '#1A237E' }}>
                               {SUPER_LABELS[superItem.supermercado] ?? superItem.supermercado}
                             </span>
                           </div>
-                          <span className="font-black text-lg" style={{ color: esMejor ? '#15803d' : '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
+                          <span className="font-black text-base md:text-lg" style={{ color: esMejor ? '#15803d' : '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
                             desde ${precioMin.toLocaleString('es-AR')}
                           </span>
                         </div>
