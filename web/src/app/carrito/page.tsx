@@ -7,6 +7,7 @@ import { calcularTotalesPorSuper, optimizarCarrito, ResultadoOptimizacion } from
 import CarritoSidebar from '../../components/carrito/CarritoSidebar';
 
 type Supermercado = { id: string; nombre: string };
+import AuthCartPrompt from '../../components/AuthCartPrompt';
 
 export default function CarritoPage() {
   const { items, removeFromCart, updateCantidad, clearCart } = useCart();
@@ -97,6 +98,9 @@ export default function CarritoPage() {
           TU CARRITO ESTÁ VACÍO
         </h1>
         <p className="text-gray-400 text-center text-xs md:text-sm">Agregá productos para comparar precios entre supermercados.</p>
+        <div className="w-full max-w-md">
+          <AuthCartPrompt />
+        </div>
         <Link href="/" className="text-white px-5 md:px-6 py-2.5 rounded-xl font-bold text-xs md:text-sm hover:opacity-90 transition-all"
           style={{ backgroundColor: '#1A237E' }}>
           ← Volver al inicio
