@@ -43,7 +43,7 @@ export async function fetchProductoPorEAN(
 
   const response =
     await fetch(
-      `/api/producto/${ean}`,
+      `/api/productos/${ean}`,
       {
         cache: 'no-store',
       }
