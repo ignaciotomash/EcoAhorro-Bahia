@@ -48,7 +48,7 @@ const grupos: Record<string, string[]> = {
 
   agua: ["agua", "aguita"],
   gaseosa: ["gaseosa", "soda", "refresco", "bebida", "soft"],
-  "coca cola": ["coca", "coca cola"],
+  "coca cola": ["coca", "coca cola", "cocucha"],
   pepsi: ["pepsi"],
   jugo: ["jugo", "jugito", "zumo"],
   cerveza: ["cerveza", "birra", "lager", "ipa", "rubia"],
