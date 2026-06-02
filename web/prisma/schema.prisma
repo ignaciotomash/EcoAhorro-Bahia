@@ -4,8 +4,6 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 
@@ -45,7 +43,7 @@ model Sucursal {
 model HistorialPrecios {
   id             String
   fechaGuardado  DateTime
-  precioPromedio Decimal
+  precioPromedio Float
 
   Producto       Producto @relation(fields: [id], references: [id])
   @@id([id, fechaGuardado])
@@ -53,7 +51,7 @@ model HistorialPrecios {
 
 model precioDolar {
   fechaGuardado  DateTime @id
-  precioPromedio Decimal
+  precioPromedio Float
 }
 
 model Categoria {
