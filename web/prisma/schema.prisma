@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider = "postgresql"
 }
 
 
@@ -75,9 +75,9 @@ model PreciosUnificados {
 
 model Usuario {
   id            String   @id
-  nombreUsuario String
+  nombreUsuario String?
   email         String   @unique
-  telefono      String   @unique
+  telefono      String?  @unique
   Carrito       Carrito?
 }
 

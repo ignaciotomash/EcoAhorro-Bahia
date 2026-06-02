@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { SignInButton, SignUpButton, UserButton, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -8,6 +9,7 @@ import { usePathname } from 'next/navigation';
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isSignedIn } = useUser();
 
   const links = [
     { href: '/', label: 'Inicio' },
@@ -60,10 +62,42 @@ export default function Navbar() {
             </svg>
             Escáner
           </Link>
+
+          <div className="ml-3 flex items-center gap-2">
+            {!isSignedIn && (
+              <>
+              <SignInButton mode="modal">
+                <button
+                  className="px-3 py-2 rounded-lg text-sm font-semibold transition-all hover:bg-gray-100"
+                  style={{ color: '#1A237E' }}
+                >
+                  Ingresar
+                </button>
+              </SignInButton>
+
+              <SignUpButton mode="modal">
+                <button
+                  className="px-3 py-2 rounded-lg text-sm font-bold text-white transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#1A237E' }}
+                >
+                  Crear cuenta
+                </button>
+              </SignUpButton>
+              </>
+            )}
+
+            {isSignedIn && (
+              <UserButton />
+            )}
+          </div>
         </div>
 
         {/* Mobile: Hamburger only */}
-        <div className="flex md:hidden items-center">
+        <div className="flex md:hidden items-center gap-2">
+          {isSignedIn && (
+            <UserButton />
+          )}
+
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
@@ -112,6 +146,30 @@ export default function Navbar() {
             </svg>
             Escáner
           </Link>
+
+          {!isSignedIn && (
+            <div className="grid grid-cols-2 gap-2 pt-2">
+              <SignInButton mode="modal">
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="px-4 py-2.5 rounded-lg text-sm font-semibold transition-all"
+                  style={{ color: '#1A237E', backgroundColor: '#EEF0FB' }}
+                >
+                  Ingresar
+                </button>
+              </SignInButton>
+
+              <SignUpButton mode="modal">
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="px-4 py-2.5 rounded-lg text-sm font-bold text-white transition-all"
+                  style={{ backgroundColor: '#1A237E' }}
+                >
+                  Crear cuenta
+                </button>
+              </SignUpButton>
+            </div>
+          )}
         </div>
       )}
     </nav>
