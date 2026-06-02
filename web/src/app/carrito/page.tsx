@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../context/CartContext';
-import { fetchSupermercados, Supermercado } from '../../services/api';
 import { calcularTotalesPorSuper, optimizarCarrito, ResultadoOptimizacion } from '../../utils/cartOptimizer';
 import CarritoSidebar from '../../components/carrito/CarritoSidebar';
+
+type Supermercado = { id: string; nombre: string };
 
 export default function CarritoPage() {
   const { items, removeFromCart, updateCantidad, clearCart } = useCart();
@@ -26,12 +27,14 @@ export default function CarritoPage() {
   const [supersAbiertos, setSupersAbiertos] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    fetchSupermercados().then(data => {
-      setSupermercados(data);
-      const nombres = data.map(s => s.nombre);
-      setSeleccionados(nombres);
-      setAplicados(nombres);
-    });
+    fetch('/api/supermercados')
+      .then(res => res.json())
+      .then((data: Supermercado[]) => {
+        setSupermercados(data);
+        const nombres = data.map(s => s.nombre);
+        setSeleccionados(nombres);
+        setAplicados(nombres);
+      });
   }, []);
 
   const detectarCambios = (nuevosSeleccionados: string[], nuevoMax: number | null) => {
@@ -132,7 +135,7 @@ export default function CarritoPage() {
 
           {items.map(item => {
             const preciosFiltrados = item.producto.precios
-              .filter((p: any) => seleccionados.includes(p.super))
+              .filter((p: any) => aplicados.includes(p.super))
               .sort((a: any, b: any) => a.valor - b.valor);
             const precioMasBajo = preciosFiltrados[0] ?? item.producto.precios[0];
 
@@ -152,22 +155,29 @@ export default function CarritoPage() {
                     <span className="text-[8px] md:text-[9px] font-semibold text-gray-400 uppercase tracking-widest">{item.producto.categoria}</span>
                     <h3 className="font-bold text-gray-900 text-xs md:text-sm leading-tight truncate">{item.producto.nombre}</h3>
                     <p className="text-[10px] md:text-xs text-gray-400 mb-1.5 md:mb-2">{item.producto.marca}</p>
-                    
-                    {/* Precios - wraps on mobile */}
+
+                    {/* Precios filtrados */}
                     <div className="flex flex-wrap gap-1 md:gap-1.5">
-                      {item.producto.precios.map((p: any, i: number) => (
-                        <span key={i} className="text-[9px] md:text-[10px] px-1.5 md:px-2 py-0.5 rounded-full font-semibold"
-                          style={i === 0
-                            ? { backgroundColor: '#dcfce7', color: '#15803d', border: '1px solid #bbf7d0' }
-                            : { backgroundColor: '#F3F4F6', color: '#6B7280' }
-                          }>
-                          {p.super}: ${p.valor.toLocaleString('es-AR')}
+                      {modoMulti && mapaAsignacion.has(item.producto.id) ? (
+                        <span className="text-[9px] md:text-[10px] px-1.5 md:px-2 py-0.5 rounded-full font-semibold"
+                          style={{ backgroundColor: '#EEF2FF', color: '#1A237E', border: '1px solid #C7D2FE' }}>
+                          Comprá en {mapaAsignacion.get(item.producto.id)!.superNombre}: ${mapaAsignacion.get(item.producto.id)!.precio.toLocaleString('es-AR')}
                         </span>
-                      ))}
+                      ) : (
+                        preciosFiltrados.map((p: any, i: number) => (
+                          <span key={i} className="text-[9px] md:text-[10px] px-1.5 md:px-2 py-0.5 rounded-full font-semibold"
+                            style={i === 0
+                              ? { backgroundColor: '#dcfce7', color: '#15803d', border: '1px solid #bbf7d0' }
+                              : { backgroundColor: '#F3F4F6', color: '#6B7280' }
+                            }>
+                            {p.super}: ${p.valor.toLocaleString('es-AR')}
+                          </span>
+                        ))
+                      )}
                     </div>
                   </div>
 
-                  {/* Remove button - always visible */}
+                  {/* Remove button */}
                   <button onClick={() => removeFromCart(item.producto.id)} className="text-gray-200 hover:text-red-400 transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -193,45 +203,21 @@ export default function CarritoPage() {
           })}
         </div>
 
-        {/* TOTALES */}
-        <div className="space-y-4">
-          <h2 className="font-black text-gray-800 text-sm md:text-base" style={{ fontFamily: "'Oswald', sans-serif" }}>COMPARATIVA</h2>
-
-          {ahorro > 0 && (
-            <div className="rounded-2xl p-3 md:p-4 bg-green-50 border border-green-100">
-              <p className="text-[9px] md:text-[10px] font-bold text-green-600 uppercase tracking-widest mb-1">Potencial ahorro</p>
-              <p className="text-xl md:text-2xl font-black text-green-700" style={{ fontFamily: "'Oswald', sans-serif" }}>
-                ${ahorro.toLocaleString('es-AR')}
-              </p>
-              <p className="text-[10px] md:text-xs text-green-600 mt-1">
-                {superMasBarato?.nombre} vs {superMasCaro?.nombre}
-              </p>
-            </div>
-          )}
-
-          <div className="bg-white rounded-2xl overflow-hidden" style={{ border: '1px solid #E5E7EB' }}>
-            {totalesPorSuper.map((s, i) => (
-              <div key={s.nombre} className="flex justify-between items-center px-3 md:px-4 py-3 md:py-3.5"
-                style={{
-                  borderBottom: i < totalesPorSuper.length - 1 ? '1px solid #F3F4F6' : 'none',
-                  backgroundColor: i === 0 ? '#f0fdf4' : 'white',
-                }}>
-                <div className="flex items-center gap-1.5 md:gap-2">
-                  {i === 0 && (
-                    <span className="text-[8px] md:text-[9px] font-bold px-1.5 py-0.5 rounded bg-green-600 text-white">MEJOR</span>
-                  )}
-                  <span className="text-xs md:text-sm font-semibold" style={{ color: i === 0 ? '#15803d' : '#374151' }}>
-                    {s.nombre}
-                  </span>
-                </div>
-                <span className="font-black text-[0.95rem] md:text-lg" style={{ color: i === 0 ? '#15803d' : '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
-                  ${s.total.toLocaleString('es-AR')}
-                </span>
-              </div>
-            ))}
-          </div>
-          <p className="text-[9px] md:text-[10px] text-gray-300 text-center">* Precio estimado si el producto no está disponible en algún supermercado.</p>
-        </div>
+        {/* SIDEBAR */}
+        <CarritoSidebar
+          supermercados={supermercados}
+          seleccionados={seleccionados}
+          onFiltroChange={handleFiltroChange}
+          maxSupers={maxSupers}
+          onMaxSupersChange={handleMaxSupersChange}
+          hayCambios={hayCambios}
+          onOptimizar={handleOptimizar}
+          modoMulti={modoMulti}
+          resultadoMulti={resultadoMulti}
+          totalesPorSuper={totalesPorSuper}
+          supersAbiertos={supersAbiertos}
+          onToggleSuper={handleToggleSuper}
+        />
       </div>
     </div>
   );

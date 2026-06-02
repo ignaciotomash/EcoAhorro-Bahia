@@ -1,10 +1,12 @@
 'use client';
 
 import React from 'react';
-import { Supermercado } from '../../services/api';
 import { ResultadoOptimizacion, TotalPorSuper } from '../../utils/cartOptimizer';
 import FiltroSupermercados from './FiltroSupermercados';
 import SelectorMaxSupers from './SelectorMaxSupers';
+
+
+type Supermercado = { id: string; nombre: string };
 
 interface CarritoSidebarProps {
   // Supermercados

@@ -1,6 +1,6 @@
 'use client';
 
-import { Supermercado } from '../../services/api';
+type Supermercado = { id: string; nombre: string };
 
 type Props = {
   supermercados: Supermercado[];
