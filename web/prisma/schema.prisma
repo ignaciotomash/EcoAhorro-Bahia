@@ -1,74 +1,92 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
+
+
 model Producto {
-  id              Int                 @id
-  categoria       String
-  nombreProducto  String
-  marca           String
-  imagen          String?
-  historialPrecio HistorialPrecios[]  @relation("tieneHistorial")
-  precios         PreciosUnificados[] @relation("preciosSupers")
-  precioDolars    precioDolar[]       @relation("historialDolar")
+  id                String              @id
+  nombreProducto    String
+  marca             String
+  presentacion      String
+  idCategoria       String
+  imagen            String?
+
+  HistorialPrecios  HistorialPrecios[]
+  PreciosUnificados PreciosUnificados[]
+  Categoria         Categoria           @relation(fields: [idCategoria], references: [id])
 }
 
 model Supermercado {
-  id                Int                 @id
+  id                String              @id
   nombre            String              @unique
-  sucursales        Int
-  preciosUnificados PreciosUnificados[] @relation("nombreDelSuper")
+
+  PreciosUnificados PreciosUnificados[]
+  Sucursal          Sucursal[]
+}
+
+model Sucursal {
+  id             String       @id
+  nombre         String
+  direccion      String
+  latitud        Float
+  longitud       Float
+  supermercadoId String
+
+  Supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
 }
 
 model HistorialPrecios {
-  id             Int
+  id             String
   fechaGuardado  DateTime
   precioPromedio Decimal
-  producto       Producto @relation("tieneHistorial", fields: [id], references: [id])
+
+  Producto       Producto @relation(fields: [id], references: [id])
   @@id([id, fechaGuardado])
 }
 
 model precioDolar {
-  id             Int
-  fechaGuardado  DateTime
+  fechaGuardado  DateTime @id
   precioPromedio Decimal
-  producto       Producto @relation("historialDolar", fields: [id], references: [id])
-  @@id([id, fechaGuardado])
 }
 
-//precioDolar - misma idea historial de precios.x
+model Categoria {
+  id       String     @id
+  nombre   String     @unique
+
+  Producto Producto[]
+}
+
 model PreciosUnificados {
-  id            Int          @id @default(autoincrement())
-  idProducto    Int
-  nombreSuper   String
-  precio        Decimal
-  actualizacion DateTime     @default(now())
-  producto      Producto     @relation("preciosSupers", fields: [id], references: [id])
-  nomSuper      Supermercado @relation("nombreDelSuper", fields: [nombreSuper], references: [nombre])
-  carritos      Carrito[]    @relation("CarritoPrecios")
+  id             String       @id
+  idProducto     String
+  idSupermercado String
+  precio         Float        @db.Real
+  actualizacion  DateTime     @default(now())
+
+  Carrito        Carrito[] 
+  Producto       Producto     @relation(fields: [idProducto], references: [id])
+  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id])  
 }
 
 model Usuario {
-  id            Int     @id
+  id            String   @id
   nombreUsuario String
-  email         String  @unique
-  telefono      Int     @unique
-  carrito       Carrito?
+  email         String   @unique
+  telefono      String   @unique
+  Carrito       Carrito?
 }
 
 model Carrito {
-  id        Int                 @id @default(autoincrement())
-  usuarioId Int                 @unique
-  usuario   Usuario             @relation(fields: [usuarioId], references: [id])
-  precios   PreciosUnificados[] @relation("CarritoPrecios")
+  id                String              @id
+  usuarioId         String              @unique
+
+  Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
+  PreciosUnificados PreciosUnificados[] 
 }
+
+
