@@ -1,0 +1,220 @@
+openapi: 3.0.3
+info:
+  title: API Eco Ahorro Bahia
+  version: 1.0.0
+  description: >
+    Contrato publico para consultar productos por codigo EAN en Eco Ahorro
+    Bahia. La API permite obtener informacion del producto, historial de
+    precios y precios agrupados por supermercado.
+
+servers:
+  - url: https://ecoahorro-bahia.vercel.app/api
+    description: API publica de produccion
+  - url: http://localhost:3000/api
+    description: Entorno local de desarrollo
+
+tags:
+  - name: Productos
+    description: Operaciones publicas para consultar productos y precios.
+
+paths:
+  /productos/{ean}:
+    get:
+      summary: Obtener detalle de un producto por EAN
+      description: >
+        Devuelve el detalle de un producto identificado por su codigo EAN,
+        incluyendo categoria, marca, imagen, historial de precios y precios
+        disponibles agrupados por supermercado.
+      tags:
+        - Productos
+      parameters:
+        - in: path
+          name: ean
+          required: true
+          description: Codigo de barras EAN del producto.
+          schema:
+            type: string
+            pattern: '^[0-9]+$'
+          example: "0000042277095"
+      responses:
+        '200':
+          description: Producto encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoDetalle'
+              example:
+                ean: "0000042277095"
+                categoria: Almacen
+                nombreProducto: Yerba mate tradicional 1 kg
+                marca: Taragui
+                imagen: https://example.com/productos/0000042277095.jpg
+                historialPrecios:
+                  - fecha: "2026-05-10"
+                    precioPromedio: 2150.5
+                preciosPorSuper:
+                  - supermercado: Vea
+                    precios:
+                      - precio: 2199.99
+                        sucursal:
+                          idSucursal: 123
+                          nombre: Vea
+                          ubicacionMaps: https://maps.google.com
+        '404':
+          description: Producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: PRODUCTO_NO_ENCONTRADO
+                  message: No se encontro un producto con el EAN indicado.
+                  details: "EAN: 0000042277095"
+        '500':
+          description: Error interno al buscar el producto.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: ERROR_BUSCANDO_PRODUCTO
+                  message: No se pudo obtener el producto solicitado.
+
+components:
+  schemas:
+    ProductoDetalle:
+      type: object
+      required:
+        - ean
+        - categoria
+        - nombreProducto
+        - marca
+        - historialPrecios
+        - preciosPorSuper
+      properties:
+        ean:
+          type: string
+          description: Codigo EAN que identifica al producto.
+          example: "0000042277095"
+        categoria:
+          type: string
+          description: Categoria comercial del producto.
+          example: Almacen
+        nombreProducto:
+          type: string
+          description: Nombre descriptivo del producto.
+          example: Yerba mate tradicional 1 kg
+        marca:
+          type: string
+          description: Marca del producto.
+          example: Taragui
+        imagen:
+          type: string
+          format: uri
+          nullable: true
+          description: URL de la imagen del producto, si esta disponible.
+          example: https://example.com/productos/0000042277095.jpg
+        historialPrecios:
+          type: array
+          description: Historial de precios promedio registrados para el producto.
+          items:
+            $ref: '#/components/schemas/HistorialPrecio'
+        preciosPorSuper:
+          type: array
+          description: Precios disponibles agrupados por supermercado.
+          items:
+            $ref: '#/components/schemas/PreciosPorSuper'
+
+    HistorialPrecio:
+      type: object
+      required:
+        - fecha
+        - precioPromedio
+      properties:
+        fecha:
+          type: string
+          format: date
+          description: Fecha de guardado del precio promedio.
+          example: "2026-05-10"
+        precioPromedio:
+          type: number
+          format: float
+          description: Precio promedio registrado para esa fecha.
+          example: 2150.5
+
+    PreciosPorSuper:
+      type: object
+      required:
+        - supermercado
+        - precios
+      properties:
+        supermercado:
+          type: string
+          description: Nombre del supermercado.
+          example: Vea
+        precios:
+          type: array
+          description: Lista de precios registrados para ese supermercado.
+          items:
+            $ref: '#/components/schemas/PrecioSucursal'
+
+    PrecioSucursal:
+      type: object
+      required:
+        - precio
+        - sucursal
+      properties:
+        precio:
+          type: number
+          format: float
+          description: Precio del producto para la sucursal o registro informado.
+          example: 2199.99
+        sucursal:
+          $ref: '#/components/schemas/SucursalPrecio'
+
+    SucursalPrecio:
+      type: object
+      required:
+        - idSucursal
+        - nombre
+        - ubicacionMaps
+      properties:
+        idSucursal:
+          type: integer
+          description: Identificador de la sucursal o registro de precio.
+          example: 123
+        nombre:
+          type: string
+          description: Nombre mostrado para la sucursal.
+          example: Vea
+        ubicacionMaps:
+          type: string
+          format: uri
+          description: URL de ubicacion asociada.
+          example: https://maps.google.com
+
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+              description: Codigo del error en SNAKE_UPPER_CASE.
+              example: PRODUCTO_NO_ENCONTRADO
+            message:
+              type: string
+              description: Mensaje legible para el consumidor de la API.
+              example: No se encontro un producto con el EAN indicado.
+            details:
+              type: string
+              description: Informacion adicional opcional.
+              example: "EAN: 0000042277095"
