@@ -1,8 +1,16 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 import { CartProvider } from '../context/CartContext';
 import CartIcon from '../components/CartIcon';
+import ClerkUserSync from '../components/ClerkUserSync';
 import Navbar from '../components/Navbar';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 export const metadata: Metadata = {
   title: 'Eco Ahorro Bahía — Comparador de precios',
@@ -21,11 +29,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body style={{ fontFamily: "'Inter', sans-serif", backgroundColor: '#ffffff', color: '#111827' }}>
-        <CartProvider>
-          <Navbar />
-          {children}
-          <CartIcon />
-        </CartProvider>
+        <ClerkProvider>
+          <ClerkUserSync />
+          <CartProvider>
+            <Navbar />
+            {children}
+            <CartIcon />
+          </CartProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
