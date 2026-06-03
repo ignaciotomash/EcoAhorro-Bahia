@@ -35,7 +35,7 @@ export function calcularTotalesPorSuper(
 // ── Tipos para optimización multi-supermercado ─────────────
 
 export type ProductoEnSuper = {
-  id: number;
+  id: string;
   nombre: string;
   marca: string;
   imagen?: string;

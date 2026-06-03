@@ -72,13 +72,13 @@ export default function EscanerPage() {
     const preciosOrdenados = producto.preciosPorSuper
       .map(s => ({ super: SUPER_LABELS[s.supermercado] ?? s.supermercado, valor: Math.min(...s.precios.map(p => p.precio)) }))
       .sort((a, b) => a.valor - b.valor);
-    addToCart({ id: parseInt(producto.ean.slice(-6)), nombre: producto.nombreProducto, marca: producto.marca, categoria: producto.categoria, imagen: producto.imagen, precios: preciosOrdenados });
+    addToCart({ id: producto.ean, nombre: producto.nombreProducto, marca: producto.marca, categoria: producto.categoria, imagen: producto.imagen, precios: preciosOrdenados });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
   const precioMinimo = producto ? Math.min(...producto.preciosPorSuper.flatMap(s => s.precios.map(p => p.precio))) : 0;
-  const enCarrito = producto ? items.find(i => i.producto.nombre === producto.nombreProducto) : null;
+  const enCarrito = producto ? items.find(i => i.producto.id === producto.ean) : null;
 
   return (
     <div className="min-h-screen bg-white">
