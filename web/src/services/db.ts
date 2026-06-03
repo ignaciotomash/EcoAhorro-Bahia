@@ -1,5 +1,6 @@
 import prisma from '../lib/prisma';
 import { unstable_cache } from 'next/cache';
+import { buscarFuzzy, normalizar, resolverSinonimos } from '../lib/semanticResolver';
 
 type ProductoTransformado = {
   id: string;
@@ -54,6 +55,26 @@ async function _getProductosCatalogo(
     categoriaIds = categorias.map(c => c.id);
   }
 
+  // === BÚSQUEDA SEMÁNTICA/FUZZY ===
+  let fuzzyIds: string[] | null = null;
+  const searchString = searchQuery?.trim() || '';
+  const tieneSearch = searchString.length > 0;
+  if (tieneSearch) {
+    const textoNormalizado = normalizar(searchString);
+    const terminos = resolverSinonimos(textoNormalizado);
+    const productosFuzzy = await buscarFuzzy(terminos, 0.20);
+
+    if (productosFuzzy.length === 0) {
+      return {
+        productos: [] as ProductoTransformado[],
+        totalPages: 0,
+        totalProductos: 0,
+      };
+    }
+
+    fuzzyIds = productosFuzzy.map(p => p.id);
+  }
+
   // === CONSTRUIR UNA SOLA QUERY SQL OPTIMIZADA ===
 
   // 1. WHERE conditions para la tabla Producto
@@ -61,8 +82,10 @@ async function _getProductosCatalogo(
   if (categoriaIds.length > 0) {
     whereConditions.push(`p."idCategoria" IN ('${categoriaIds.join("','")}')`);
   }
-  if (searchQuery && searchQuery.trim() !== '') {
-    const safeSearch = searchQuery.replace(/'/g, "''");
+  if (fuzzyIds) {
+    whereConditions.push(`p.id IN ('${fuzzyIds.join("','")}')`);
+  } else if (tieneSearch) {
+    const safeSearch = searchString.replace(/'/g, "''");
     whereConditions.push(`p."nombreProducto" ILIKE '%${safeSearch}%'`);
   }
   const whereClause = whereConditions.length > 0 ? `WHERE ${whereConditions.join(' AND ')}` : '';
@@ -81,12 +104,23 @@ async function _getProductosCatalogo(
   }
   const havingClause = havingConditions.length > 0 ? `HAVING ${havingConditions.join(' AND ')}` : '';
 
-  // 3. ORDER clause (for the CTE - uses CTE columns)
-  const orderClause = sortBy === 'price_desc'
-    ? 'ORDER BY min_precio DESC'
-    : sortBy === 'price_asc'
-    ? 'ORDER BY min_precio ASC'
-    : 'ORDER BY nombre_producto ASC';
+  // 3. ORDER clauses
+  let orderClause: string;
+  let finalOrderClause: string;
+  if (sortBy === 'price_desc') {
+    orderClause = 'ORDER BY min_precio DESC';
+    finalOrderClause = 'ORDER BY p."nombreProducto" ASC, pu.precio ASC';
+  } else if (sortBy === 'price_asc') {
+    orderClause = 'ORDER BY min_precio ASC';
+    finalOrderClause = 'ORDER BY p."nombreProducto" ASC, pu.precio ASC';
+  } else if (fuzzyIds) {
+    const idsList = fuzzyIds.map(id => `'${id}'`).join(',');
+    orderClause = `ORDER BY array_position(ARRAY[${idsList}]::text[], id)`;
+    finalOrderClause = `ORDER BY array_position(ARRAY[${idsList}]::text[], p.id), pu.precio ASC`;
+  } else {
+    orderClause = 'ORDER BY nombre_producto ASC';
+    finalOrderClause = 'ORDER BY p."nombreProducto" ASC, pu.precio ASC';
+  }
 
   // === QUERY ÚNICA: obtiene los IDs paginados + total count con window function ===
   const mainQuery = `
@@ -121,7 +155,7 @@ async function _getProductosCatalogo(
     LEFT JOIN "Categoria" c ON p."idCategoria" = c.id
     LEFT JOIN "PreciosUnificados" pu ON p.id = pu."idProducto"
     LEFT JOIN "Supermercado" s ON pu."idSupermercado" = s.id
-    ORDER BY p."nombreProducto" ASC, pu.precio ASC
+    ${finalOrderClause}
   `;
 
   const rows = await prisma.$queryRawUnsafe<RawProductoRow[]>(mainQuery);
