@@ -1,4 +1,3 @@
-import React from 'react';
 import CatalogoClient from '../../components/CatalogoClient';
 import { getProductosCatalogo, getCategorias } from '../../services/db';
 

@@ -40,6 +40,17 @@ model Sucursal {
   Supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
 }
 
+model Sucursal {
+  id             Int          @id @default(autoincrement())
+  nombre         String       
+  direccion      String
+  latitud        Float
+  longitud       Float
+  supermercadoId Int
+
+  supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
+}
+
 model HistorialPrecios {
   id             String
   fechaGuardado  DateTime

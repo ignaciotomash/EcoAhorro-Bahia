@@ -1,0 +1,5324 @@
+{
+    "content": [
+        {
+            "id": "1",
+            "name": "Ingeniero White",
+            "state": "BUENOS AIRES",
+            "city": "Ingeniero White",
+            "address": "AV. SAN MARTIN 3634 3634",
+            "latitude": "-38.782990385228224",
+            "longitude": "-62.265877433204594",
+            "type": "supermercado",
+            "phone": "(0291) 457-0131",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "2",
+            "name": "Villa Mitre",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "WASHINGTON 437 437",
+            "latitude": "-38.728791630262535",
+            "longitude": "-62.2442264146805",
+            "type": "supermercado",
+            "phone": "(0291) 481-6672",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "3",
+            "name": "Cerri",
+            "state": "BUENOS AIRES",
+            "city": "General Cerri",
+            "address": "Saavedra 462",
+            "latitude": "-38.720681159154644",
+            "longitude": "-62.392348765279166",
+            "type": "supermercado",
+            "phone": "291-4846161",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "4",
+            "name": "B\u00b0 Noroeste",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Avellaneda 826",
+            "latitude": "-38.7225",
+            "longitude": "-62.289499999999975",
+            "type": "supermercado",
+            "phone": "291-4562075",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "5",
+            "name": "Centro",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Belgrano 45",
+            "latitude": "-38.71971751065668",
+            "longitude": "-62.26284139881136",
+            "type": "supermercado",
+            "phone": "291-4039050",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "6",
+            "name": "B\u00b0 Almafuerte",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "9 DE JULIO 136",
+            "latitude": "-38.72414512676858",
+            "longitude": "-62.276518136698655",
+            "type": "supermercado",
+            "phone": "(0291) 455-7614",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "7",
+            "name": "Cabildo",
+            "state": "BUENOS AIRES",
+            "city": "Cabildo",
+            "address": "Vieytes y Azcu\u00e9naga",
+            "latitude": "-38.484317162798675",
+            "longitude": "-61.892693142127996",
+            "type": "supermercado",
+            "phone": "291-4918122",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "8",
+            "name": "Saavedra",
+            "state": "BUENOS AIRES",
+            "city": "Saavedra",
+            "address": "25 de Mayo e Independencia",
+            "latitude": "-37.76214567253496",
+            "longitude": "-62.35464239711763",
+            "type": "autoservicio",
+            "phone": "2923-497131",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "9",
+            "name": "B\u00b0 San Mart\u00edn",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Brickman 882",
+            "latitude": "-38.7364",
+            "longitude": "-62.2697",
+            "type": "supermercado",
+            "phone": "291-4559596",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "10",
+            "name": "Espa\u00f1a",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Espa\u00f1a 737",
+            "latitude": "-38.7289",
+            "longitude": "-62.27109999999999",
+            "type": "autoservicio",
+            "phone": "291-4556965",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "11",
+            "name": "Villa Rosas",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Perito Moreno 2132",
+            "latitude": "-38.754831697437496",
+            "longitude": "-62.265606122684574",
+            "type": "supermercado",
+            "phone": "291-4550785",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "12",
+            "name": "B\u00b0 Universitario",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Paraguay 445",
+            "latitude": "-38.70776946221014",
+            "longitude": "-62.26739162209924",
+            "type": "supermercado",
+            "phone": "291-4510107",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "13",
+            "name": "S\u00f3crates",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "S\u00f3crates 2642",
+            "latitude": "-38.73543138360701",
+            "longitude": "-62.23040688095091",
+            "type": "supermercado",
+            "phone": "291-4812300",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "14",
+            "name": "Pedro Luro",
+            "state": "BUENOS AIRES",
+            "city": "Pedro Luro",
+            "address": "Calle 1 1031",
+            "latitude": "-39.505846974928296",
+            "longitude": "-62.68522131449572",
+            "type": "supermercado",
+            "phone": "2928-420118",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "15",
+            "name": "Alsina",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Alsina 645",
+            "latitude": "-38.71263348653015",
+            "longitude": "-62.257506122684504",
+            "type": "supermercado",
+            "phone": "291-4556964",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "16",
+            "name": "Guatrache",
+            "state": "LA PAMPA",
+            "city": "Guatrache",
+            "address": "Av. J. A. Goude y Pringles 470",
+            "latitude": "-37.66901520951271",
+            "longitude": "-63.53782206773752",
+            "type": "autoservicio",
+            "phone": "2924-492037",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "17",
+            "name": "Punta Alta I",
+            "state": "BUENOS AIRES",
+            "city": "Punta Alta",
+            "address": "S\u00e1enz Pe\u00f1a 467",
+            "latitude": "-38.87821062395813",
+            "longitude": "-62.06410991401674",
+            "type": "supermercado",
+            "phone": "2932-421000",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "18",
+            "name": "Roca",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Roca 34",
+            "latitude": "-38.715759146929834",
+            "longitude": "-62.27162326850896",
+            "type": "supermercado",
+            "phone": "291-4557968",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "19",
+            "name": "Punta Alta II",
+            "state": "BUENOS AIRES",
+            "city": "Punta Alta",
+            "address": "Brown 128",
+            "latitude": "-38.884896043742756",
+            "longitude": "-62.07500262565617",
+            "type": "supermercado",
+            "phone": "2932-425052",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "20",
+            "name": "Azul",
+            "state": "BUENOS AIRES",
+            "city": "Azul",
+            "address": "Av. Piazza 1101",
+            "latitude": "-36.78521552908544",
+            "longitude": "-59.849216222719406",
+            "type": "supermercado",
+            "phone": "2281-431590",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "21",
+            "name": "Pigue",
+            "state": "BUENOS AIRES",
+            "city": "Pigue",
+            "address": "Belgrano y Humberto",
+            "latitude": "-37.60295050923169",
+            "longitude": "-62.40934926424029",
+            "type": "supermercado",
+            "phone": "2923-405680",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "22",
+            "name": "Dorrego",
+            "state": "BUENOS AIRES",
+            "city": "Coronel Dorrego",
+            "address": "Av. San Mart\u00edn 274",
+            "latitude": "-38.71356528769891",
+            "longitude": "-61.29378994979851",
+            "type": "supermercado",
+            "phone": "2921-450005",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "23",
+            "name": "B\u00b0 Pedro Pico",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Thompson 1133",
+            "latitude": "-38.73337836454684",
+            "longitude": "-62.26018774515978",
+            "type": "supermercado",
+            "phone": "291-4564996",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "24",
+            "name": "B\u00b0 San Roque",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Vieytes 2139",
+            "latitude": "-38.7022",
+            "longitude": "-62.29160000000002",
+            "type": "supermercado",
+            "phone": "291-4885022",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "25",
+            "name": "B\u00b0 Col\u00f3n",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Av. Col\u00f3n 1380",
+            "latitude": "-38.731251517754664",
+            "longitude": "-62.282264373016346",
+            "type": "autoservicio",
+            "phone": "291-4559887",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "26",
+            "name": "Cnel. Suarez",
+            "state": "BUENOS AIRES",
+            "city": "Coronel Suarez",
+            "address": "Av. Casey 1414",
+            "latitude": "-37.4607288597626",
+            "longitude": "-61.93615024871826",
+            "type": "supermercado",
+            "phone": "2926-422120",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "27",
+            "name": "Tres Arroyos I",
+            "state": "BUENOS AIRES",
+            "city": "Tres Arroyos",
+            "address": "Av. Moreno 745",
+            "latitude": "-38.3825",
+            "longitude": "-60.2685",
+            "type": "supermercado",
+            "phone": "2983-429047",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "28",
+            "name": "Hiper Aguado",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Guatemala 533",
+            "latitude": "-38.69972750987872",
+            "longitude": "-62.275134404754624",
+            "type": "hipermercado",
+            "phone": "291-4039060",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "29",
+            "name": "Cnel. Pringles",
+            "state": "BUENOS AIRES",
+            "city": "Coronel Pringles",
+            "address": "Pellegrini 771",
+            "latitude": "-37.98374648245796",
+            "longitude": "-61.3536998033851",
+            "type": "supermercado",
+            "phone": "2922-464812",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "30",
+            "name": "Tres Arroyos II",
+            "state": "BUENOS AIRES",
+            "city": "Tres Arroyos",
+            "address": "Col\u00f3n 33",
+            "latitude": "-38.3780",
+            "longitude": "-60.2765",
+            "type": "supermercado",
+            "phone": "2983-432005",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "31",
+            "name": "Puan",
+            "state": "BUENOS AIRES",
+            "city": "Puan",
+            "address": "H. Yrigoyen 491",
+            "latitude": "-37.54617145444056",
+            "longitude": "-62.770495176446275",
+            "type": "autoservicio",
+            "phone": "2923-499190",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "32",
+            "name": "Rosendo L\u00f3pez",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Rinc\u00f3n 3490",
+            "latitude": "-38.73870376143402",
+            "longitude": "-62.21698734722139",
+            "type": "autoservicio",
+            "phone": "291-4814213",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "33",
+            "name": "Pampa Central",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "M. Rodr\u00edguez 1446",
+            "latitude": "-38.7185",
+            "longitude": "-62.299800000000005",
+            "type": "autoservicio",
+            "phone": "291-4558171",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "34",
+            "name": "Punta Alta III",
+            "state": "BUENOS AIRES",
+            "city": "Punta Alta",
+            "address": "Roca 2475",
+            "latitude": "-38.86010931134604",
+            "longitude": "-62.08606410033099",
+            "type": "supermercado",
+            "phone": "2932-435526",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "35",
+            "name": "B\u00b0 Pac\u00edfico",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Charlone 253",
+            "latitude": "-38.7126",
+            "longitude": "-62.281499999999994",
+            "type": "supermercado",
+            "phone": "291-4553360",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "36",
+            "name": "Olavarria I",
+            "state": "BUENOS AIRES",
+            "city": "Olavarr\u00eda",
+            "address": "Av. Pringles 4461",
+            "latitude": "-36.886749319973646",
+            "longitude": "-60.30387032030376",
+            "type": "supermercado",
+            "phone": "2284-427919",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "37",
+            "name": "Olavarria II",
+            "state": "BUENOS AIRES",
+            "city": "Olavarr\u00eda",
+            "address": "Necochea 3203",
+            "latitude": "-36.89442050512447",
+            "longitude": "-60.316321134632744",
+            "type": "autoservicio",
+            "phone": "2284-422287",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "38",
+            "name": "Necochea I",
+            "state": "BUENOS AIRES",
+            "city": "Necochea",
+            "address": "Av. 59 1202",
+            "latitude": "-38.56530038410667",
+            "longitude": "-58.72602722949972",
+            "type": "supermercado",
+            "phone": "2262-437900",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "39",
+            "name": "Necochea II",
+            "state": "BUENOS AIRES",
+            "city": "Necochea",
+            "address": "Av. 58 3059",
+            "latitude": "-38.55631807854196",
+            "longitude": "-58.74200582838057",
+            "type": "supermercado",
+            "phone": "2262-426256",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "40",
+            "name": "Benito Juarez",
+            "state": "BUENOS AIRES",
+            "city": "Benito Juarez",
+            "address": "Av. Mitre 87",
+            "latitude": "-37.67561636653722",
+            "longitude": "-59.805969035720864",
+            "type": "supermercado",
+            "phone": "2292-452480",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "41",
+            "name": "Tornquist",
+            "state": "BUENOS AIRES",
+            "city": "Tornquist",
+            "address": "Espa\u00f1a 144",
+            "latitude": "-38.099077562900334",
+            "longitude": "-62.21948575999704",
+            "type": "supermercado",
+            "phone": "291-4940738",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "42",
+            "name": "Hiper Shopping",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Sarmiento 2153",
+            "latitude": "-38.6986",
+            "longitude": "-62.2441",
+            "type": "hipermercado",
+            "phone": "291-4566066",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "43",
+            "name": "Rio Colorado",
+            "state": "RIO NEGRO",
+            "city": "R\u00edo Colorado",
+            "address": "Av. San Mart\u00edn 879",
+            "latitude": "-38.994921652439295",
+            "longitude": "-64.09936720119731",
+            "type": "supermercado",
+            "phone": "2931-430135",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Jueves",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Viernes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "44",
+            "name": "B\u00b0 Villa Libre",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "L\u00e1inez 2251",
+            "latitude": "-38.72810880771607",
+            "longitude": "-62.22958583068851",
+            "type": "supermercado",
+            "phone": "291-4810111",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "45",
+            "name": "Tres Arroyos III",
+            "state": "BUENOS AIRES",
+            "city": "Tres Arroyos",
+            "address": "Av. Belgrano 838",
+            "latitude": "-38.3706",
+            "longitude": "-60.2680",
+            "type": "supermercado",
+            "phone": "2983-421010",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "46",
+            "name": "B\u00b0 Richieri",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Almafuerte 2544",
+            "latitude": "-38.7055",
+            "longitude": "-62.3028",
+            "type": "supermercado",
+            "phone": "291-4886002",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "47",
+            "name": "Hipervisi\u00f3n",
+            "state": "BUENOS AIRES",
+            "city": "Coronel Pringles",
+            "address": "Av. 25 de Mayo 1565",
+            "latitude": "-37.976660596903315",
+            "longitude": "-61.359823822713224",
+            "type": "supermercado",
+            "phone": "2922-463311",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "48",
+            "name": "Visi\u00f3n I",
+            "state": "BUENOS AIRES",
+            "city": "Coronel Pringles",
+            "address": "Mitre 999",
+            "latitude": "-37.9854",
+            "longitude": "-61.3540",
+            "type": "autoservicio",
+            "phone": "2922-465294",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "49",
+            "name": "Villa Ressia",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Tte. Far\u00edas 1283",
+            "latitude": "-38.7417",
+            "longitude": "-62.2672",
+            "type": "supermercado",
+            "phone": "291-4565336",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "50",
+            "name": "Bella Vista",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Av. Pringles 50",
+            "latitude": "-38.71603014882896",
+            "longitude": "-62.248820006716414",
+            "type": "autoservicio",
+            "phone": "291-4561929",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "51",
+            "name": "General Paz",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "General Paz 249",
+            "latitude": "-38.72",
+            "longitude": "-62.257799999999975",
+            "type": "autoservicio",
+            "phone": "291-4565969",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "52",
+            "name": "General Acha",
+            "state": "LA PAMPA",
+            "city": "General Acha",
+            "address": "Don Bosco 582",
+            "latitude": "-37.37872927469224",
+            "longitude": "-64.60075950635655",
+            "type": "supermercado",
+            "phone": "2952-432152",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "53",
+            "name": "Yrigoyen",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "H. Yrigoyen 361",
+            "latitude": "-38.7144",
+            "longitude": "-62.262",
+            "type": "autoservicio",
+            "phone": "291-4553264",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "54",
+            "name": "B\u00b0 Patagonia",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "14 de Julio 4099",
+            "latitude": "-38.6987",
+            "longitude": "-62.2114",
+            "type": "supermercado",
+            "phone": "291-4860588",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "55",
+            "name": "Lamadrid",
+            "state": "BUENOS AIRES",
+            "city": "General La Madrid",
+            "address": "Azcu\u00e9naga 638",
+            "latitude": "-37.25074912158641",
+            "longitude": "-61.263395190271694",
+            "type": "supermercado",
+            "phone": "2286-421140",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "56",
+            "name": "Azul II",
+            "state": "BUENOS AIRES",
+            "city": "Azul",
+            "address": "Av. 25 de Mayo 1272",
+            "latitude": "-36.788827761866905",
+            "longitude": "-59.871529162628576",
+            "type": "autoservicio",
+            "phone": "2281-432276",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "57",
+            "name": "Punta Alta IV",
+            "state": "BUENOS AIRES",
+            "city": "Punta Alta",
+            "address": "Saavedra 55",
+            "latitude": "-38.88662018086889",
+            "longitude": "-62.07033719139872",
+            "type": "supermercado",
+            "phone": "2932-423667",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "58",
+            "name": "Cinco Saltos",
+            "state": "RIO NEGRO",
+            "city": "Cinco Saltos",
+            "address": "Av. Roca 998",
+            "latitude": "-38.824017331886154",
+            "longitude": "-68.06949687170714",
+            "type": "supermercado",
+            "phone": "299-4982976",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "59",
+            "name": "Olavarria III",
+            "state": "BUENOS AIRES",
+            "city": "Olavarr\u00eda",
+            "address": "Rivadavia 1751",
+            "latitude": "-36.90082972971168",
+            "longitude": "-60.33149707323901",
+            "type": "supermercado",
+            "phone": "2284-424983",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "60",
+            "name": "Gral. Roca I",
+            "state": "RIO NEGRO",
+            "city": "General Roca",
+            "address": "Tucum\u00e1n 1330",
+            "latitude": "-39.02770092079763",
+            "longitude": "-67.58329921964105",
+            "type": "supermercado",
+            "phone": "298-4427547",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "61",
+            "name": "Gral. Roca II",
+            "state": "RIO NEGRO",
+            "city": "General Roca",
+            "address": "Tucum\u00e1n 358",
+            "latitude": "-39.02938240761715",
+            "longitude": "-67.56962531808313",
+            "type": "supermercado",
+            "phone": "298-4429294",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "62",
+            "name": "Gral. Roca III",
+            "state": "RIO NEGRO",
+            "city": "General Roca",
+            "address": "La Plata 402",
+            "latitude": "-39.02739879073728",
+            "longitude": "-67.55879992249902",
+            "type": "autoservicio",
+            "phone": "298-4428645",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "63",
+            "name": "Villa Regina",
+            "state": "RIO NEGRO",
+            "city": "Villa Regina",
+            "address": "Av. Rivadavia y Sarmiento",
+            "latitude": "-39.09347861748355",
+            "longitude": "-67.08476138281554",
+            "type": "supermercado",
+            "phone": "298-4462222",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "64",
+            "name": "Villa Regina II",
+            "state": "RIO NEGRO",
+            "city": "Villa Regina",
+            "address": "Las Heras 295",
+            "latitude": "-39.09879094433691",
+            "longitude": "-67.08613199162215",
+            "type": "supermercado",
+            "phone": "298-4465749",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "65",
+            "name": "Cipolletti I",
+            "state": "RIO NEGRO",
+            "city": "Cipolletti",
+            "address": "Brentana 621",
+            "latitude": "-38.93591736352952",
+            "longitude": "-67.98749637770385",
+            "type": "supermercado",
+            "phone": "299-4775494",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "66",
+            "name": "Choele Choel I",
+            "state": "RIO NEGRO",
+            "city": "Choele Choel",
+            "address": "Avallaneda 872",
+            "latitude": "-39.29197676335891",
+            "longitude": "-65.66069615053863",
+            "type": "supermercado",
+            "phone": "2946-443434",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "67",
+            "name": "Santa Rosa",
+            "state": "LA PAMPA",
+            "city": "Santa Rosa",
+            "address": "Trenel 1735",
+            "latitude": "-36.6328",
+            "longitude": "-64.3046",
+            "type": "supermercado",
+            "phone": "2954-427979",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "68",
+            "name": "Puerto Belgrano",
+            "state": "BUENOS AIRES",
+            "city": "Puerto Belgrano",
+            "address": "Av. a la Estaci\u00f3n",
+            "latitude": "-38.8816",
+            "longitude": "-62.0847",
+            "type": "supermercado",
+            "phone": "2932-432709",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "69",
+            "name": "Centenario 1",
+            "state": "NEUQUEN",
+            "city": "Centenario",
+            "address": "Honduras 1111",
+            "latitude": "-38.82481520164966",
+            "longitude": "-68.13929164396541",
+            "type": "supermercado",
+            "phone": "299-4891829",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "70",
+            "name": "Centenario 2",
+            "state": "NEUQUEN",
+            "city": "Centenario",
+            "address": "Ingeniero Ballester 740",
+            "latitude": "-38.82867754894124",
+            "longitude": "-68.12996515596751",
+            "type": "supermercado",
+            "phone": "299-4891495",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "72",
+            "name": "Quequen",
+            "state": "BUENOS AIRES",
+            "city": "Quequen",
+            "address": "Calle 519 892",
+            "latitude": "-38.57077746377913",
+            "longitude": "-58.69759494031314",
+            "type": "autoservicio",
+            "phone": "2262-450288",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "73",
+            "name": "Casbas",
+            "state": "BUENOS AIRES",
+            "city": "Casbas",
+            "address": "AvCaride y Sarmiento",
+            "latitude": "-36.75774035049233",
+            "longitude": "-62.505685073337816",
+            "type": "supermercado",
+            "phone": "2929-481000",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "74",
+            "name": "Ing. Huergo",
+            "state": "RIO NEGRO",
+            "city": "Ingeniero Huergo",
+            "address": "Av. Col\u00f3n 928",
+            "latitude": "-39.070567747172106",
+            "longitude": "-67.23163378405303",
+            "type": "autoservicio",
+            "phone": "298-4481605",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Jueves",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "75",
+            "name": "Gral. Pico",
+            "state": "LA PAMPA",
+            "city": "General Pico",
+            "address": "Calle N\u00b01 Oeste 698",
+            "latitude": "-35.666879647168656",
+            "longitude": "-63.77597430949379",
+            "type": "autoservicio",
+            "phone": "2302-421816",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "76",
+            "name": "Santa Rosa II",
+            "state": "LA PAMPA",
+            "city": "Santa Rosa",
+            "address": "Av. Roque Saenz Pe\u00f1a 899",
+            "latitude": "-36.62680105632192",
+            "longitude": "-64.28720752117282",
+            "type": "autoservicio",
+            "phone": "2954-426244",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "77",
+            "name": "Viedma",
+            "state": "RIO NEGRO",
+            "city": "Viedma",
+            "address": "Saavedra 1455",
+            "latitude": "-40.8148",
+            "longitude": "-63.0052",
+            "type": "supermercado",
+            "phone": "2920-427466",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "78",
+            "name": "Gral. Villegas",
+            "state": "BUENOS AIRES",
+            "city": "General Villegas",
+            "address": "Castelli 589",
+            "latitude": "-35.02964231976656",
+            "longitude": "-63.01698911196581",
+            "type": "supermercado",
+            "phone": "3388-424931",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "79",
+            "name": "Allen I",
+            "state": "RIO NEGRO",
+            "city": "Allen",
+            "address": "San Mart\u00edn 454",
+            "latitude": "-38.97937161628803",
+            "longitude": "-67.82285857207171",
+            "type": "supermercado",
+            "phone": "298-4451766",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "80",
+            "name": "Allen II",
+            "state": "RIO NEGRO",
+            "city": "Allen",
+            "address": "Roca 585",
+            "latitude": "-38.98309546319121",
+            "longitude": "-67.83118271836429",
+            "type": "autoservicio",
+            "phone": "298-4453350",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "81",
+            "name": "Fernandez Oro I",
+            "state": "RIO NEGRO",
+            "city": "Gral Fernandez Oro",
+            "address": "SAN MARTIN 22",
+            "latitude": "-38.956135894116365",
+            "longitude": "-67.92118155965",
+            "type": "supermercado",
+            "phone": "(0299) 4997061",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "82",
+            "name": "Fern\u00e1ndez Oro II",
+            "state": "RIO NEGRO",
+            "city": "Fernandez Oro",
+            "address": "Mitre 419",
+            "latitude": "-38.952648418329176",
+            "longitude": "-67.92718434342532",
+            "type": "autoservicio",
+            "phone": "299-4996364",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "83",
+            "name": "Cinco Saltos II",
+            "state": "RIO NEGRO",
+            "city": "Cinco Saltos",
+            "address": "Av. Cipolletti 210",
+            "latitude": "-38.82372106855116",
+            "longitude": "-68.06926095494418",
+            "type": "supermercado",
+            "phone": "299-4982799",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "84",
+            "name": "Neuqu\u00e9n I",
+            "state": "NEUQUEN",
+            "city": "Neuqu\u00e9n",
+            "address": "Piquen 1780",
+            "latitude": "-38.925717604141624",
+            "longitude": "-68.08393585612066",
+            "type": "supermercado",
+            "phone": "299-4330955",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "85",
+            "name": "Monte Hermoso I",
+            "state": "BUENOS AIRES",
+            "city": "Monte Hermoso",
+            "address": "Patagonia 145",
+            "latitude": "-38.98795493473555",
+            "longitude": "-61.28911900537787",
+            "type": "supermercado",
+            "phone": "2921-482308",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "86",
+            "name": "Cnel.Suarez II",
+            "state": "BUENOS AIRES",
+            "city": "Coronel Suarez",
+            "address": "Av. San Mart\u00edn 477",
+            "latitude": "-37.46528120231377",
+            "longitude": "-61.93027533960344",
+            "type": "supermercado",
+            "phone": "2926-421428",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "87",
+            "name": "Gral.La Madrid II",
+            "state": "BUENOS AIRES",
+            "city": "General La Madrid",
+            "address": "Mitre 551",
+            "latitude": "-37.24858428437731",
+            "longitude": "-61.2608061433275",
+            "type": "supermercado",
+            "phone": "2286-420531",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "88",
+            "name": "Mayor Buratovich",
+            "state": "BUENOS AIRES",
+            "city": "Mayor Buratovich",
+            "address": "Sarmiento 942",
+            "latitude": "-39.258333083488765",
+            "longitude": "-62.613743305555545",
+            "type": "supermercado",
+            "phone": "291-4917688",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "89",
+            "name": "Medanos",
+            "state": "BUENOS AIRES",
+            "city": "M\u00e9danos",
+            "address": "Bustamante 403",
+            "latitude": "-38.82795457624873",
+            "longitude": "-62.695948720065644",
+            "type": "autoservicio",
+            "phone": "2927-433150",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "90",
+            "name": "Villalonga",
+            "state": "BUENOS AIRES",
+            "city": "Villalonga",
+            "address": "Don Bosco 172",
+            "latitude": "-39.91463597498252",
+            "longitude": "-62.62024569512505",
+            "type": "supermercado",
+            "phone": "2928-492033",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "91",
+            "name": "Bolivar",
+            "state": "BUENOS AIRES",
+            "city": "Bolivar",
+            "address": "General Paz 98",
+            "latitude": "-36.23153688864939",
+            "longitude": "-61.11475968369632",
+            "type": "supermercado",
+            "phone": "2314-420566",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "92",
+            "name": "Mar del Plata I",
+            "state": "BUENOS AIRES",
+            "city": "Mar del Plata",
+            "address": "Fortunato de la Plaza 3471",
+            "latitude": "-38.0526",
+            "longitude": "-57.5610",
+            "type": "supermercado",
+            "phone": "223-4841800",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "93",
+            "name": "Mar del Plata II",
+            "state": "BUENOS AIRES",
+            "city": "Mar del Plata",
+            "address": "Av. Constituci\u00f3n 6581",
+            "latitude": "-37.95745091924479",
+            "longitude": "-57.56933015589311",
+            "type": "supermercado",
+            "phone": "223-4798181",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "94",
+            "name": "Henderson",
+            "state": "BUENOS AIRES",
+            "city": "Henderson",
+            "address": "Florida 537",
+            "latitude": "-36.300960764981355",
+            "longitude": "-61.71770417699008",
+            "type": "supermercado",
+            "phone": "2314-451570",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "95",
+            "name": "Centenario 6",
+            "state": "NEUQUEN",
+            "city": "Centenario",
+            "address": "Canad\u00e1 835",
+            "latitude": "-38.829058721432936",
+            "longitude": "-68.13936831736544",
+            "type": "supermercado",
+            "phone": "299-4898887",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "96",
+            "name": "Centenario 7",
+            "state": "NEUQUEN",
+            "city": "Centenario",
+            "address": "Ballester 383",
+            "latitude": "-38.827336073551486",
+            "longitude": "-68.12438079712592",
+            "type": "autoservicio",
+            "phone": "299-4894710",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "97",
+            "name": "Laprida",
+            "state": "BUENOS AIRES",
+            "city": "Laprida",
+            "address": "Av. San Mart\u00edn 980",
+            "latitude": "-37.543647060773054",
+            "longitude": "-60.79845738577575",
+            "type": "supermercado",
+            "phone": "2285-419308",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Viernes",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "12:30:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "98",
+            "name": "Monte Hermoso II",
+            "state": "BUENOS AIRES",
+            "city": "Monte Hermoso",
+            "address": "Av. Intendente Majluf 798",
+            "latitude": "-38.981452491052856",
+            "longitude": "-61.28792309761593",
+            "type": "supermercado",
+            "phone": "2921-482255",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "99",
+            "name": "Chimpay",
+            "state": "RIO NEGRO",
+            "city": "Chimpay",
+            "address": "Sarmiento 342",
+            "latitude": "-39.16459357228958",
+            "longitude": "-66.14577341097174",
+            "type": "autoservicio",
+            "phone": "2946-494260",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Jueves",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "S\u00e1bado",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "100",
+            "name": "Plottier",
+            "state": "NEUQUEN",
+            "city": "Plottier",
+            "address": "Batilana 211",
+            "latitude": "-38.95670692426748",
+            "longitude": "-68.24490261244506",
+            "type": "supermercado",
+            "phone": "299-4934695",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "101",
+            "name": "Choele Choel II",
+            "state": "RIO NEGRO",
+            "city": "Choele Choel",
+            "address": "Avellaneda 962",
+            "latitude": "-39.29264933198452",
+            "longitude": "-65.65980029272765",
+            "type": "supermercado",
+            "phone": "2946-443400",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "102",
+            "name": "Lamarque",
+            "state": "RIO NEGRO",
+            "city": "Lamarque",
+            "address": "Rivadavia 412",
+            "latitude": "-39.42213316561279",
+            "longitude": "-65.70491480844794",
+            "type": "supermercado",
+            "phone": "2946-497597",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "103",
+            "name": "Luis Beltran",
+            "state": "RIO NEGRO",
+            "city": "Luis Beltran",
+            "address": "Avellaneda 710",
+            "latitude": "-39.311137921000686",
+            "longitude": "-65.76214027474634",
+            "type": "autoservicio",
+            "phone": "2946-480094",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "104",
+            "name": "Trenque Lauquen",
+            "state": "BUENOS AIRES",
+            "city": "Trenque Lauquen",
+            "address": "Av. Regimiento 3 de Caballer\u00eda 853",
+            "latitude": "-35.98267013753607",
+            "longitude": "-62.74294638634274",
+            "type": "supermercado",
+            "phone": "2392-415854",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "105",
+            "name": "Catriel",
+            "state": "RIO NEGRO",
+            "city": "Catriel",
+            "address": "Av. San Mart\u00edn 516",
+            "latitude": "-37.88332175222674",
+            "longitude": "-67.79881954193115",
+            "type": "supermercado",
+            "phone": "299-4912131",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "106",
+            "name": "Pehuaj\u00f3 I",
+            "state": "BUENOS AIRES",
+            "city": "Pehuaj\u00f3",
+            "address": "Alsina 253",
+            "latitude": "-35.81250043643693",
+            "longitude": "-61.89579033854898",
+            "type": "supermercado",
+            "phone": "2396-470833",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "107",
+            "name": "Allen III",
+            "state": "RIO NEGRO",
+            "city": "Allen",
+            "address": "Irigoyen 648",
+            "latitude": "-38.975638398537015",
+            "longitude": "-67.83520889352076",
+            "type": "supermercado",
+            "phone": "298-4450208",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "108",
+            "name": "Zapala",
+            "state": "NEUQUEN",
+            "city": "Zapala",
+            "address": "Avellaneda 720",
+            "latitude": "-38.90446699317284",
+            "longitude": "-70.06100329774199",
+            "type": "supermercado",
+            "phone": "2942-422655",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "109",
+            "name": "Pehuaj\u00f3 II",
+            "state": "BUENOS AIRES",
+            "city": "Pehuaj\u00f3",
+            "address": "Av. San Mart\u00edn 105",
+            "latitude": "-35.8202899586798",
+            "longitude": "-61.89801299580722",
+            "type": "supermercado",
+            "phone": "2396-473220",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "110",
+            "name": "Alem",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Alem 3170",
+            "latitude": "-38.68393932708354",
+            "longitude": "-62.29150968720205",
+            "type": "supermercado",
+            "phone": "291-4882188",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "111",
+            "name": "9 de Julio",
+            "state": "BUENOS AIRES",
+            "city": "9 de Julio",
+            "address": "Av. Mitre 2537",
+            "latitude": "-35.451289482419185",
+            "longitude": "-60.89747634512605",
+            "type": "supermercado",
+            "phone": "2317-524469",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "112",
+            "name": "Lober\u00eda",
+            "state": "BUENOS AIRES",
+            "city": "Lober\u00eda",
+            "address": "Av. San Mart\u00edn 143",
+            "latitude": "-38.16471323152355",
+            "longitude": "-58.78192359206878",
+            "type": "supermercado",
+            "phone": "2261-440810",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "113",
+            "name": "Neuquen II",
+            "state": "NEUQUEN",
+            "city": "Neuqu\u00e9n",
+            "address": "Chocon entre Bahia y Mex",
+            "latitude": "-38.96891627597632",
+            "longitude": "-68.0502440930286",
+            "type": "supermercado",
+            "phone": "299-4486851",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "114",
+            "name": "Cutral Co",
+            "state": "NEUQUEN",
+            "city": "Cutral Co",
+            "address": "Maipu 1363",
+            "latitude": "-38.93535117323393",
+            "longitude": "-69.24781250971137",
+            "type": "supermercado",
+            "phone": "299-4869092",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "115",
+            "name": "Bat\u00e1n",
+            "state": "BUENOS AIRES",
+            "city": "Bat\u00e1n",
+            "address": "Diag. Mar del plata y Calle 35 35",
+            "latitude": "-38.00935567907412",
+            "longitude": "-57.70994455920754",
+            "type": "supermercado",
+            "phone": "223-4642524",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "116",
+            "name": "Cinco Saltos III",
+            "state": "RIO NEGRO",
+            "city": "Cinco Saltos",
+            "address": "Rivadavia 350",
+            "latitude": "-38.828791217891784",
+            "longitude": "-68.0672441131901",
+            "type": "supermercado",
+            "phone": "299-4984217",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "117",
+            "name": "Andacollo",
+            "state": "NEUQUEN",
+            "city": "Andacollo",
+            "address": "Cordillera del Viento ESQ",
+            "latitude": "-37.178799243985814",
+            "longitude": "-70.6675814688424",
+            "type": "supermercado",
+            "phone": "",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "118",
+            "name": "Loncopue",
+            "state": "NEUQUEN",
+            "city": "Loncopu\u00e9",
+            "address": "Av. San Mart\u00edn esq. Sarmi",
+            "latitude": "-38.07324923015833",
+            "longitude": "-70.61682875455517",
+            "type": "supermercado",
+            "phone": "2948-498509",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "119",
+            "name": "San Martin I",
+            "state": "NEUQUEN",
+            "city": "San Mart\u00edn de los Andes",
+            "address": "Gral. Villegas 950",
+            "latitude": "-40.15730593607521",
+            "longitude": "-71.34851780538156",
+            "type": "supermercado",
+            "phone": "2972-422737",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "120",
+            "name": "Viedma II",
+            "state": "RIO NEGRO",
+            "city": "Viedma",
+            "address": "Moreno 1036",
+            "latitude": "-40.81017056502792",
+            "longitude": "-63.00089469554223",
+            "type": "supermercado",
+            "phone": "2920-422724",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "121",
+            "name": "Cipolletti II",
+            "state": "RIO NEGRO",
+            "city": "Cipolletti",
+            "address": "Av. Mengelle 1058",
+            "latitude": "-38.929159387799636",
+            "longitude": "-67.99884250762261",
+            "type": "supermercado",
+            "phone": "299-4770603",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "122",
+            "name": "San Martin II",
+            "state": "NEUQUEN",
+            "city": "San Mart\u00edn de los Andes",
+            "address": "Pasaje La Islita 26",
+            "latitude": "-40.15000813172369",
+            "longitude": "-71.32222822343465",
+            "type": "autoservicio",
+            "phone": "2972-420269",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "123",
+            "name": "San Martin III",
+            "state": "NEUQUEN",
+            "city": "San Mart\u00edn de los Andes",
+            "address": "Los Lagos 1692",
+            "latitude": "-40.13060418944226",
+            "longitude": "-71.2251373543404",
+            "type": "autoservicio",
+            "phone": "2972-422393",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "124",
+            "name": "Neuquen III",
+            "state": "NEUQUEN",
+            "city": "Neuqu\u00e9n",
+            "address": "Av del trabaj y Dr Ramon",
+            "latitude": "-38.9418903934362",
+            "longitude": "-68.1155990663683",
+            "type": "supermercado",
+            "phone": "299-4451121",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "125",
+            "name": "Mar del Plata III",
+            "state": "BUENOS AIRES",
+            "city": "Mar del Plata",
+            "address": "Alberti 1842",
+            "latitude": "-38.010516319890584",
+            "longitude": "-57.545398700432656",
+            "type": "autoservicio",
+            "phone": "223-4942946",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "126",
+            "name": "San Nicolas",
+            "state": "BUENOS AIRES",
+            "city": "San Nicol\u00e1s",
+            "address": "Pte. Peron 1028",
+            "latitude": "-33.34803471743084",
+            "longitude": "-60.2334650045424",
+            "type": "supermercado",
+            "phone": "336-4440326",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "127",
+            "name": "Cutral Co II",
+            "state": "NEUQUEN",
+            "city": "Cutral Co",
+            "address": "Los Copihues s/n",
+            "latitude": "-38.9368262917551",
+            "longitude": "-69.2152900718732",
+            "type": "supermercado",
+            "phone": "299-4864422",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "16:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "128",
+            "name": "Zelarray\u00e1n",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Zelarrayan",
+            "latitude": "-38.715215546949175",
+            "longitude": "-62.26692634759752",
+            "type": "autoservicio",
+            "phone": "291-4500391",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "129",
+            "name": "Las Lajas",
+            "state": "NEUQUEN",
+            "city": "Las Lajas",
+            "address": "Saavedra 360",
+            "latitude": "-38.52552153597177",
+            "longitude": "-70.36269381872404",
+            "type": "supermercado",
+            "phone": "2942-499594",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "130",
+            "name": "Villa Gesell",
+            "state": "BUENOS AIRES",
+            "city": "Villa Gesell",
+            "address": "Bolulevard Silvio Gesell y Paseo 113",
+            "latitude": "-37.261552072642736",
+            "longitude": "-56.98444443880908",
+            "type": "supermercado",
+            "phone": "2255-463583",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "131",
+            "name": "Chos Malal I",
+            "state": "NEUQUEN",
+            "city": "Chos Malal",
+            "address": "Sarmiento 390",
+            "latitude": "-37.37714668362251",
+            "longitude": "-70.27291075070644",
+            "type": "supermercado",
+            "phone": "2948-422762",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "132",
+            "name": "Chos Malal II",
+            "state": "NEUQUEN",
+            "city": "Chos Malal",
+            "address": "General Paz 365",
+            "latitude": "-37.375996247434266",
+            "longitude": "-70.27250250874124",
+            "type": "supermercado",
+            "phone": "2948-422717",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "133",
+            "name": "Junin de los Andes",
+            "state": "NEUQUEN",
+            "city": "Jun\u00edn de los Andes",
+            "address": "Roca 1284",
+            "latitude": "-39.95497309718446",
+            "longitude": "-71.07783005006127",
+            "type": "supermercado",
+            "phone": "2972-492492",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "134",
+            "name": "Necochea III",
+            "state": "BUENOS AIRES",
+            "city": "Necochea",
+            "address": "Avenida 59 1885",
+            "latitude": "-38.56006624534429",
+            "longitude": "-58.732455241689706",
+            "type": "supermercado",
+            "phone": "2262-439494",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "135",
+            "name": "Sunchales",
+            "state": "SANTA FE",
+            "city": "Sunchales",
+            "address": "Lisandro de la Torre 450",
+            "latitude": "-30.941909789656144",
+            "longitude": "-61.56712484058117",
+            "type": "supermercado",
+            "phone": "03493-454700",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "136",
+            "name": "La Plata",
+            "state": "BUENOS AIRES",
+            "city": "La Plata",
+            "address": "Avenida 7 1224",
+            "latitude": "-34.91841417701545",
+            "longitude": "-57.94456619607063",
+            "type": "supermercado",
+            "phone": "0221-4255472",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "137",
+            "name": "Pinamar",
+            "state": "BUENOS AIRES",
+            "city": "Pinamar",
+            "address": "Av. Intermedanos 288",
+            "latitude": "-37.11209488408307",
+            "longitude": "-56.88214382030733",
+            "type": "supermercado",
+            "phone": "",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "138",
+            "name": "CR - KM8",
+            "state": "CHUBUT",
+            "city": "Comodoro Rivadavia",
+            "address": "Av. Alejandro Maiz 649",
+            "latitude": "-45.794709810609426",
+            "longitude": "-67.42194339817198",
+            "type": "supermercado",
+            "phone": "0297-5970281",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "139",
+            "name": "CR - Palazzo",
+            "state": "CHUBUT",
+            "city": "Comodoro Rivadavia",
+            "address": "Lavalle 1501",
+            "latitude": "-45.79409315008956",
+            "longitude": "-67.47362753905246",
+            "type": "supermercado",
+            "phone": "0297-5970157",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "140",
+            "name": "CR - KM3",
+            "state": "CHUBUT",
+            "city": "Comodoro Rivadavia",
+            "address": "Gregorio Mayo 638",
+            "latitude": "-45.838315800506955",
+            "longitude": "-67.48230916381621",
+            "type": "supermercado",
+            "phone": "0297-5954118",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "141",
+            "name": "CR - Laprida",
+            "state": "CHUBUT",
+            "city": "Comodoro Rivadavia",
+            "address": "Costa Rica 550",
+            "latitude": "-45.829038137240005",
+            "longitude": "-67.541284500811",
+            "type": "supermercado",
+            "phone": "0297-5954116",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "142",
+            "name": "CR - Martin Fierro",
+            "state": "CHUBUT",
+            "city": "Comodoro Rivadavia",
+            "address": "Mart\u00edn Fierro 748",
+            "latitude": "-45.867139785312865",
+            "longitude": "-67.52193693031657",
+            "type": "supermercado",
+            "phone": "0297-5960277",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "143",
+            "name": "CR - Abasolo",
+            "state": "CHUBUT",
+            "city": "Comodoro Rivadavia",
+            "address": "Huergo 4116",
+            "latitude": "-45.85840464915227",
+            "longitude": "-67.53561693622396",
+            "type": "autoservicio",
+            "phone": "0297-5960243",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "144",
+            "name": "Rada Tilly",
+            "state": "CHUBUT",
+            "city": "Rada Tilly",
+            "address": "Av. Almirante Brown 2074",
+            "latitude": "-45.92341737137811",
+            "longitude": "-67.56156875093777",
+            "type": "supermercado",
+            "phone": "0297-4860134",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "145",
+            "name": "CR - Kennedy",
+            "state": "CHUBUT",
+            "city": "Comodoro Rivadavia",
+            "address": "Av.Kennedy 3099",
+            "latitude": "-45.879057961617455",
+            "longitude": "-67.5360222597422",
+            "type": "supermercado",
+            "phone": "0297-5960247",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        },
+                        {
+                            "opens": "17:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "146",
+            "name": "Villa Mar\u00eda",
+            "state": "CORDOBA",
+            "city": "Villa Mar\u00eda",
+            "address": "Ruta Nac. 158 Km155.5",
+            "latitude": "-32.387639089384855",
+            "longitude": "-63.24142100508952",
+            "type": "hipermercado",
+            "phone": "353-4609400",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "147",
+            "name": "Undiano y Gral. Arias",
+            "state": "BUENOS AIRES",
+            "city": "Bah\u00eda Blanca",
+            "address": "Undiano 1927",
+            "latitude": "-38.740451875579524",
+            "longitude": "-62.2814696983365",
+            "type": "supermercado",
+            "phone": "",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "13:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "148",
+            "name": "Mar del Plata IV",
+            "state": "BUENOS AIRES",
+            "city": "Mar del Plata",
+            "address": "Dellepiane 1236",
+            "latitude": "-38.03122896379947",
+            "longitude": "-57.576727498159826",
+            "type": "supermercado",
+            "phone": "223-3707354",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "149",
+            "name": "Tandil",
+            "state": "BUENOS AIRES",
+            "city": "Tandil",
+            "address": "Av. Balb\u00edn 1225",
+            "latitude": "-37.311946957941664",
+            "longitude": "-59.12331892457262",
+            "type": "supermercado",
+            "phone": "",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                },
+                {
+                    "init_day": "Domingo",
+                    "end_day": "Domingo",
+                    "hours": [
+                        {
+                            "opens": "09:00:00+00:00",
+                            "closes": "21:00:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "151",
+            "name": "Toay",
+            "state": "LA PAMPA",
+            "city": "Toay",
+            "address": "Av. 9 de Julio 342",
+            "latitude": "-36.6752056",
+            "longitude": "-64.3773926",
+            "type": "autoservicio",
+            "phone": "",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:30:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        },
+        {
+            "id": "152",
+            "name": "COOPEHOGAR SUNCHALES",
+            "state": "SANTA FE",
+            "city": "Sunchales",
+            "address": " 521",
+            "latitude": "-30.941365226196826",
+            "longitude": "-61.56767671316896",
+            "type": "coopehogar",
+            "phone": "",
+            "opening_day": "2020-01-01T00:00:00-03:00",
+            "opening_hours": [
+                {
+                    "init_day": "Lunes",
+                    "end_day": "S\u00e1bado",
+                    "hours": [
+                        {
+                            "opens": "08:00:00+00:00",
+                            "closes": "20:30:00+00:00"
+                        }
+                    ]
+                }
+            ],
+            "special_opening_hours": [],
+            "holidays": [],
+            "url": "https://www.cooperativaobrera.coop/"
+        }
+    ],
+    "created_at": 1778502086,
+    "expires_at": 1778512886
+}
