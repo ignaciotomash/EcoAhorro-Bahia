@@ -62,7 +62,7 @@ async function _getProductosCatalogo(
   if (tieneSearch) {
     const textoNormalizado = normalizar(searchString);
     const terminos = resolverSinonimos(textoNormalizado);
-    const productosFuzzy = await buscarFuzzy(terminos, 0.20);
+    const productosFuzzy = await buscarFuzzy(terminos, 0.30);
 
     if (productosFuzzy.length === 0) {
       return {

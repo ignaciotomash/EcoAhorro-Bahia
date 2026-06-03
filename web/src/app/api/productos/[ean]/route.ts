@@ -1,6 +1,46 @@
 import { NextResponse } from 'next/server';
 import prisma from '../../../../lib/prisma';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+function apiError(
+  code: string,
+  message: string,
+  details?: string
+) {
+  return {
+    error: {
+      code,
+      message,
+      ...(details ? { details } : {}),
+    },
+  };
+}
+
+function jsonWithCors(
+  body: unknown,
+  init?: ResponseInit
+) {
+  return NextResponse.json(body, {
+    ...init,
+    headers: {
+      ...corsHeaders,
+      ...init?.headers,
+    },
+  });
+}
+
+export function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders,
+  });
+}
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ ean: string }> }
@@ -36,8 +76,12 @@ export async function GET(
       });
 
     if (!producto) {
-      return NextResponse.json(
-        null,
+      return jsonWithCors(
+        apiError(
+          'PRODUCTO_NO_ENCONTRADO',
+          'No se encontro un producto con el EAN indicado.',
+          `EAN: ${ean}`
+        ),
         { status: 404 }
       );
     }
@@ -59,7 +103,7 @@ export async function GET(
                 }[];
             }
             >,
-            precio: any
+            precio
         ) => {
           const nombreSuper =
             precio.Supermercado.nombre;
@@ -106,7 +150,7 @@ export async function GET(
         >
       );
 
-    return NextResponse.json({
+    return jsonWithCors({
       ean: producto.id,
 
       categoria:
@@ -150,11 +194,11 @@ export async function GET(
   } catch (error) {
     console.error(error);
 
-    return NextResponse.json(
-      {
-        error:
-          'Error buscando producto',
-      },
+    return jsonWithCors(
+      apiError(
+        'ERROR_BUSCANDO_PRODUCTO',
+        'No se pudo obtener el producto solicitado.'
+      ),
       {
         status: 500,
       }
