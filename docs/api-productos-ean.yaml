@@ -27,6 +27,7 @@ paths:
         disponibles agrupados por supermercado.
       tags:
         - Productos
+      security: []
       parameters:
         - in: path
           name: ean
@@ -50,7 +51,7 @@ paths:
                 marca: Taragui
                 imagen: https://example.com/productos/0000042277095.jpg
                 historialPrecios:
-                  - fecha: "2026-05-10"
+                  - fecha: "2026-05-10T00:00:00.000Z"
                     precioPromedio: 2150.5
                 preciosPorSuper:
                   - supermercado: Vea
@@ -135,9 +136,9 @@ components:
       properties:
         fecha:
           type: string
-          format: date
-          description: Fecha de guardado del precio promedio.
-          example: "2026-05-10"
+          format: date-time
+          description: Fecha y hora de guardado del precio promedio en ISO 8601 UTC.
+          example: "2026-05-10T00:00:00.000Z"
         precioPromedio:
           type: number
           format: float
