@@ -25,7 +25,7 @@ export interface ProductoResuelto {
 }
 
 // Tipo interno para el resultado crudo del $queryRaw
-interface ProductoFuzzyRaw {
+export interface ProductoFuzzyRaw {
   id: string;
   nombreProducto: string;
   marca: string;
@@ -38,7 +38,7 @@ interface ProductoFuzzyRaw {
 // NORMALIZACIÓN
 // ────────────────────────────────────────────────────────────
 //Todo lo cargado se vuelve en minuscula, saca acentos y espacios innecesarios
-function normalizar(texto: string): string {
+export function normalizar(texto: string): string {
   return texto
     .toLowerCase()
     .normalize("NFD")
@@ -54,7 +54,7 @@ function normalizar(texto: string): string {
 // después, si hay más de una palabra en el array, las separa y las busca una por separado.
 // ────────────────────────────────────────────────────────────
 
-function resolverSinonimos(textoNormalizado: string): string[] {
+export function resolverSinonimos(textoNormalizado: string): string[] {
   const terminos = new Set<string>();
 
   // Siempre incluir el texto original
@@ -106,7 +106,7 @@ async function buscarPorTermino(
   `;
 }
 
-async function buscarFuzzy(
+export async function buscarFuzzy(
   terminos: string[],
   umbral: number
 ): Promise<ProductoFuzzyRaw[]> {
