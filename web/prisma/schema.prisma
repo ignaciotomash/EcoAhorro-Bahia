@@ -43,7 +43,7 @@ model Sucursal {
 model HistorialPrecios {
   id             String
   fechaGuardado  DateTime
-  precioPromedio Float
+  precioPromedio Float    @db.Real
 
   Producto       Producto @relation(fields: [id], references: [id])
   @@id([id, fechaGuardado])
@@ -75,9 +75,9 @@ model PreciosUnificados {
 
 model Usuario {
   id            String   @id
-  nombreUsuario String?
+  nombreUsuario String
   email         String   @unique
-  telefono      String?  @unique
+  telefono      String   @unique
   Carrito       Carrito?
 }
 
