@@ -4,9 +4,16 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 
+// Función para formatear nombres de categorías 
+const formatearNombreCategoria = (nombre: string): string => {
+  const texto = nombre.replace(/_/g, ' ');
+  return texto.replace(/[a-zA-Záéíóúñ]/, letra => letra.toUpperCase());
+};
+
 export default function ProductCard({ producto }: { producto: any }) {
   const { addToCart, items } = useCart();
   const [added, setAdded] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   const precioMasBajo = producto.precios?.[0];
   const otrosPrecios = producto.precios?.slice(1) || [];
@@ -24,13 +31,14 @@ export default function ProductCard({ producto }: { producto: any }) {
 
   return (
     <div className="bg-white rounded-2xl flex flex-col h-full border border-gray-100 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden min-w-0">
-
       <Link href={`/producto/${producto.id}`} className="flex flex-col flex-1">
         {/* IMAGEN */}
         <div className="relative w-full h-32 md:h-48 bg-white p-3 flex items-center justify-center border-b border-gray-50">
-          {producto.imagen && producto.imagen !== 'https://placehold.co/400x400/f3f4f6/6b7280?text=Sin+Imagen'
-            ? <img src={producto.imagen} alt={producto.nombre} loading="lazy" decoding="async" className="object-contain w-full h-full mix-blend-multiply transition-transform duration-500" />
-            : <span className="text-gray-300 text-[10px] md:text-xs font-medium">Sin foto</span>
+          {producto.imagen && !producto.imagen.includes('placehold.co') && producto.imagen !== 'Sin imagen' && !imgError
+            ? <img src={producto.imagen} alt={producto.nombre} loading="lazy" decoding="async" className="object-contain w-full h-full mix-blend-multiply group-hover:scale-105 transition-transform duration-500" onError={() => setImgError(true)} />
+            : <div className="w-full h-full flex items-center justify-center bg-gray-50 opacity-70">
+                <img src="/logo.png" alt="Sin imagen" className="w-12 h-12 md:w-16 md:h-16 object-contain grayscale opacity-40" />
+              </div>
           }
 
           {/* Badge cantidad carrito */}
@@ -44,7 +52,7 @@ export default function ProductCard({ producto }: { producto: any }) {
           {/* Categoría floting */}
           <div className="absolute bottom-2 left-2 max-w-[80%]">
             <span className="inline-block truncate text-[8px] md:text-[10px] font-bold px-2 py-1 rounded-lg bg-gray-900/5 text-gray-600 backdrop-blur-sm">
-              {producto.categoria}
+              {formatearNombreCategoria(producto.categoria)}
             </span>
           </div>
         </div>
@@ -56,44 +64,47 @@ export default function ProductCard({ producto }: { producto: any }) {
             <h3 className="font-bold text-gray-800 leading-snug text-[11px] md:text-sm line-clamp-2 min-h-[32px] md:min-h-[40px]">{producto.nombre}</h3>
           </div>
 
-          {/* PRECIOS */}
-          <div className="mt-1">
-            {precioMasBajo ? (
-              <div className="flex flex-col gap-1">
-                <div className="flex items-baseline gap-1.5">
+        {/* PRECIOS */}
+        <div className="mt-1">
+          {precioMasBajo ? (
+            <div className="flex flex-col gap-2">
+              {/* Mejor precio destacado */}
+              <div className="bg-gradient-to-br from-green-50 to-green-25 p-2 md:p-2.5 rounded-lg border border-green-200">
+                <div className="flex items-baseline justify-between gap-1.5">
                   <span className="text-lg md:text-2xl font-black text-gray-900 tracking-tight" style={{ fontFamily: "'Oswald', sans-serif" }}>
                     ${precioMasBajo.valor.toLocaleString('es-AR')}
                   </span>
                 </div>
-                <div className="flex items-center gap-1 text-[9px] md:text-[11px]">
-                  <span className="text-green-600 font-bold bg-green-50 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                <div className="flex items-center gap-1 text-[9px] md:text-[10px] mt-1">
+                  <span className="text-green-600 font-bold bg-green-100 px-1.5 py-0.5 rounded flex items-center gap-0.5 whitespace-nowrap">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                    Mejor en
+                    Mejor
                   </span>
-                  <span className="font-bold text-gray-600 truncate max-w-[80px] md:max-w-[100px]">{precioMasBajo.super}</span>
+                  <span className="font-bold text-gray-600 truncate">{precioMasBajo.super}</span>
                 </div>
               </div>
-            ) : (
-              <div className="py-2">
-                <span className="text-[10px] md:text-xs text-gray-400 font-medium italic">Precio no disponible</span>
-              </div>
-            )}
-          </div>
 
-          {/* COMPARATIVA MOBILE / DESKTOP */}
-          {otrosPrecios.length > 0 && (
-            <div className="mt-1 md:mt-2 pt-2 md:pt-3 border-t border-gray-100">
-              <div className="flex justify-between items-center text-[9px] md:text-[11px]">
-                <span className="text-gray-500 truncate mr-2">{otrosPrecios[0].super}</span>
-                <span className="font-semibold text-gray-400 line-through decoration-gray-300 decoration-1">${otrosPrecios[0].valor.toLocaleString('es-AR')}</span>
-              </div>
-              {otrosPrecios.length > 1 && (
-                <p className="text-[8px] md:text-[10px] text-gray-400 mt-1 text-center font-medium">
-                  y {otrosPrecios.length - 1} más...
-                </p>
+              {/* Otros precios en comparativa */}
+              {otrosPrecios.length > 0 && (
+                <div className="flex flex-col gap-1">
+                  <p className="text-[8px] md:text-[9px] text-gray-400 font-semibold uppercase tracking-wide">Comparativa</p>
+                  <div className="flex flex-col gap-1 max-h-[200px] overflow-y-auto">
+                    {otrosPrecios.map((precio: any, idx: number) => (
+                      <div key={idx} className="flex justify-between items-center text-[9px] md:text-[10px] bg-gray-50 p-1.5 rounded">
+                        <span className="text-gray-600 font-medium truncate flex-1">{precio.super}</span>
+                        <span className="font-bold text-gray-700 ml-2">${precio.valor.toLocaleString('es-AR')}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
+          ) : (
+            <div className="py-2">
+              <span className="text-[10px] md:text-xs text-gray-400 font-medium italic">Precio no disponible</span>
+            </div>
           )}
+        </div>
         </div>
       </Link>
 
@@ -119,7 +130,7 @@ export default function ProductCard({ producto }: { producto: any }) {
           ) : (
             <>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-              {enCarrito ? `Agregar otro` : 'Lo quiero'}
+              {enCarrito ? `Agregar otro` : 'Agregar al carrito'}
             </>
           )}
         </button>

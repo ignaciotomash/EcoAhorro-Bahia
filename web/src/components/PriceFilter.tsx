@@ -39,11 +39,15 @@ export default function PriceFilter({ sortBy, minPrice, maxPrice, onChange }: Pr
   };
 
   const handleMinPriceChange = (value: string) => {
-    setLocalMinPrice(value);
+    // Solo permitir números positivos de hasta 10 dígitos
+    const filteredValue = value.replace(/[^0-9]/g, '').slice(0, 10);
+    setLocalMinPrice(filteredValue);
   };
 
   const handleMaxPriceChange = (value: string) => {
-    setLocalMaxPrice(value);
+    // Solo permitir números positivos de hasta 10 dígitos
+    const filteredValue = value.replace(/[^0-9]/g, '').slice(0, 10);
+    setLocalMaxPrice(filteredValue);
   };
 
   const applyPriceFilters = () => {
@@ -63,7 +67,7 @@ export default function PriceFilter({ sortBy, minPrice, maxPrice, onChange }: Pr
     if (sortBy === 'price_asc') return 'Menor a Mayor';
     if (sortBy === 'price_desc') return 'Mayor a Menor';
     if (minPrice || maxPrice) {
-      return `Precio: ${minPrice || '0'}-${maxPrice || '∞'}`;
+      return `Precio: $${minPrice || '0'}-$${maxPrice || '∞'}`;
     }
     return 'Ordenar por precio';
   };
@@ -121,21 +125,31 @@ export default function PriceFilter({ sortBy, minPrice, maxPrice, onChange }: Pr
             <div className="mb-4">
               <p className="text-xs font-bold text-gray-500 uppercase mb-2">Rango de precio</p>
               <div className="flex gap-2 items-center">
-                <input
-                  type="number"
-                  placeholder="Mín"
-                  value={localMinPrice}
-                  onChange={(e) => handleMinPriceChange(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#FF6B35]"
-                />
+                <div className="flex-1 relative">
+                  <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-600 text-sm font-bold pointer-events-none">$</span>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="Mín"
+                    value={localMinPrice}
+                    onChange={(e) => handleMinPriceChange(e.target.value)}
+                    maxLength={10}
+                    className="w-full pl-6 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#FF6B35]"
+                  />
+                </div>
                 <span className="text-gray-400">-</span>
-                <input
-                  type="number"
-                  placeholder="Máx"
-                  value={localMaxPrice}
-                  onChange={(e) => handleMaxPriceChange(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#FF6B35]"
-                />
+                <div className="flex-1 relative">
+                  <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-600 text-sm font-bold pointer-events-none">$</span>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="Máx"
+                    value={localMaxPrice}
+                    onChange={(e) => handleMaxPriceChange(e.target.value)}
+                    maxLength={10}
+                    className="w-full pl-6 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#FF6B35]"
+                  />
+                </div>
               </div>
               <button
                 onClick={applyPriceFilters}

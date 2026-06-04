@@ -97,10 +97,8 @@ async function buscarPorTermino(
       ) AS score
     FROM "Producto" producto
     WHERE
-      GREATEST(
-        similarity(lower(producto."nombreProducto"), ${termino}),
-        similarity(lower(producto.marca),            ${termino})
-      ) > ${umbral}
+      lower(producto."nombreProducto") % ${termino}
+      OR lower(producto.marca) % ${termino}
     ORDER BY producto.id, score DESC
     LIMIT 20
   `;

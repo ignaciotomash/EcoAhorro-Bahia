@@ -48,6 +48,7 @@ export default function CatalogoClient({
   const [searchQuery, setSearchQuery] = useState<string>(initialSearch);
   const [debouncedSearch, setDebouncedSearch] = useState<string>(initialSearch);
   const [error, setError] = useState<string | null>(null);
+  const [notification, setNotification] = useState<{ message: string; type: 'error' | 'success' } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const isFirstRender = useRef(true);
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -155,6 +156,14 @@ export default function CatalogoClient({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [selectedCategorias, currentPage, sortBy, minPrice, maxPrice, debouncedSearch]);
 
+  // Función para mostrar notificaciones
+  const showNotification = (message: string, type: 'error' | 'success' = 'error') => {
+    setNotification({ message, type });
+    setTimeout(() => {
+      setNotification(null);
+    }, 1000);
+  };
+
   const handleCategoryChange = (newCategorias: string[]) => {
     setCurrentPage(1);
     setSelectedCategorias(newCategorias);
@@ -175,6 +184,32 @@ export default function CatalogoClient({
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Notificación */}
+      {notification && (
+        <div className="fixed bottom-4 left-0 right-0 flex justify-center z-[999] pointer-events-none">
+          <div className={`px-4 md:px-6 py-2 md:py-3 rounded-lg text-[10px] md:text-xs font-semibold text-white shadow-lg animate-fadeIn pointer-events-auto ${
+            notification.type === 'error' ? 'bg-red-500' : 'bg-green-500'
+          }`}>
+            {notification.message}
+          </div>
+          <style>{`
+            @keyframes fadeIn {
+              from {
+                opacity: 0;
+                transform: translateY(10px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            .animate-fadeIn {
+              animation: fadeIn 0.3s ease-out;
+            }
+          `}</style>
+        </div>
+      )}
+
       <div style={{ background: 'linear-gradient(135deg, #0D1554 0%, #1A237E 60%, #283593 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 py-4 md:py-10">
           <p className="text-[10px] md:text-sm font-medium mb-0.5" style={{ color: '#FFCBB5' }}>Eco Ahorro Bahía</p>
@@ -190,9 +225,11 @@ export default function CatalogoClient({
       </div>
 
       <div className="max-w-7xl mx-auto py-3 md:py-8 px-4">
-        <div className="mb-4 md:mb-10 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 relative z-50">
-          <div className="flex flex-col md:flex-row gap-2 md:gap-4 flex-1" style={isLoading ? { opacity: 0.5, pointerEvents: 'none' } : {}}>
-            <div className="flex-1 md:max-w-sm">
+        <div className="mb-4 md:mb-10 flex flex-col md:flex-row justify-between md:items-start gap-4 relative z-20" style={isLoading ? { opacity: 0.5, pointerEvents: 'none' } : {}}>
+          {/* Contenedor ajustado al contenido */}
+          <div className="flex flex-col gap-3 md:gap-4 w-full md:w-max">
+            {/* Buscador */}
+            <div className="w-full flex items-center bg-white border-2 border-gray-100 rounded-xl md:rounded-2xl shadow-sm focus-within:border-[#FF6B35] transition-colors p-1 md:p-1.5">
               <input
                 type="text"
                 placeholder="Buscar producto..."
@@ -201,25 +238,39 @@ export default function CatalogoClient({
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full px-3 py-2 md:py-3 bg-white border-2 border-gray-100 rounded-xl md:rounded-2xl text-xs md:text-sm outline-none focus:border-[#FF6B35] transition-colors shadow-sm"
+                className="flex-1 px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm outline-none bg-transparent min-w-[120px]"
               />
+              <button
+                type="button"
+                className="px-4 md:px-5 py-1.5 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm font-bold text-white transition-all hover:opacity-90 whitespace-nowrap"
+                style={{ backgroundColor: '#FF6B35' }}
+              >
+                Buscar
+              </button>
             </div>
-            <div className="flex gap-2 md:gap-3 overflow-x-auto no-scrollbar">
-              <CategoryFilter
-                categorias={categorias}
-                selectedCategorias={selectedCategorias}
-                onChange={handleCategoryChange}
-              />
-              <PriceFilter
-                sortBy={sortBy}
-                minPrice={minPrice}
-                maxPrice={maxPrice}
-                onChange={handlePriceFilterChange}
-              />
+            
+            {/* Filtros */}
+            <div className="flex gap-2 md:gap-3 w-full">
+              <div className="flex-1">
+                <CategoryFilter
+                  categorias={categorias}
+                  selectedCategorias={selectedCategorias}
+                  onChange={handleCategoryChange}
+                />
+              </div>
+              <div className="flex-1">
+                <PriceFilter
+                  sortBy={sortBy}
+                  minPrice={minPrice}
+                  maxPrice={maxPrice}
+                  onChange={handlePriceFilterChange}
+                />
+              </div>
             </div>
           </div>
-          <div className="hidden md:block text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-50 px-4 py-2 rounded-xl">
-            Actualizado hoy
+
+          <div className="hidden md:block text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-50 px-4 py-2 rounded-xl mt-1">
+            Precios actualizados
           </div>
         </div>
 
@@ -232,8 +283,8 @@ export default function CatalogoClient({
         {isLoading && !error && (
           <>
             {/* Overlay para prevenir interacción */}
-            <div className="fixed inset-0 bg-white/40 z-40 pointer-events-auto" style={{ pointerEvents: 'none' }}></div>
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 relative z-30">
+            <div className="fixed inset-0 bg-white/40 pointer-events-none"></div>
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5">
               {Array.from({ length: productos.length || 24 }).map((_, i) => (
                 <ProductSkeleton key={i} />
               ))}
@@ -243,36 +294,126 @@ export default function CatalogoClient({
 
         {!isLoading && !error && productos.length > 0 && (
           <>
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 relative z-10">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5">
               {productos.map((prod) => (
                 <ProductCard key={prod.id} producto={prod} />
               ))}
             </div>
 
-            <div className="mt-6 md:mt-12 flex justify-center items-center gap-2 md:gap-4">
+            <div className="mt-6 md:mt-12 flex flex-wrap justify-center items-center gap-1 md:gap-2">
+              {/* Primera página */}
+              {currentPage > 1 && (
+                <button
+                  type="button"
+                  onClick={() => handlePageChange(1)}
+                  className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#1A237E' }}
+                  title="Primera página"
+                >
+                  ⏮ Inicio
+                </button>
+              )}
+
+              {/* 4 páginas anteriores */}
+              {Array.from({ length: Math.min(4, currentPage - 2) }).map((_, i) => {
+                const pageNum = Math.max(1, currentPage - 5 + i);
+                return (
+                  <button
+                    key={`prev-${i}`}
+                    type="button"
+                    onClick={() => handlePageChange(pageNum)}
+                    className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-semibold text-gray-600 bg-gray-100 text-[9px] md:text-xs transition-all hover:bg-gray-200"
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+
+              {/* Anterior */}
               {currentPage > 1 && (
                 <button
                   type="button"
                   onClick={() => handlePageChange(currentPage - 1)}
-                  className="px-3 md:px-6 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[10px] md:text-sm transition-all hover:opacity-90"
-                  style={{ backgroundColor: '#1A237E' }}
+                  className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#FF6B35' }}
                 >
                   ← Anterior
                 </button>
               )}
 
-              <span className="text-[10px] md:text-sm font-medium text-gray-500">
+              {/* Página actual */}
+              <span className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs" style={{ backgroundColor: '#1A237E' }}>
                 {currentPage} / {totalPages}
               </span>
 
+              {/* Input para ir a página específica */}
+              <div className="flex items-center gap-1">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="Ir a..."
+                  maxLength={5}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      const pageNum = parseInt(e.currentTarget.value);
+                      if (e.currentTarget.value.trim() === '') {
+                        showNotification('Por favor ingresa un número de página');
+                        return;
+                      }
+                      if (pageNum < 1 || pageNum > totalPages || isNaN(pageNum)) {
+                        showNotification(`Por favor ingresa un número entre 1 y ${totalPages}`);
+                        e.currentTarget.value = '';
+                        return;
+                      }
+                      handlePageChange(pageNum);
+                      e.currentTarget.value = '';
+                    }
+                  }}
+                  onChange={(e) => {
+                    e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '');
+                  }}
+                  className="w-10 md:w-12 px-1.5 md:px-2 py-1.5 md:py-2 border border-gray-300 rounded-lg text-center text-[9px] md:text-xs focus:outline-none focus:border-[#FF6B35] focus:ring-1 focus:ring-orange-100"
+                  title={`Ingresa un número entre 1 y ${totalPages}`}
+                />
+              </div>
+
+              {/* Siguiente */}
               {currentPage < totalPages && (
                 <button
                   type="button"
                   onClick={() => handlePageChange(currentPage + 1)}
-                  className="px-3 md:px-6 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[10px] md:text-sm transition-all hover:opacity-90"
-                  style={{ backgroundColor: '#1A237E' }}
+                  className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#FF6B35' }}
                 >
                   Siguiente →
+                </button>
+              )}
+
+              {/* 4 páginas siguientes */}
+              {Array.from({ length: Math.min(4, totalPages - currentPage - 1) }).map((_, i) => {
+                const pageNum = currentPage + 2 + i;
+                return (
+                  <button
+                    key={`next-${i}`}
+                    type="button"
+                    onClick={() => handlePageChange(pageNum)}
+                    className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-semibold text-gray-600 bg-gray-100 text-[9px] md:text-xs transition-all hover:bg-gray-200"
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+
+              {/* Última página */}
+              {currentPage < totalPages && (
+                <button
+                  type="button"
+                  onClick={() => handlePageChange(totalPages)}
+                  className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#1A237E' }}
+                  title="Última página"
+                >
+                  Final ⏭
                 </button>
               )}
             </div>
