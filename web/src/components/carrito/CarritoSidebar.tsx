@@ -51,7 +51,7 @@ export default function CarritoSidebar({
   const ahorro = superMasCaro && superMasBarato ? superMasCaro.total - superMasBarato.total : 0;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 overflow-visible">
 
       {/* FILTRO SUPERMERCADOS */}
       <FiltroSupermercados
@@ -143,7 +143,7 @@ export default function CarritoSidebar({
           </div>
 
           {/* Lista de supermercados con desplegable */}
-          <div className="bg-white rounded-2xl overflow-hidden" style={{ border: '1px solid #E5E7EB' }}>
+          <div className="bg-white rounded-2xl overflow-visible" style={{ border: '1px solid #E5E7EB' }}>
             {resultadoMulti.supermercados.map((s, i) => {
               const abierto = supersAbiertos.has(s.nombre);
               return (

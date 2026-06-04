@@ -18,7 +18,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="w-full sticky top-0 z-40 bg-white" style={{ borderBottom: '1px solid #E5E7EB', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+    <nav className="w-full sticky top-0 z-50 bg-white" style={{ borderBottom: '1px solid #E5E7EB', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
       <div className="max-w-7xl mx-auto px-4 h-14 md:h-16 flex items-center justify-between">
 
         {/* Logo */}

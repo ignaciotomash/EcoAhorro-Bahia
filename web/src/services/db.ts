@@ -232,3 +232,13 @@ export const getCategorias = unstable_cache(
   ['categorias-query'],
   { revalidate: 86400, tags: ['categorias'] }
 );
+
+async function _getSupermercadosCount() {
+  return await prisma.supermercado.count();
+}
+
+export const getSupermercadosCount = unstable_cache(
+  _getSupermercadosCount,
+  ['supermercados-count'],
+  { revalidate: 86400, tags: ['supermercados'] }
+);
