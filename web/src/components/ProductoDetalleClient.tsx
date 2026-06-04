@@ -4,18 +4,10 @@ import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import type { ProductoDetalleData } from '../services/productoDetalle';
 
-const MOCK_HISTORIAL = [
-  { fecha: 'May', precioPromedio: 1250 },
-  { fecha: 'Jun', precioPromedio: 1180 },
-  { fecha: 'Jul', precioPromedio: 1320 },
-  { fecha: 'Ago', precioPromedio: 1280 },
-  { fecha: 'Sep', precioPromedio: 1150 },
-  { fecha: 'Oct', precioPromedio: 1200 },
-];
-
 export default function ProductoDetalleClient({ producto }: { producto: ProductoDetalleData }) {
   const { addToCart, items } = useCart();
   const [added, setAdded] = useState(false);
+  const [mostrarEnUSD, setMostrarEnUSD] = useState(false);
 
   const handleAdd = () => {
     addToCart({
@@ -35,7 +27,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
 
   const enCarrito = items.find(i => i.producto.id === producto.ean);
   const tienePrecio = producto.preciosPorSuper.length > 0;
-  const historial = producto.historialPrecios.length > 0 ? producto.historialPrecios : MOCK_HISTORIAL;
+  const historial = producto.historialPrecios;
 
   // SVG chart dimensions
   const svgW = 600;
@@ -44,19 +36,25 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const chartW = svgW - pad.left - pad.right;
   const chartH = svgH - pad.top - pad.bottom;
 
-  const vals = historial.map(h => h.precioPromedio);
-  const minV = Math.min(...vals) - 50;
-  const maxV = Math.max(...vals) + 50;
+  const vals = historial.map(h => mostrarEnUSD ? (h.precioUSD ?? h.precioPromedio) : h.precioPromedio);
+  const rawMin = Math.min(...vals);
+  const rawMax = Math.max(...vals);
+  const padding = (rawMax - rawMin) * 0.15 || 0.1; // 15% del rango, mínimo 0.1
+  const minV = rawMin - padding;
+  const maxV = rawMax + padding;
 
   const x = (i: number) => pad.left + (i / Math.max(historial.length - 1, 1)) * chartW;
   const y = (v: number) => pad.top + chartH - ((v - minV) / (maxV - minV)) * chartH;
 
-  const linePoints = historial.map((h, i) => `${x(i)},${y(h.precioPromedio)}`).join(' ');
+  const linePoints = historial.map((h, i) => `${x(i)},${y(vals[i])}`).join(' ');
 
-  const gridLines = [25, 50, 75].map(pct => ({
-    y: pad.top + (pct / 100) * chartH,
-    label: Math.round(maxV - (pct / 100) * (maxV - minV)),
-  }));
+  const gridLines = [25, 50, 75].map(pct => {
+    const rawLabel = maxV - (pct / 100) * (maxV - minV);
+    return {
+      y: pad.top + (pct / 100) * chartH,
+      label: mostrarEnUSD ? Number(rawLabel.toFixed(2)) : Math.round(rawLabel),
+    };
+  });
 
   return (
     <main className="min-h-screen bg-white">
@@ -93,11 +91,10 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
                 {producto.preciosPorSuper.map((p, i) => (
                   <div
                     key={p.supermercado}
-                    className={`flex items-center justify-between p-3 md:p-4 rounded-xl border transition-all ${
-                      i === 0
-                        ? 'bg-green-50 border-green-200 shadow-sm'
-                        : 'bg-gray-50 border-gray-100'
-                    }`}
+                    className={`flex items-center justify-between p-3 md:p-4 rounded-xl border transition-all ${i === 0
+                      ? 'bg-green-50 border-green-200 shadow-sm'
+                      : 'bg-gray-50 border-gray-100'
+                      }`}
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="text-xs md:text-sm font-semibold text-gray-700 truncate">{p.supermercado}</span>
@@ -152,14 +149,35 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
           </h2>
           <p className="text-[10px] md:text-sm text-gray-400 mb-4 md:mb-6">Evolución del precio promedio en los últimos meses</p>
 
+          <div className="flex gap-2 mb-4">
+            <button
+              onClick={() => setMostrarEnUSD(false)}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${!mostrarEnUSD
+                ? 'bg-[#1A237E] text-white shadow'
+                : 'bg-gray-100 text-gray-500'
+                }`}
+            >
+              ARS $
+            </button>
+            <button
+              onClick={() => setMostrarEnUSD(true)}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${mostrarEnUSD
+                ? 'bg-[#1A237E] text-white shadow'
+                : 'bg-gray-100 text-gray-500'
+                }`}
+            >
+              USD
+            </button>
+          </div>
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3 md:p-8">
             <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-48 md:h-64" preserveAspectRatio="xMidYMid meet">
               {/* Grid lines */}
               {gridLines.map((gl, i) => (
                 <g key={i}>
-                  <line x1={pad.left} y1={gl.y} x2={svgW - pad.right} y2={gl.y} stroke="#F3F4F6" strokeWidth={1} />
-                  <text x={pad.left - 8} y={gl.y + 4} textAnchor="end" className="text-[10px]" fill="#9CA3AF">
-                    ${gl.label.toLocaleString('es-AR')}
+                  <line x1={pad.left} y1={gl.y} x2={svgW - pad.right} y2={gl.y} stroke="#D1D5DB" strokeWidth={1.5} />
+                  <text x={pad.left - 8} y={gl.y + 4} textAnchor="end" className="text-[12px]" fill="#9CA3AF">
+                    {mostrarEnUSD ? 'USD ' : '$'}{gl.label.toLocaleString('es-AR')}
+                    
                   </text>
                 </g>
               ))}
@@ -167,8 +185,8 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               {/* Area under the line */}
               <defs>
                 <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#1A237E" stopOpacity={0.15} />
-                  <stop offset="100%" stopColor="#1A237E" stopOpacity={0.01} />
+                  <stop offset="0%" stopColor="#1A237E" stopOpacity={0.25} />
+                  <stop offset="100%" stopColor="#1A237E" stopOpacity={0.05} />
                 </linearGradient>
               </defs>
               <polygon
@@ -189,16 +207,16 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               {/* Dots */}
               {historial.map((h, i) => (
                 <g key={i}>
-                  <circle cx={x(i)} cy={y(h.precioPromedio)} r={4} fill="#FF6B35" stroke="white" strokeWidth={2} />
-                  <text x={x(i)} y={y(h.precioPromedio) - 10} textAnchor="middle" className="text-[9px]" fill="#374151" fontWeight="600">
-                    ${h.precioPromedio.toLocaleString('es-AR')}
+                  <circle cx={x(i)} cy={y(vals[i])} r={4} fill="#FF6B35" stroke="white" strokeWidth={2} />
+                  <text x={x(i)} y={y(vals[i]) - 10} textAnchor="middle" className="text-[11px]" fill="#374151" fontWeight="600">
+                    {mostrarEnUSD ? 'USD ' : '$'}{mostrarEnUSD ? vals[i].toFixed(2) : vals[i].toLocaleString('es-AR')}
                   </text>
                 </g>
               ))}
 
               {/* X-axis labels */}
               {historial.map((h, i) => (
-                <text key={i} x={x(i)} y={svgH - 8} textAnchor="middle" className="text-[10px]" fill="#9CA3AF">
+                <text key={i} x={x(i)} y={svgH - 8} textAnchor="middle" className="text-[12px]" fill="#9CA3AF">
                   {h.fecha}
                 </text>
               ))}
