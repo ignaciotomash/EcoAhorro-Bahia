@@ -175,8 +175,7 @@ export async function GET(
         ) => ({
             fecha:
               h.fechaGuardado
-                .toISOString()
-                .split('T')[0],
+                .toISOString(),
 
             precioPromedio:
               Number(

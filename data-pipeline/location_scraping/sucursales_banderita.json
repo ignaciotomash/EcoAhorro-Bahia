@@ -1,0 +1,31 @@
+[
+  {
+    "nombre": "Sucursal INDIADA",
+    "direccion": "Indiada 2575",
+    "latitud": -38.7359075,
+    "longitud": -62.2215634,
+    "supermercadoId": 4
+  },
+  {
+    "nombre": "Sucursal Libertad",
+    "direccion": "Libertad 2144 Villa Rosas",
+    "latitud": -38.757534534693875,
+    "longitud": -62.26302449795918,
+    "supermercadoId": 4
+  },
+  {
+    "nombre": "Sucursal Patagonia",
+    "direccion": "14 de julio 3019, Provincia de Buenos Aires",
+    "latitud": -38.709629322301595,
+    "longitud": -62.224116325378425,
+    "supermercadoId": 4
+  },
+  {
+    "nombre": "Sucursal Vieytes y Manuel Molina",
+    "direccion": "Vieytes 1603",
+    "latitud": -38.705958113769896,
+    "longitud": -62.28666543960572,
+    "supermercadoId": 4
+  }
+]
+

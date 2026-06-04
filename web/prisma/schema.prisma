@@ -18,6 +18,7 @@ model Producto {
 
   HistorialPrecios  HistorialPrecios[]
   PreciosUnificados PreciosUnificados[]
+  CarritoItems      CarritoItem[]
   Categoria         Categoria           @relation(fields: [idCategoria], references: [id])
 }
 
@@ -68,25 +69,36 @@ model PreciosUnificados {
   precio         Float        @db.Real
   actualizacion  DateTime     @default(now())
 
-  Carrito        Carrito[] 
   Producto       Producto     @relation(fields: [idProducto], references: [id])
   Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id])  
 }
 
 model Usuario {
   id            String   @id
-  nombreUsuario String
+  nombreUsuario String?
   email         String   @unique
-  telefono      String   @unique
+  telefono      String?  @unique
   Carrito       Carrito?
 }
 
 model Carrito {
-  id                String              @id
-  usuarioId         String              @unique
+  id        String @id
+  usuarioId String @unique
 
-  Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
-  PreciosUnificados PreciosUnificados[] 
+  Usuario Usuario @relation(fields: [usuarioId], references: [id])
+
+  items CarritoItem[]
+}
+
+model CarritoItem {
+  carritoId  String
+  idProducto String
+  cantidad   Int    @default(1)
+
+  Carrito  Carrito  @relation(fields: [carritoId], references: [id], onDelete: Cascade)
+  Producto Producto @relation(fields: [idProducto], references: [id])
+
+  @@id([carritoId, idProducto])
 }
 
 
