@@ -13,7 +13,7 @@ export async function upsertUsuarioFromClerk(user: User) {
     user.fullName ??
     user.username ??
     user.firstName ??
-    null;
+    email.split('@')[0];
 
   const telefono =
     user.primaryPhoneNumber?.phoneNumber ??
