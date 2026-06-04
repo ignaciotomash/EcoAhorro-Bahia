@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 
 // Función para formatear nombres de categorías 
@@ -19,7 +20,9 @@ export default function ProductCard({ producto }: { producto: any }) {
   const enCarrito = items.find((i: any) => i.producto.id === producto.id);
   const tienePrecionValido = precioMasBajo && precioMasBajo.valor > 0;
 
-  const handleAdd = () => {
+  const handleAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!tienePrecionValido) return;
     addToCart(producto);
     setAdded(true);
@@ -28,38 +31,38 @@ export default function ProductCard({ producto }: { producto: any }) {
 
   return (
     <div className="bg-white rounded-2xl flex flex-col h-full border border-gray-100 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden min-w-0">
+      <Link href={`/producto/${producto.id}`} className="flex flex-col flex-1">
+        {/* IMAGEN */}
+        <div className="relative w-full h-32 md:h-48 bg-white p-3 flex items-center justify-center border-b border-gray-50">
+          {producto.imagen && !producto.imagen.includes('placehold.co') && producto.imagen !== 'Sin imagen' && !imgError
+            ? <img src={producto.imagen} alt={producto.nombre} loading="lazy" decoding="async" className="object-contain w-full h-full mix-blend-multiply group-hover:scale-105 transition-transform duration-500" onError={() => setImgError(true)} />
+            : <div className="w-full h-full flex items-center justify-center bg-gray-50 opacity-70">
+                <img src="/logo.png" alt="Sin imagen" className="w-12 h-12 md:w-16 md:h-16 object-contain grayscale opacity-40" />
+              </div>
+          }
 
-      {/* IMAGEN */}
-      <div className="relative w-full h-32 md:h-48 bg-white p-3 flex items-center justify-center border-b border-gray-50">
-        {producto.imagen && !producto.imagen.includes('placehold.co') && producto.imagen !== 'Sin imagen' && !imgError
-          ? <img src={producto.imagen} alt={producto.nombre} loading="lazy" decoding="async" className="object-contain w-full h-full mix-blend-multiply group-hover:scale-105 transition-transform duration-500" onError={() => setImgError(true)} />
-          : <div className="w-full h-full flex items-center justify-center bg-gray-50 opacity-70">
-              <img src="/logo.png" alt="Sin imagen" className="w-12 h-12 md:w-16 md:h-16 object-contain grayscale opacity-40" />
+          {/* Badge cantidad carrito */}
+          {enCarrito && (
+            <div className="absolute top-2 right-2 text-white text-[10px] md:text-xs font-bold w-6 h-6 md:w-7 md:h-7 flex items-center justify-center rounded-full shadow-md z-10"
+              style={{ backgroundColor: '#FF6B35' }}>
+              {enCarrito.cantidad}
             </div>
-        }
-        
-        {/* Badge cantidad carrito */}
-        {enCarrito && (
-          <div className="absolute top-2 right-2 text-white text-[10px] md:text-xs font-bold w-6 h-6 md:w-7 md:h-7 flex items-center justify-center rounded-full shadow-md z-10"
-            style={{ backgroundColor: '#FF6B35' }}>
-            {enCarrito.cantidad}
-          </div>
-        )}
-        
-        {/* Categoría floting */}
-        <div className="absolute bottom-2 left-2 max-w-[80%]">
-          <span className="inline-block truncate text-[8px] md:text-[10px] font-bold px-2 py-1 rounded-lg bg-gray-900/5 text-gray-600 backdrop-blur-sm">
-            {formatearNombreCategoria(producto.categoria)}
-          </span>
-        </div>
-      </div>
+          )}
 
-      {/* INFO */}
-      <div className="p-3 md:p-4 flex flex-col flex-1 gap-1.5 md:gap-2">
-        <div className="flex-1">
-          <p className="text-[9px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5 truncate">{producto.marca}</p>
-          <h3 className="font-bold text-gray-800 leading-snug text-[11px] md:text-sm line-clamp-2 min-h-[32px] md:min-h-[40px]">{producto.nombre}</h3>
+          {/* Categoría floting */}
+          <div className="absolute bottom-2 left-2 max-w-[80%]">
+            <span className="inline-block truncate text-[8px] md:text-[10px] font-bold px-2 py-1 rounded-lg bg-gray-900/5 text-gray-600 backdrop-blur-sm">
+              {formatearNombreCategoria(producto.categoria)}
+            </span>
+          </div>
         </div>
+
+        {/* INFO */}
+        <div className="p-3 md:p-4 flex flex-col flex-1 gap-1.5 md:gap-2">
+          <div className="flex-1">
+            <p className="text-[9px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5 truncate">{producto.marca}</p>
+            <h3 className="font-bold text-gray-800 leading-snug text-[11px] md:text-sm line-clamp-2 min-h-[32px] md:min-h-[40px]">{producto.nombre}</h3>
+          </div>
 
         {/* PRECIOS */}
         <div className="mt-1">
@@ -102,12 +105,15 @@ export default function ProductCard({ producto }: { producto: any }) {
             </div>
           )}
         </div>
+        </div>
+      </Link>
 
-        {/* BOTÓN */}
+      {/* BOTÓN */}
+      <div className="px-3 md:px-4 pb-3 md:pb-4">
         <button
           onClick={handleAdd}
           disabled={!tienePrecionValido}
-          className="mt-2 w-full py-2 md:py-2.5 rounded-xl text-[10px] md:text-sm font-bold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
+          className="w-full py-2 md:py-2.5 rounded-xl text-[10px] md:text-sm font-bold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
           style={{
             backgroundColor: !tienePrecionValido ? '#F3F4F6' : (added ? '#10B981' : '#1A237E'),
             color: !tienePrecionValido ? '#9CA3AF' : '#FFFFFF',
