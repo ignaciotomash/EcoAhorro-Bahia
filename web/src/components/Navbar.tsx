@@ -14,6 +14,7 @@ export default function Navbar() {
   const links = [
     { href: '/', label: 'Inicio' },
     { href: '/catalogo', label: 'Catálogo' },
+    { href: '/sucursales', label: 'Sucursales' },
   ];
 
   return (
