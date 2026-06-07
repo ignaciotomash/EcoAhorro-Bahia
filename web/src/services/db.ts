@@ -105,10 +105,10 @@ async function _getProductosCatalogo(
   let finalOrderClause: string;
   if (sortBy === 'price_desc') {
     orderClause = 'ORDER BY min_precio DESC';
-    finalOrderClause = 'ORDER BY p."nombreProducto" ASC, pu.precio ASC';
+    finalOrderClause = 'ORDER BY fp.min_precio DESC, pu.precio ASC';
   } else if (sortBy === 'price_asc') {
     orderClause = 'ORDER BY min_precio ASC';
-    finalOrderClause = 'ORDER BY p."nombreProducto" ASC, pu.precio ASC';
+    finalOrderClause = 'ORDER BY fp.min_precio ASC, pu.precio ASC';
   } else if (fuzzyIds) {
     const idsList = fuzzyIds.map(id => `'${id}'`).join(',');
     orderClause = `ORDER BY array_position(ARRAY[${idsList}]::text[], id)`;
@@ -142,7 +142,7 @@ async function _getProductosCatalogo(
       pu.precio as "precioValor",
       s.nombre as "supermercadoNombre"
     FROM (
-      SELECT id, total_count
+      SELECT id, total_count, min_precio
       FROM filtered_products
       ${orderClause}
       LIMIT ${limit} OFFSET ${skip}
