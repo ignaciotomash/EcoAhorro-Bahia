@@ -301,7 +301,6 @@ export default function CatalogoClient({
             </div>
 
             <div className="mt-6 md:mt-12 flex flex-wrap justify-center items-center gap-1 md:gap-2">
-              {/* Primera página */}
               {currentPage > 1 && (
                 <button
                   type="button"
@@ -314,22 +313,6 @@ export default function CatalogoClient({
                 </button>
               )}
 
-              {/* 4 páginas anteriores */}
-              {Array.from({ length: Math.min(4, currentPage - 2) }).map((_, i) => {
-                const pageNum = Math.max(1, currentPage - 5 + i);
-                return (
-                  <button
-                    key={`prev-${i}`}
-                    type="button"
-                    onClick={() => handlePageChange(pageNum)}
-                    className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-semibold text-gray-600 bg-gray-100 text-[9px] md:text-xs transition-all hover:bg-gray-200"
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-
-              {/* Anterior */}
               {currentPage > 1 && (
                 <button
                   type="button"
@@ -341,27 +324,73 @@ export default function CatalogoClient({
                 </button>
               )}
 
-              {/* Página actual */}
+              {Array.from({ length: Math.min(4, currentPage - 1) }).map((_, i) => {
+                const prevLen = Math.min(4, currentPage - 1);
+                const pageNum = currentPage - prevLen + i;
+                return (
+                  <button
+                    key={`prev-${pageNum}`}
+                    type="button"
+                    onClick={() => handlePageChange(pageNum)}
+                    className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-semibold text-gray-600 bg-gray-100 text-[9px] md:text-xs transition-all hover:bg-gray-200"
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+
               <span className="px-3 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs" style={{ backgroundColor: '#1A237E' }}>
                 {currentPage} / {totalPages}
               </span>
 
-              {/* Input para ir a página específica */}
+              {Array.from({ length: Math.min(4, totalPages - currentPage) }).map((_, i) => {
+                const pageNum = currentPage + 1 + i;
+                return (
+                  <button
+                    key={`next-${pageNum}`}
+                    type="button"
+                    onClick={() => handlePageChange(pageNum)}
+                    className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-semibold text-gray-600 bg-gray-100 text-[9px] md:text-xs transition-all hover:bg-gray-200"
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+
+              {currentPage < totalPages && (
+                <button
+                  type="button"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#FF6B35' }}
+                >
+                  Siguiente →
+                </button>
+              )}
+
+              {currentPage < totalPages && (
+                <button
+                  type="button"
+                  onClick={() => handlePageChange(totalPages)}
+                  className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs transition-all hover:opacity-90"
+                  style={{ backgroundColor: '#1A237E' }}
+                  title="Última página"
+                >
+                  Final ⏭
+                </button>
+              )}
+
               <div className="flex items-center gap-1">
                 <input
                   type="text"
                   inputMode="numeric"
                   placeholder="Ir a..."
                   maxLength={5}
-                  onKeyPress={(e) => {
+                  onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       const pageNum = parseInt(e.currentTarget.value);
-                      if (e.currentTarget.value.trim() === '') {
-                        showNotification('Por favor ingresa un número de página');
-                        return;
-                      }
-                      if (pageNum < 1 || pageNum > totalPages || isNaN(pageNum)) {
-                        showNotification(`Por favor ingresa un número entre 1 y ${totalPages}`);
+                      if (e.currentTarget.value.trim() === '' || isNaN(pageNum) || pageNum < 1 || pageNum > totalPages) {
+                        showNotification(`Nro entre 1 y ${totalPages}`);
                         e.currentTarget.value = '';
                         return;
                       }
@@ -376,46 +405,6 @@ export default function CatalogoClient({
                   title={`Ingresa un número entre 1 y ${totalPages}`}
                 />
               </div>
-
-              {/* Siguiente */}
-              {currentPage < totalPages && (
-                <button
-                  type="button"
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs transition-all hover:opacity-90"
-                  style={{ backgroundColor: '#FF6B35' }}
-                >
-                  Siguiente →
-                </button>
-              )}
-
-              {/* 4 páginas siguientes */}
-              {Array.from({ length: Math.min(4, totalPages - currentPage - 1) }).map((_, i) => {
-                const pageNum = currentPage + 2 + i;
-                return (
-                  <button
-                    key={`next-${i}`}
-                    type="button"
-                    onClick={() => handlePageChange(pageNum)}
-                    className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-semibold text-gray-600 bg-gray-100 text-[9px] md:text-xs transition-all hover:bg-gray-200"
-                  >
-                    {pageNum}
-                  </button>
-                );
-              })}
-
-              {/* Última página */}
-              {currentPage < totalPages && (
-                <button
-                  type="button"
-                  onClick={() => handlePageChange(totalPages)}
-                  className="px-2 md:px-3 py-1.5 md:py-2 rounded-lg md:rounded-xl font-bold text-white text-[9px] md:text-xs transition-all hover:opacity-90"
-                  style={{ backgroundColor: '#1A237E' }}
-                  title="Última página"
-                >
-                  Final ⏭
-                </button>
-              )}
             </div>
           </>
         )}
