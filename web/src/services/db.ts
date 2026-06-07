@@ -62,17 +62,13 @@ async function _getProductosCatalogo(
   if (tieneSearch) {
     const textoNormalizado = normalizar(searchString);
     const terminos = resolverSinonimos(textoNormalizado);
-    const productosFuzzy = await buscarFuzzy(terminos, 0.30);
+    const productosFuzzy = await buscarFuzzy(terminos, 0.3, 100);
 
-    if (productosFuzzy.length === 0) {
-      return {
-        productos: [] as ProductoTransformado[],
-        totalPages: 0,
-        totalProductos: 0,
-      };
+    if (productosFuzzy.length >= 5) {
+      fuzzyIds = productosFuzzy.map(p => p.id);
     }
-
-    fuzzyIds = productosFuzzy.map(p => p.id);
+    // Si fuzzy encuentra pocos resultados, fuzzyIds se queda null
+    // y se cae al ILIKE de más abajo
   }
 
   // === CONSTRUIR UNA SOLA QUERY SQL OPTIMIZADA ===
