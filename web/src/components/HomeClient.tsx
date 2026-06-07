@@ -9,12 +9,6 @@ export default function HomeClient({ productosLocales, totalProductos, totalSupe
   const [busqueda, setBusqueda] = useState('');
   const [categoria, setCategoria] = useState('Todas');
 
-  const productosFiltrados = productosLocales.filter(p => {
-    const coincideBusqueda = p.nombre.toLowerCase().includes(busqueda.toLowerCase());
-    const coincideCategoria = categoria === 'Todas' || p.categoria === categoria;
-    return coincideBusqueda && coincideCategoria;
-  });
-
   return (
     <main className="min-h-screen bg-white">
 
@@ -125,15 +119,15 @@ export default function HomeClient({ productosLocales, totalProductos, totalSupe
           </Link>
         </div>
 
-        {productosFiltrados.length > 0 ? (
+        {productosLocales.length > 0 ? (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-5">
-            {productosFiltrados.slice(0, 4).map(prod => (
+            {productosLocales.slice(0, 4).map(prod => (
               <ProductCard key={prod.id} producto={prod} />
             ))}
           </div>
         ) : (
           <div className="text-center py-16 text-gray-300 text-sm">
-            No encontramos productos que coincidan.
+            No hay productos disponibles.
           </div>
         )}
       </section>
