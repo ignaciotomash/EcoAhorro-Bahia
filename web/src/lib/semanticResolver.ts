@@ -80,38 +80,42 @@ export function resolverSinonimos(textoNormalizado: string): string[] {
 // Requiere: CREATE EXTENSION IF NOT EXISTS pg_trgm; en Supabase
 async function buscarPorTermino(
   termino: string,
-  umbral: number
+  umbral: number,
+  limite: number = 20
 ): Promise<ProductoFuzzyRaw[]> {
-  //usamos esto por que similarity es de postgres. Por lo que prisma no lo soporta. 
-  //Esta haciendo consulta sobre toda la BD!!!!
-  return prisma.$queryRaw<ProductoFuzzyRaw[]>` 
-    SELECT DISTINCT ON (producto.id)
-      producto.id,
-      producto."nombreProducto",
-      producto.marca,
-      producto.presentacion,
-      producto.imagen,
-      GREATEST(
-        similarity(lower(producto."nombreProducto"), ${termino}),
-        similarity(lower(producto.marca),            ${termino})
-      ) AS score
-    FROM "Producto" producto
-    WHERE
-      lower(producto."nombreProducto") % ${termino}
-      OR lower(producto.marca) % ${termino}
-    ORDER BY producto.id, score DESC
-    LIMIT 20
+  return prisma.$queryRaw<ProductoFuzzyRaw[]>`
+    SELECT * FROM (
+      SELECT
+        producto.id,
+        producto."nombreProducto",
+        producto.marca,
+        producto.presentacion,
+        producto.imagen,
+        GREATEST(
+          similarity(lower(producto."nombreProducto"), ${termino}),
+          --lo de abajo se podría borrar directamente.
+          similarity(lower(producto.marca), ${termino}) * 0.3  -- penalizar marca
+        ) AS score
+      FROM "Producto" producto
+      WHERE
+        lower(producto."nombreProducto") ILIKE ${'%' + termino + '%'}
+        OR similarity(lower(producto."nombreProducto"), ${termino}) > ${umbral}
+        OR similarity(lower(producto.marca), ${termino}) > ${umbral}
+    ) sub
+    ORDER BY score DESC
+    LIMIT ${limite}
   `;
 }
 
 export async function buscarFuzzy(
   terminos: string[],
-  umbral: number
+  umbral: number,
+  limite: number = 20
 ): Promise<ProductoFuzzyRaw[]> {
   // Ejecutar una query por cada término en paralelo
   // hace una query sobre  toda la base de datos por cada término encontrado.
   const resultadosPorTermino = await Promise.all(
-    terminos.map((termino) => buscarPorTermino(termino, umbral))
+    terminos.map((termino) => buscarPorTermino(termino, umbral, limite))
   );
 
   // Mergear todos los resultados en un solo mapa, quedándonos con
