@@ -28,6 +28,9 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const enCarrito = items.find(i => i.producto.id === producto.ean);
   const tienePrecio = producto.preciosPorSuper.length > 0;
   const historial = producto.historialPrecios;
+  const historialFiltrado = mostrarEnUSD
+    ? historial.filter(h => h.precioUSD !== undefined)
+    : historial.filter(h => h.esReal);
 
   // SVG chart dimensions
   const svgW = 600;
@@ -36,23 +39,26 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const chartW = svgW - pad.left - pad.right;
   const chartH = svgH - pad.top - pad.bottom;
 
-  const vals = historial.map(h => mostrarEnUSD ? (h.precioUSD ?? h.precioPromedio) : h.precioPromedio);
+  const vals = historialFiltrado.map(h => mostrarEnUSD ? h.precioUSD! : h.precioPromedio);
+
   const rawMin = Math.min(...vals);
   const rawMax = Math.max(...vals);
-  const padding = (rawMax - rawMin) * 0.15 || 0.1; // 15% del rango, mínimo 0.1
-  const minV = rawMin - padding;
+  const range = rawMax - rawMin;
+  const padding = range * 5 || 1;
+  const minV = Math.max(0, rawMin - padding);
   const maxV = rawMax + padding;
 
-  const x = (i: number) => pad.left + (i / Math.max(historial.length - 1, 1)) * chartW;
+  const x = (i: number) => pad.left + (i / Math.max(historialFiltrado.length - 1, 1)) * chartW;
   const y = (v: number) => pad.top + chartH - ((v - minV) / (maxV - minV)) * chartH;
 
-  const linePoints = historial.map((h, i) => `${x(i)},${y(vals[i])}`).join(' ');
+  const linePoints = historialFiltrado.map((h, i) => `${x(i)},${y(vals[i])}`).join(' ');
 
-  const gridLines = [25, 50, 75].map(pct => {
-    const rawLabel = maxV - (pct / 100) * (maxV - minV);
+  const gridCount = 4;
+  const gridLines = Array.from({ length: gridCount + 1 }, (_, i) => {
+    const v = minV + (maxV - minV) * (i / gridCount);
     return {
-      y: pad.top + (pct / 100) * chartH,
-      label: mostrarEnUSD ? Number(rawLabel.toFixed(2)) : Math.round(rawLabel),
+      y: pad.top + (i / gridCount) * chartH,
+      label: mostrarEnUSD ? Number(v.toFixed(2)) : Math.round(v),
     };
   });
 
@@ -190,7 +196,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
                 </linearGradient>
               </defs>
               <polygon
-                points={`${x(0)},${pad.top + chartH} ${linePoints} ${x(historial.length - 1)},${pad.top + chartH}`}
+                points={`${x(0)},${pad.top + chartH} ${linePoints} ${x(historialFiltrado.length - 1)},${pad.top + chartH}`}
                 fill="url(#areaGrad)"
               />
 
@@ -205,7 +211,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               />
 
               {/* Dots */}
-              {historial.map((h, i) => (
+              {historialFiltrado.map((h, i) => (
                 <g key={i}>
                   <circle cx={x(i)} cy={y(vals[i])} r={4} fill="#FF6B35" stroke="white" strokeWidth={2} />
                   <text x={x(i)} y={y(vals[i]) - 10} textAnchor="middle" className="text-[11px]" fill="#374151" fontWeight="600">
@@ -215,7 +221,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               ))}
 
               {/* X-axis labels */}
-              {historial.map((h, i) => (
+              {historialFiltrado.map((h, i) => (
                 <text key={i} x={x(i)} y={svgH - 8} textAnchor="middle" className="text-[12px]" fill="#9CA3AF">
                   {h.fecha}
                 </text>

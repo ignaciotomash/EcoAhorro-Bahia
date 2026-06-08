@@ -1,6 +1,13 @@
 import prisma from '../lib/prisma';
 import { unstable_cache } from 'next/cache';
 
+export type HistorialEntry = {
+    fecha: string;
+    precioPromedio: number;
+    precioUSD?: number;
+    esReal: boolean;
+};
+
 export type ProductoDetalleData = {
     ean: string;
     nombre: string;
@@ -12,11 +19,7 @@ export type ProductoDetalleData = {
         supermercado: string;
         precio: number;
     }[];
-    historialPrecios: {
-        fecha: string;
-        precioPromedio: number;
-        precioUSD?: number;
-    }[];
+    historialPrecios: HistorialEntry[];
     precioMinimo: number;
     supermercadoMinimo: string;
 };
@@ -36,9 +39,15 @@ async function _getProductoDetalle(ean: string): Promise<ProductoDetalleData | n
     const dolares = await prisma.precioDolar.findMany({
         orderBy: { fechaGuardado: 'asc' },
     });
-    const dolarMap = new Map<string, number>(
-        dolares.map(d => [d.fechaGuardado.toISOString().split('T')[0], d.precioPromedio])
-    );
+    function getCotizacion(fecha: string): number | undefined {
+        for (let i = dolares.length - 1; i >= 0; i--) {
+            const dolarDate = dolares[i].fechaGuardado.toISOString().split('T')[0];
+            if (dolarDate <= fecha) {
+                return dolares[i].precioPromedio;
+            }
+        }
+        return undefined;
+    }
 
     if (!producto) return null;
     const preciosPorSuper = producto.PreciosUnificados
@@ -52,6 +61,46 @@ async function _getProductoDetalle(ean: string): Promise<ProductoDetalleData | n
     const supermercadoMinimo = preciosPorSuper[0]?.supermercado ?? '';
 
 
+    const realEntries: HistorialEntry[] = producto.HistorialPrecios.map(h => {
+        const fechaISO = h.fechaGuardado.toISOString().split('T')[0];
+        const [yyyy, mm, dd] = fechaISO.split("-");
+        const cotizacion = getCotizacion(fechaISO);
+        return {
+            fecha: `${dd}/${mm}/${yyyy}`,
+            precioPromedio: h.precioPromedio,
+            precioUSD: cotizacion ? h.precioPromedio / cotizacion : undefined,
+            esReal: true,
+        };
+    });
+
+    const realMap = new Map<string, HistorialEntry>();
+    for (const entry of realEntries) {
+        realMap.set(entry.fecha, entry);
+    }
+
+    const historialPrecios: HistorialEntry[] = [];
+    let ultimoPrecioConocido = 0;
+
+    for (const d of dolares) {
+        const fechaISO = d.fechaGuardado.toISOString().split('T')[0];
+        const [yyyy, mm, dd] = fechaISO.split("-");
+        const fechaFormatted = `${dd}/${mm}/${yyyy}`;
+
+        const realEntry = realMap.get(fechaFormatted);
+        if (realEntry) {
+            historialPrecios.push(realEntry);
+            ultimoPrecioConocido = realEntry.precioPromedio;
+        } else if (ultimoPrecioConocido > 0) {
+            const cotizacion = getCotizacion(fechaISO);
+            historialPrecios.push({
+                fecha: fechaFormatted,
+                precioPromedio: ultimoPrecioConocido,
+                precioUSD: cotizacion ? ultimoPrecioConocido / cotizacion : undefined,
+                esReal: false,
+            });
+        }
+    }
+
     return {
         ean: producto.id,
         nombre: producto.nombreProducto,
@@ -60,17 +109,7 @@ async function _getProductoDetalle(ean: string): Promise<ProductoDetalleData | n
         categoria: producto.Categoria.nombre,
         imagen: producto.imagen,
         preciosPorSuper,
-        historialPrecios: producto.HistorialPrecios.map(h => {
-            const fechaISO = h.fechaGuardado.toISOString().split('T')[0];
-            const [yyyy, mm, dd] = fechaISO.split("-");
-            const cotizacion = dolarMap.get(fechaISO);
-            return {
-                fecha: `${dd}/${mm}/${yyyy}`,
-                precioPromedio: h.precioPromedio,
-                precioUSD: cotizacion ? h.precioPromedio / cotizacion : undefined,
-            }
-
-        }),
+        historialPrecios,
         precioMinimo: precioMinimo === Infinity ? 0 : precioMinimo,
         supermercadoMinimo,
     };
