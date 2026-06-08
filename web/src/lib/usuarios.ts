@@ -17,7 +17,7 @@ export async function upsertUsuarioFromClerk(user: User) {
 
   const telefono =
     user.primaryPhoneNumber?.phoneNumber ??
-    '';
+    null;
 
   return prisma.usuario.upsert({
     where: {
