@@ -1,16 +1,17 @@
-// src/app/api/search/route.ts
-
-import { NextRequest, NextResponse } from "next/server";
-import { resolverBusqueda } from "@/lib/semanticResolver";
+import { NextRequest, NextResponse } from 'next/server';
+import { apiErrorResponse } from '@/lib/api-error';
+import { resolverBusqueda } from '@/lib/semanticResolver';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const query = searchParams.get("q");
+  const query = searchParams.get('q');
 
   if (!query || query.trim().length < 2) {
-    return NextResponse.json(
-      { error: "Ingresá al menos 2 caracteres para buscar." },
-      { status: 400 }
+    return apiErrorResponse(
+      'BUSQUEDA_INVALIDA',
+      'Ingresa al menos 2 caracteres para buscar.',
+      400,
+      query ? `q: ${query}` : 'q no informado'
     );
   }
 
@@ -23,10 +24,12 @@ export async function GET(request: NextRequest) {
       resultados: productos,
     });
   } catch (error) {
-    console.error("[search] Error:", error);
-    return NextResponse.json(
-      { error: "Error interno al buscar productos." },
-      { status: 500 }
+    console.error('[search] Error:', error);
+
+    return apiErrorResponse(
+      'ERROR_BUSCANDO_PRODUCTOS',
+      'No se pudo resolver la busqueda de productos.',
+      500
     );
   }
 }

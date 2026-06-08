@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { apiErrorResponse } from '@/lib/api-error';
 
 export async function GET() {
   try {
@@ -10,9 +11,10 @@ export async function GET() {
     return NextResponse.json(supermercados);
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { error: 'Error obteniendo supermercados' },
-      { status: 500 }
+    return apiErrorResponse(
+      'ERROR_OBTENIENDO_SUPERMERCADOS',
+      'No se pudo obtener el listado de supermercados.',
+      500
     );
   }
 }

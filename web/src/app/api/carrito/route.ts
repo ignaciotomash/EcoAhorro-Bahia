@@ -1,5 +1,6 @@
 import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
+import { apiErrorResponse } from '../../../lib/api-error';
 import { prisma } from '../../../lib/prisma';
 import { getCurrentUsuario } from '../../../lib/usuarios';
 
@@ -59,30 +60,58 @@ async function findCartItems(carritoId: string) {
 }
 
 export async function GET() {
-  const usuario = await getCurrentUsuario();
+  try {
+    const usuario = await getCurrentUsuario();
 
-  if (!usuario) {
-    return NextResponse.json({ items: [] }, { status: 401 });
+    if (!usuario) {
+      return apiErrorResponse(
+        'USUARIO_NO_AUTENTICADO',
+        'Debes iniciar sesion para consultar el carrito.',
+        401
+      );
+    }
+
+    const carrito = await getOrCreateCarrito(usuario.id);
+    const items = await findCartItems(carrito.id);
+
+    return NextResponse.json(formatCart(items));
+  } catch (error) {
+    console.error('[carrito] Error:', error);
+
+    return apiErrorResponse(
+      'ERROR_OBTENIENDO_CARRITO',
+      'No se pudo obtener el carrito.',
+      500
+    );
   }
-
-  const carrito = await getOrCreateCarrito(usuario.id);
-  const items = await findCartItems(carrito.id);
-
-  return NextResponse.json(formatCart(items));
 }
 
 export async function DELETE() {
-  const usuario = await getCurrentUsuario();
+  try {
+    const usuario = await getCurrentUsuario();
 
-  if (!usuario) {
-    return NextResponse.json({ error: 'No autenticado' }, { status: 401 });
+    if (!usuario) {
+      return apiErrorResponse(
+        'USUARIO_NO_AUTENTICADO',
+        'Debes iniciar sesion para vaciar el carrito.',
+        401
+      );
+    }
+
+    const carrito = await getOrCreateCarrito(usuario.id);
+
+    await prisma.carritoItem.deleteMany({
+      where: { carritoId: carrito.id },
+    });
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error('[carrito] Error:', error);
+
+    return apiErrorResponse(
+      'ERROR_VACIANDO_CARRITO',
+      'No se pudo vaciar el carrito.',
+      500
+    );
   }
-
-  const carrito = await getOrCreateCarrito(usuario.id);
-
-  await prisma.carritoItem.deleteMany({
-    where: { carritoId: carrito.id },
-  });
-
-  return NextResponse.json({ ok: true });
 }
