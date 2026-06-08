@@ -44,7 +44,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const rawMin = Math.min(...vals);
   const rawMax = Math.max(...vals);
   const range = rawMax - rawMin;
-  const padding = range * 5 || 1;
+  const padding = range * 2.5 || 1;
   const minV = Math.max(0, rawMin - padding);
   const maxV = rawMax + padding;
 
@@ -55,7 +55,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
 
   const gridCount = 4;
   const gridLines = Array.from({ length: gridCount + 1 }, (_, i) => {
-    const v = minV + (maxV - minV) * (i / gridCount);
+    const v = maxV - (maxV - minV) * (i / gridCount);
     return {
       y: pad.top + (i / gridCount) * chartH,
       label: mostrarEnUSD ? Number(v.toFixed(2)) : Math.round(v),
@@ -87,6 +87,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               <h1 className="text-2xl md:text-4xl font-black text-gray-900 leading-tight" style={{ fontFamily: "'Oswald', sans-serif" }}>
                 {producto.nombre}
               </h1>
+              <p className="text-[9px] md:text-[10px] font-mono text-gray-300 mt-1">EAN: {producto.ean}</p>
               <div className="mt-3 md:mt-4">
                 <span className="inline-block text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-lg bg-gray-900/5 text-gray-600">
                   {producto.categoria}
@@ -215,7 +216,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
                 <g key={i}>
                   <circle cx={x(i)} cy={y(vals[i])} r={4} fill="#FF6B35" stroke="white" strokeWidth={2} />
                   <text x={x(i)} y={y(vals[i]) - 10} textAnchor="middle" className="text-[11px]" fill="#374151" fontWeight="600">
-                    {mostrarEnUSD ? 'USD ' : '$'}{mostrarEnUSD ? vals[i].toFixed(2) : vals[i].toLocaleString('es-AR')}
+                    {mostrarEnUSD ? 'USD ' : '$'}{mostrarEnUSD ? vals[i].toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : vals[i].toLocaleString('es-AR')}
                   </text>
                 </g>
               ))}

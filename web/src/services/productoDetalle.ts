@@ -101,6 +101,39 @@ async function _getProductoDetalle(ean: string): Promise<ProductoDetalleData | n
         }
     }
 
+    const preciosActuales = producto.PreciosUnificados.map(p => p.precio);
+    if (preciosActuales.length > 0) {
+        const precioActualPromedio = preciosActuales.reduce((a, b) => a + b, 0) / preciosActuales.length;
+        const hoy = new Date();
+        const dd = String(hoy.getDate()).padStart(2, '0');
+        const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+        const yyyy = hoy.getFullYear();
+        const hoyStr = `${dd}/${mm}/${yyyy}`;
+        const hoyISO = `${yyyy}-${mm}-${dd}`;
+        const cotizacion = getCotizacion(hoyISO);
+
+        const ultimo = historialPrecios[historialPrecios.length - 1];
+        if (ultimo && ultimo.fecha === hoyStr) {
+            ultimo.precioPromedio = precioActualPromedio;
+            ultimo.precioUSD = cotizacion ? precioActualPromedio / cotizacion : undefined;
+            ultimo.esReal = true;
+        } else {
+            historialPrecios.push({
+                fecha: hoyStr,
+                precioPromedio: precioActualPromedio,
+                precioUSD: cotizacion ? precioActualPromedio / cotizacion : undefined,
+                esReal: true,
+            });
+        }
+    }
+
+    const historialCompressed = historialPrecios.filter((entry, i, arr) => {
+        if (i === 0 || i === arr.length - 1) return true;
+        const prev = arr[i - 1];
+        return entry.precioPromedio !== prev.precioPromedio
+            || entry.precioUSD !== prev.precioUSD;
+    });
+
     return {
         ean: producto.id,
         nombre: producto.nombreProducto,
@@ -109,7 +142,7 @@ async function _getProductoDetalle(ean: string): Promise<ProductoDetalleData | n
         categoria: producto.Categoria.nombre,
         imagen: producto.imagen,
         preciosPorSuper,
-        historialPrecios,
+        historialPrecios: historialCompressed,
         precioMinimo: precioMinimo === Infinity ? 0 : precioMinimo,
         supermercadoMinimo,
     };
