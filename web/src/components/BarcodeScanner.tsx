@@ -42,6 +42,9 @@ export default function BarcodeScanner({ onDetected, onClose }: Props) {
           (result, err) => {
             if (result && !stopped) {
               stopped = true;
+              if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                navigator.vibrate(200);
+              }
               onDetected(result.getText());
             }
           }

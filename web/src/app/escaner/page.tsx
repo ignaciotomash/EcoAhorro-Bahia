@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { fetchProductoPorEAN, type ProductoDetalle } from '../../services/productos';
 import { useCart } from '../../context/CartContext';
+import Link from 'next/link';
 
 const BarcodeScanner = dynamic(() => import('../../components/BarcodeScanner'), { ssr: false });
 
@@ -14,31 +15,7 @@ const SUPER_LABELS: Record<string, string> = {
   LaCoope: 'La Cooperativa',
 };
 
-function HistorialChart({ data }: { data: { fecha: string; precioPromedio: number }[] }) {
-  if (!data.length) return null;
-  const max = Math.max(...data.map(d => d.precioPromedio));
-  const min = Math.min(...data.map(d => d.precioPromedio));
-  const range = max - min || 1;
 
-  return (
-    <div>
-      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Historial promedio</p>
-      <div className="flex items-end gap-2 h-16">
-        {data.map((d, i) => {
-          const height = ((d.precioPromedio - min) / range) * 44 + 16;
-          const isLast = i === data.length - 1;
-          return (
-            <div key={d.fecha} className="flex-1 flex flex-col items-center gap-1">
-              <span className="text-[9px] text-gray-400">${(d.precioPromedio / 1000).toFixed(1)}k</span>
-              <div className="w-full rounded-t" style={{ height: `${height}px`, backgroundColor: isLast ? '#1A237E' : '#E5E7EB' }} />
-              <span className="text-[8px] text-gray-300">{d.fecha.slice(5)}</span>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 type Estado = 'idle' | 'loading' | 'found' | 'notfound' | 'error';
 
@@ -49,6 +26,11 @@ export default function EscanerPage() {
   const [producto, setProducto] = useState<ProductoDetalle | null>(null);
   const [added, setAdded] = useState(false);
   const { addToCart, items } = useCart();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const buscarProducto = useCallback(async (ean: string) => {
     if (!ean.trim()) return;
@@ -101,19 +83,43 @@ export default function EscanerPage() {
             Código de barras (EAN)
           </label>
           <div className="flex gap-2 mb-4">
-            <input
-              type="text"
-              inputMode="numeric"
-              value={eanInput}
-              onChange={e => setEanInput(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && buscarProducto(eanInput)}
-              placeholder="Ej: 7790895000064"
-              className="flex-1 px-4 py-2.5 rounded-xl border text-gray-700 outline-none text-sm font-mono bg-gray-50"
-              style={{ borderColor: '#E5E7EB' }}
-            />
+            <div className="relative flex-1">
+              <input
+                ref={inputRef}
+                type="text"
+                inputMode="numeric"
+                value={eanInput}
+                onChange={e => {
+                  const onlyNums = e.target.value.replace(/\D/g, '');
+                  if (onlyNums.length <= 13) {
+                    setEanInput(onlyNums);
+                  }
+                }}
+                onKeyDown={e => e.key === 'Enter' && eanInput.length === 13 && buscarProducto(eanInput)}
+                placeholder="Ej: 7790895000430"
+                className="w-full px-4 py-2.5 pr-10 rounded-xl border text-gray-700 outline-none text-sm font-mono bg-gray-50"
+                style={{ borderColor: '#E5E7EB' }}
+              />
+              {eanInput && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEanInput('');
+                    setEstado('idle');
+                    setProducto(null);
+                    inputRef.current?.focus();
+                  }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 hover:bg-gray-300 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
             <button
               onClick={() => buscarProducto(eanInput)}
-              disabled={estado === 'loading'}
+              disabled={estado === 'loading' || eanInput.length !== 13}
               className="px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all hover:opacity-90 disabled:opacity-50"
               style={{ backgroundColor: '#1A237E' }}
             >
@@ -138,11 +144,11 @@ export default function EscanerPage() {
             Escanear con cámara
           </button>
 
-          <p className="text-[10px] text-gray-300 text-center mt-3">
-            Probá:{' '}
-            <button onClick={() => { setEanInput('7790895000064'); buscarProducto('7790895000064'); }} className="underline hover:text-gray-500">7790895000064</button>
+          <p className="text-[10px] text-gray-400 text-center mt-3">
+            Ejemplos:{' '}
+            <button onClick={() => { setEanInput('7790895000430'); buscarProducto('7790895000430'); }} className="underline hover:text-gray-600" title="Coca Cola 1.5L">7790895000430</button> (Coca 1.5L)
             {' · '}
-            <button onClick={() => { setEanInput('7791813420480'); buscarProducto('7791813420480'); }} className="underline hover:text-gray-500">7791813420480</button>
+            <button onClick={() => { setEanInput('7790742348005'); buscarProducto('7790742348005'); }} className="underline hover:text-gray-600" title="Leche sachet 1L La Serenísima">7790742348005</button> (Sachet leche 1L)
           </p>
         </div>
 
@@ -186,18 +192,7 @@ export default function EscanerPage() {
               </div>
             </div>
 
-            {/* Historial skeleton */}
-            <div className="bg-white rounded-2xl p-4 border border-gray-100 space-y-3">
-              <div className="h-3 w-32 bg-gray-100 rounded"></div>
-              <div className="flex items-end gap-2 h-16 pt-2">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-                    <div className="w-full bg-gray-100 rounded-t" style={{ height: `${20 + i * 8}px` }}></div>
-                    <div className="h-2 w-6 bg-gray-50 rounded"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
+
 
             {/* Botón skeleton */}
             <div className="h-14 w-full bg-gray-100 rounded-2xl"></div>
@@ -226,7 +221,7 @@ export default function EscanerPage() {
           <div className="space-y-4">
 
             {/* Info del producto */}
-            <div className="bg-white rounded-2xl p-3 md:p-4 flex gap-3 md:gap-4 items-start" style={{ border: '1px solid #E5E7EB' }}>
+            <Link href={`/producto/${producto.ean}`} className="bg-white rounded-2xl p-3 md:p-4 flex gap-3 md:gap-4 items-start hover:bg-gray-50 transition-colors block" style={{ border: '1px solid #E5E7EB' }}>
               <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-xl bg-gray-50 overflow-hidden flex items-center justify-center border border-gray-100">
                 {producto.imagen
                   ? <img src={producto.imagen} alt={producto.nombreProducto} className="object-contain w-full h-full p-1" />
@@ -235,13 +230,13 @@ export default function EscanerPage() {
               </div>
               <div className="flex-1 min-w-0">
                 <span className="text-[8px] md:text-[9px] font-semibold text-gray-400 uppercase tracking-widest">{producto.categoria}</span>
-                <h2 className="text-base md:text-xl font-black leading-tight truncate" style={{ color: '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
+                <h2 className="text-base md:text-xl font-black leading-tight truncate hover:underline" style={{ color: '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
                   {producto.nombreProducto}
                 </h2>
                 <p className="text-xs md:text-sm text-gray-400">{producto.marca}</p>
                 <p className="text-[9px] md:text-[10px] font-mono text-gray-300 mt-0.5">EAN: {producto.ean}</p>
               </div>
-            </div>
+            </Link>
 
             {/* Precios por supermercado */}
             <div>
@@ -300,12 +295,7 @@ export default function EscanerPage() {
               </div>
             </div>
 
-            {/* Historial */}
-            {producto.historialPrecios.length > 0 && (
-              <div className="bg-white rounded-2xl p-4" style={{ border: '1px solid #E5E7EB' }}>
-                <HistorialChart data={producto.historialPrecios} />
-              </div>
-            )}
+
 
             {/* Añadir al carrito */}
             <button

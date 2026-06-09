@@ -45,7 +45,7 @@ export async function fetchProductoPorEAN(
     await fetch(
       `/api/productos/${ean}`,
       {
-        cache: 'no-store',
+        next: { revalidate: 3600 },
       }
     );
 

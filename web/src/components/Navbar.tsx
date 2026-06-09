@@ -24,7 +24,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group" onClick={() => setMenuOpen(false)}>
           <div className="w-8 h-8 md:w-9 md:h-9 rounded-full overflow-hidden flex-shrink-0 group-hover:scale-105 transition-transform">
-            <Image src="/logo.png" alt="Eco Ahorro Bahía" width={36} height={36} className="object-cover w-full h-full" />
+            <Image src="/logo.png" alt="Eco Ahorro Bahía" width={36} height={36} className="object-cover w-full h-full rounded-full" />
           </div>
           <div className="leading-none">
             <span className="text-xs sm:text-sm md:text-base font-black tracking-tight block" style={{ color: '#1A237E', fontFamily: "'Oswald', sans-serif" }}>

@@ -20,7 +20,7 @@ export default function HomeClient({ productosLocales, totalProductos, totalSupe
           <div className="flex-shrink-0 order-first md:order-last">
             <div className="w-16 h-16 md:w-36 md:h-36 rounded-full bg-white overflow-hidden shadow-2xl"
               style={{ border: '3px solid rgba(255,107,53,0.4)' }}>
-              <Image src="/logo.png" alt="Eco Ahorro" width={144} height={144} className="object-cover w-full h-full" />
+              <Image src="/logo.png" alt="Eco Ahorro" width={144} height={144} className="object-cover w-full h-full rounded-full" />
             </div>
           </div>
 

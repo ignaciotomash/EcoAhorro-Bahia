@@ -62,6 +62,7 @@ export default function ProductCard({ producto }: { producto: any }) {
           <div className="flex-1">
             <p className="text-[9px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5 truncate">{producto.marca}</p>
             <h3 className="font-bold text-gray-800 leading-snug text-[11px] md:text-sm line-clamp-2 min-h-[32px] md:min-h-[40px]">{producto.nombre}</h3>
+            <p className="text-[9px] font-mono text-gray-400 mt-1">EAN: {producto.id}</p>
           </div>
 
         {/* PRECIOS */}
