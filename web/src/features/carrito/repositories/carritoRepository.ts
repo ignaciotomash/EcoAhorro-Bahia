@@ -45,3 +45,24 @@ export async function deleteCartItem(carritoId: string, productoId: string) {
 export async function clearCartItems(carritoId: string) {
   return prisma.carritoItem.deleteMany({ where: { carritoId } });
 }
+
+export async function syncCartItems(
+  carritoId: string,
+  items: { productoId: string; cantidad: number }[]
+) {
+  if (items.length === 0) return [];
+
+  return prisma.$transaction(
+    items.map(item =>
+      item.cantidad <= 0
+        ? prisma.carritoItem.deleteMany({
+            where: { carritoId, idProducto: item.productoId },
+          })
+        : prisma.carritoItem.upsert({
+            where: { carritoId_idProducto: { carritoId, idProducto: item.productoId } },
+            create: { carritoId, idProducto: item.productoId, cantidad: item.cantidad },
+            update: { cantidad: item.cantidad },
+          })
+    )
+  );
+}

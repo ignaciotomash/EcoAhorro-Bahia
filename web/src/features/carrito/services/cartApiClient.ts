@@ -33,13 +33,14 @@ export async function clearCartRemoto(): Promise<void> {
 }
 
 export async function syncItems(items: CartItem[]): Promise<void> {
-  await Promise.all(
-    items.map(item =>
-      fetch(`${API_BASE}/items/${encodeURIComponent(item.producto.id)}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cantidad: item.cantidad }),
-      })
-    )
-  );
+  await fetch(`${API_BASE}/sync`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      items: items.map(item => ({
+        productoId: item.producto.id,
+        cantidad: item.cantidad,
+      })),
+    }),
+  });
 }
