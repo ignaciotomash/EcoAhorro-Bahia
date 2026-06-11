@@ -20,6 +20,22 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'placehold.co',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.lacoopeencasa.coop',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.labanderita.ar',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.masonline.com.ar',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.vea.com.ar',
+      },
     ],
   },
 };

@@ -119,11 +119,15 @@ export async function countSupermercados() {
 }
 
 export async function findProductoByEan(ean: string) {
+  const hace180Dias = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000);
   return prisma.producto.findUnique({
     where: { id: ean },
     include: {
       Categoria: true,
-      HistorialPrecios: { orderBy: { fechaGuardado: 'asc' } },
+      HistorialPrecios: {
+        where: { fechaGuardado: { gte: hace180Dias } },
+        orderBy: { fechaGuardado: 'asc' },
+      },
       PreciosUnificados: {
         include: { Supermercado: true },
         orderBy: { precio: 'asc' },

@@ -1,38 +1,24 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
-
-import banderita from '../data/banderita.json';
-import vea from '../data/vea.json';
-import coope from '../data/coope.json';
-import changoMas from '../data/changoMas.json';
 
 const MapaSucursales = dynamic(() => import('./MapaSucursales'), {
   ssr: false,
   loading: () => <div className="h-[500px] bg-gray-100 animate-pulse flex items-center justify-center">Cargando mapa...</div>
 });
 
-export default function SucursalesPage() {
+type Sucursal = {
+  id: number;
+  nombre: string;
+  direccion: string;
+  lat: number;
+  lng: number;
+  supermercadoId: number;
+};
+
+export default function SucursalesPage({ sucursales: todasLasSucursales }: { sucursales: Sucursal[] }) {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<[number, number] | null>(null);
-
-  const todasLasSucursales = useMemo(() => {
-    const combinadas = [
-      ...(banderita || []),
-      ...(vea || []),
-      ...(coope || []),
-      ...(changoMas || [])
-    ];
-
-    return combinadas.map((s: any, index) => ({
-      id: index + 1,
-      nombre: s.nombre,
-      direccion: s.direccion,
-      lat: s.latitud,
-      lng: s.longitud,
-      supermercadoId: s.supermercadoId
-    }));
-  }, []);
 
   const handleGetLocation = () => {
     if (!navigator.geolocation) {
