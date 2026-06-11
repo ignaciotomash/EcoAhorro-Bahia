@@ -1,4 +1,4 @@
-import prisma from '../lib/prisma';
+import prisma from '../shared/lib/prisma';
 import { unstable_cache } from 'next/cache';
 import { buscarFuzzy, normalizar, resolverSinonimos } from '../lib/semanticResolver';
 

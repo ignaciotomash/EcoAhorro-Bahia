@@ -1,6 +1,6 @@
 // src/lib/semanticResolver.ts
 
-import { prisma } from "./prisma";
+import { prisma } from "../shared/lib/prisma";
 import { SINONIMOS } from "./sinonimos";
 
 // ────────────────────────────────────────────────────────────

@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
-import { apiErrorResponse } from '../../../lib/api-error';
-import { prisma } from '../../../lib/prisma';
+import { apiErrorResponse } from '@/shared/lib/api-error';
+import { prisma } from '@/shared/lib/prisma';
 import { getCurrentUsuario } from '../../../lib/usuarios';
 
 async function getOrCreateCarrito(usuarioId: string) {

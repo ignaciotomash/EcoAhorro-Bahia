@@ -4,11 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '../context/CartContext';
 
-// Función para formatear nombres de categorías 
-const formatearNombreCategoria = (nombre: string): string => {
-  const texto = nombre.replace(/_/g, ' ');
-  return texto.replace(/[a-zA-Záéíóúñ]/, letra => letra.toUpperCase());
-};
+import { formatearNombreCategoria } from '../shared/utils/format';
 
 export default function ProductCard({ producto }: { producto: any }) {
   const { addToCart, items } = useCart();

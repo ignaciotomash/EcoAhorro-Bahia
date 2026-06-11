@@ -1,4 +1,4 @@
-import prisma from '../lib/prisma';
+import prisma from '../shared/lib/prisma';
 import { unstable_cache } from 'next/cache';
 
 export type HistorialEntry = {

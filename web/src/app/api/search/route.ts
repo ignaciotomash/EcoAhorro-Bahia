@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { apiErrorResponse } from '@/lib/api-error';
+import { apiErrorResponse } from '@/shared/lib/api-error';
 import { resolverBusqueda } from '@/lib/semanticResolver';
 
 export async function GET(request: NextRequest) {

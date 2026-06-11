@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '../../../../lib/prisma';
+import prisma from '@/shared/lib/prisma';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',

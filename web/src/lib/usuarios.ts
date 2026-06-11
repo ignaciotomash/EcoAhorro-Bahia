@@ -1,6 +1,6 @@
 import type { User } from '@clerk/nextjs/server';
 import { auth, currentUser } from '@clerk/nextjs/server';
-import { prisma } from './prisma';
+import { prisma } from '../shared/lib/prisma';
 
 export async function upsertUsuarioFromClerk(user: User) {
   const email = user.primaryEmailAddress?.emailAddress;
