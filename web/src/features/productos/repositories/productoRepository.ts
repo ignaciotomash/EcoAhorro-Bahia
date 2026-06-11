@@ -135,3 +135,13 @@ export async function findProductoByEan(ean: string) {
 export async function findAllDolares() {
   return prisma.precioDolar.findMany({ orderBy: { fechaGuardado: 'asc' } });
 }
+
+export async function findProductIdsWithPrices(limit = 200) {
+  const rows = await prisma.$queryRaw<{ id: string }[]>`
+    SELECT DISTINCT p.id
+    FROM "Producto" p
+    INNER JOIN "PreciosUnificados" pu ON p.id = pu."idProducto"
+    LIMIT ${limit}
+  `;
+  return rows.map(r => r.id);
+}
