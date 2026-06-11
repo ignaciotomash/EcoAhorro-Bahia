@@ -1,0 +1,796 @@
+openapi: 3.0.3
+info:
+  title: APIs Internas Eco Ahorro Bahia
+  description: >-
+    Contrato de las APIs desarrolladas por Eco Ahorro Bahia y consumidas por el
+    frontend del sistema. Estas APIs son de uso interno, no exponen CORS abierto
+    y requieren API key interna para accesos directos.
+  version: 1.0.0
+
+servers:
+  - url: https://ecoahorro-bahia.vercel.app/api
+    description: Produccion
+  - url: http://localhost:3000/api
+    description: Desarrollo local
+
+tags:
+  - name: Catalogo
+    description: Consulta paginada del catalogo de productos.
+  - name: Busqueda
+    description: Busqueda semantica y fuzzy de productos.
+  - name: Supermercados
+    description: Consulta de supermercados disponibles para filtros y comparacion.
+  - name: Carrito
+    description: Gestion del carrito persistido del usuario autenticado.
+  - name: Administracion
+    description: Operaciones de administracion del sistema, como revalidacion de cache.
+
+paths:
+
+  # MODULO: CATALOGO
+  /productos:
+    get:
+      summary: Listar productos del catalogo
+      description: >-
+        Devuelve productos paginados para mostrar en el catalogo interno, con
+        filtros opcionales de categoria, busqueda, ordenamiento y rango de precio.
+      tags: [Catalogo]
+      security:
+        - apiKeyAuth: []
+      parameters:
+        - in: query
+          name: page
+          required: false
+          description: Numero de pagina a consultar.
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          example: 1
+        - in: query
+          name: limit
+          required: false
+          description: Cantidad maxima de productos por pagina.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 24
+          example: 24
+        - in: query
+          name: categoria
+          required: false
+          description: Categoria o lista de categorias separadas por coma.
+          schema:
+            type: string
+          example: Almacen,Bebidas
+        - in: query
+          name: sortBy
+          required: false
+          description: Criterio de ordenamiento por precio.
+          schema:
+            type: string
+            enum: [price_asc, price_desc]
+          example: price_asc
+        - in: query
+          name: minPrice
+          required: false
+          description: Precio minimo a incluir.
+          schema:
+            type: number
+            format: float
+            minimum: 0
+          example: 1000
+        - in: query
+          name: maxPrice
+          required: false
+          description: Precio maximo a incluir.
+          schema:
+            type: number
+            format: float
+            minimum: 0
+          example: 5000
+        - in: query
+          name: search
+          required: false
+          description: Texto libre para filtrar productos.
+          schema:
+            type: string
+          example: yerba
+      responses:
+        '200':
+          description: Productos obtenidos correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogoResponse'
+        '400':
+          $ref: '#/components/responses/ParametroInvalido'
+        '401':
+          $ref: '#/components/responses/ApiKeyInvalida'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+
+  # MODULO: BUSQUEDA
+  /search:
+    get:
+      summary: Buscar productos por texto
+      description: >-
+        Resuelve una busqueda semantica o fuzzy sobre productos para alimentar
+        sugerencias y resultados del frontend.
+      tags: [Busqueda]
+      security:
+        - apiKeyAuth: []
+      parameters:
+        - in: query
+          name: q
+          required: true
+          description: Texto de busqueda ingresado por el usuario.
+          schema:
+            type: string
+            minLength: 2
+          example: leche
+      responses:
+        '200':
+          description: Resultados de busqueda obtenidos correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          $ref: '#/components/responses/ParametroInvalido'
+        '401':
+          $ref: '#/components/responses/ApiKeyInvalida'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+
+  # MODULO: SUPERMERCADOS
+  /supermercados:
+    get:
+      summary: Listar supermercados disponibles
+      description: >-
+        Devuelve los supermercados registrados para construir filtros y opciones
+        de comparacion dentro del sistema.
+      tags: [Supermercados]
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: Supermercados obtenidos correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Supermercado'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '401':
+          $ref: '#/components/responses/ApiKeyInvalida'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+
+  # MODULO: CARRITO
+  /carrito:
+    get:
+      summary: Obtener carrito de la sesion
+      description: >-
+        Devuelve el carrito persistido del usuario autenticado, con productos,
+        precios y cantidades.
+      tags: [Carrito]
+      security:
+        - apiKeyAuth: []
+          bearerAuth: []
+      responses:
+        '200':
+          description: Carrito obtenido correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carrito'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+    delete:
+      summary: Vaciar carrito de la sesion
+      description: Elimina todos los items del carrito del usuario autenticado.
+      tags: [Carrito]
+      security:
+        - apiKeyAuth: []
+          bearerAuth: []
+      responses:
+        '200':
+          description: Carrito vaciado correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+
+  /carrito/items:
+    post:
+      summary: Agregar producto al carrito
+      description: >-
+        Agrega un producto al carrito del usuario autenticado. Si el producto ya
+        existe en el carrito, incrementa su cantidad en una unidad.
+      tags: [Carrito]
+      security:
+        - apiKeyAuth: []
+          bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgregarItemCarritoRequest'
+            example:
+              productoId: "0000042277095"
+      responses:
+        '201':
+          description: Item agregado correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarritoItemPersistido'
+        '400':
+          $ref: '#/components/responses/ParametroInvalido'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '404':
+          $ref: '#/components/responses/RecursoNoEncontrado'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+
+  /carrito/items/{productoId}:
+    patch:
+      summary: Actualizar cantidad de un producto del carrito
+      description: >-
+        Define la cantidad de un producto dentro del carrito del usuario
+        autenticado. Si la cantidad es 0 o menor, el item se elimina.
+      tags: [Carrito]
+      security:
+        - apiKeyAuth: []
+          bearerAuth: []
+      parameters:
+        - in: path
+          name: productoId
+          required: true
+          description: Identificador EAN del producto.
+          schema:
+            type: string
+          example: "0000042277095"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActualizarItemCarritoRequest'
+            example:
+              cantidad: 3
+      responses:
+        '200':
+          description: Cantidad actualizada o item eliminado correctamente.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CarritoItemPersistido'
+                  - $ref: '#/components/schemas/OkResponse'
+        '400':
+          $ref: '#/components/responses/ParametroInvalido'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '404':
+          $ref: '#/components/responses/RecursoNoEncontrado'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+    delete:
+      summary: Quitar producto del carrito
+      description: Elimina un producto especifico del carrito del usuario autenticado.
+      tags: [Carrito]
+      security:
+        - apiKeyAuth: []
+          bearerAuth: []
+      parameters:
+        - in: path
+          name: productoId
+          required: true
+          description: Identificador EAN del producto.
+          schema:
+            type: string
+          example: "0000042277095"
+      responses:
+        '200':
+          description: Item eliminado correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+
+  # MODULO: CARRITO - SINCRONIZACION COMPLETA
+  /carrito/sync:
+    post:
+      summary: Sincronizar carrito completo
+      description: >-
+        Reemplaza todos los items del carrito del usuario autenticado por los
+        enviados en la solicitud. Util para sincronizar el estado local del
+        carrito con el servidor despues de una optimizacion o restauracion.
+      tags: [Carrito]
+      security:
+        - apiKeyAuth: []
+          bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncCarritoRequest'
+            example:
+              items:
+                - productoId: "0000042277095"
+                  cantidad: 2
+                - productoId: "0000007794420"
+                  cantidad: 1
+      responses:
+        '200':
+          description: Carrito sincronizado correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          $ref: '#/components/responses/ParametroInvalido'
+        '401':
+          $ref: '#/components/responses/NoAutorizado'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+
+  # MODULO: ADMINISTRACION - REVALIDACION DE CACHE
+  /admin/revalidate:
+    post:
+      summary: Revalidar cache ISR
+      description: >-
+        Revalida la cache de Next.js ISR para uno o varios tags. Usado por
+        procesos externos (scrapers, CI/CD) para refrescar datos sin redeploy.
+        No requiere autenticacion de usuario, solo API key interna.
+      tags: [Administracion]
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevalidateRequest'
+            examples:
+              tagUnico:
+                summary: Revalidar un tag especifico
+                value:
+                  tag: productos
+              multiplesTags:
+                summary: Revalidar varios tags
+                value:
+                  tags:
+                    - productos
+                    - categorias
+              todosLosTags:
+                summary: Revalidar todos los tags
+                value:
+                  tag: all
+      responses:
+        '200':
+          description: Cache revalidada correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevalidateResponse'
+        '400':
+          $ref: '#/components/responses/ParametroInvalido'
+        '401':
+          $ref: '#/components/responses/ApiKeyInvalida'
+        '500':
+          $ref: '#/components/responses/ErrorInterno'
+        '503':
+          $ref: '#/components/responses/ApiKeyNoConfigurada'
+
+# COMPONENTES REUTILIZABLES
+components:
+
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-internal-api-key
+      description: API key interna configurada en el servidor.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token de sesion emitido por Clerk.
+
+  responses:
+    ParametroInvalido:
+      description: Parametros, path params o cuerpo de solicitud invalidos.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NoAutorizado:
+      description: Usuario no autenticado o sesion invalida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ApiKeyInvalida:
+      description: API key interna ausente o invalida.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ApiKeyNoConfigurada:
+      description: La API key interna no esta configurada en el servidor.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RecursoNoEncontrado:
+      description: No se encontro el recurso solicitado.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ErrorInterno:
+      description: Error no controlado del servidor.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+              description: Identificador del error en SNAKE_UPPER_CASE.
+              example: PARAMETRO_INVALIDO
+            message:
+              type: string
+              example: El parametro page debe ser un entero mayor o igual a 1.
+            details:
+              type: string
+              description: Informacion adicional opcional.
+              example: "page: 0"
+
+    CatalogoResponse:
+      type: object
+      required: [productos, totalPages, totalProductos]
+      properties:
+        productos:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductoCatalogo'
+        totalPages:
+          type: integer
+          example: 12
+        totalProductos:
+          type: integer
+          example: 286
+
+    ProductoCatalogo:
+      type: object
+      required: [id, nombre, marca, categoria, imagen, precios]
+      properties:
+        id:
+          type: string
+          example: "0000042277095"
+        nombre:
+          type: string
+          example: Yerba mate tradicional 1 kg
+        marca:
+          type: string
+          example: Taragui
+        categoria:
+          type: string
+          example: Almacen
+        imagen:
+          type: string
+          format: uri
+          example: https://placehold.co/400x400/f3f4f6/6b7280?text=Sin+Imagen
+        precios:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrecioResumen'
+
+    SearchResponse:
+      type: object
+      required: [query, total, resultados]
+      properties:
+        query:
+          type: string
+          example: leche
+        total:
+          type: integer
+          example: 3
+        resultados:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductoBusqueda'
+
+    ProductoBusqueda:
+      type: object
+      required:
+        - id
+        - nombreProducto
+        - marca
+        - presentacion
+        - imagen
+        - relevancia
+        - precios
+        - mejorPrecio
+      properties:
+        id:
+          type: string
+          example: "0000042277095"
+        nombreProducto:
+          type: string
+          example: Leche entera 1 L
+        marca:
+          type: string
+          example: La Serenisima
+        presentacion:
+          type: string
+          example: 1 L
+        imagen:
+          type: string
+          format: uri
+          nullable: true
+          example: https://example.com/leche.jpg
+        relevancia:
+          type: string
+          example: "0.87"
+        precios:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrecioBusqueda'
+        mejorPrecio:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/PrecioBusqueda'
+
+    PrecioBusqueda:
+      type: object
+      required: [supermercado, precio, actualizacion]
+      properties:
+        supermercado:
+          type: string
+          example: Vea
+        precio:
+          type: number
+          format: float
+          example: 2199.99
+        actualizacion:
+          type: string
+          format: date-time
+          example: "2026-05-10T00:00:00.000Z"
+
+    Supermercado:
+      type: object
+      required: [id, nombre]
+      properties:
+        id:
+          type: string
+          example: vea
+        nombre:
+          type: string
+          example: Vea
+
+    Carrito:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarritoItem'
+
+    CarritoItem:
+      type: object
+      required: [producto, cantidad]
+      properties:
+        producto:
+          $ref: '#/components/schemas/ProductoCarrito'
+        cantidad:
+          type: integer
+          minimum: 1
+          example: 2
+
+    ProductoCarrito:
+      type: object
+      required: [id, nombre, marca, categoria, precios]
+      properties:
+        id:
+          type: string
+          example: "0000042277095"
+        nombre:
+          type: string
+          example: Yerba mate tradicional 1 kg
+        marca:
+          type: string
+          example: Taragui
+        categoria:
+          type: string
+          example: Almacen
+        imagen:
+          type: string
+          format: uri
+          nullable: true
+          example: https://example.com/producto.jpg
+        precios:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrecioResumen'
+
+    PrecioResumen:
+      type: object
+      required: [super, valor]
+      properties:
+        super:
+          type: string
+          example: Vea
+        valor:
+          type: number
+          format: float
+          example: 2199.99
+
+    AgregarItemCarritoRequest:
+      type: object
+      required: [productoId]
+      properties:
+        productoId:
+          type: string
+          description: Identificador EAN del producto.
+          example: "0000042277095"
+
+    ActualizarItemCarritoRequest:
+      type: object
+      required: [cantidad]
+      properties:
+        cantidad:
+          type: integer
+          description: Nueva cantidad del producto en el carrito.
+          example: 3
+
+    CarritoItemPersistido:
+      type: object
+      required: [carritoId, idProducto, cantidad]
+      properties:
+        carritoId:
+          type: string
+          example: 6a2ad0c2-dbb8-4212-9192-d9d78a36aacc
+        idProducto:
+          type: string
+          example: "0000042277095"
+        cantidad:
+          type: integer
+          example: 2
+
+    OkResponse:
+      type: object
+      required: [ok]
+      properties:
+        ok:
+          type: boolean
+          example: true
+
+    SyncCarritoRequest:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          description: Lista de items a sincronizar. Reemplaza por completo el carrito actual.
+          items:
+            type: object
+            required: [productoId, cantidad]
+            properties:
+              productoId:
+                type: string
+                description: Identificador EAN del producto.
+                example: "0000042277095"
+              cantidad:
+                type: integer
+                minimum: 1
+                description: Cantidad del producto en el carrito.
+                example: 2
+
+    RevalidateRequest:
+      type: object
+      description: >-
+        Cuerpo de la solicitud de revalidacion. Soporta tres formatos:
+        `{ tag: string }`, `{ tags: string[] }` o `{ tag: "all" }` para
+        revalidar todos los tags disponibles.
+      oneOf:
+        - type: object
+          required: [tag]
+          properties:
+            tag:
+              type: string
+              description: Tag a revalidar (o "all" para revalidar todos).
+              example: productos
+        - type: object
+          required: [tags]
+          properties:
+            tags:
+              type: array
+              description: Lista de tags a revalidar.
+              items:
+                type: string
+              example:
+                - productos
+                - categorias
+      properties:
+        tag:
+          type: string
+          description: Tag individual a revalidar. Usar "all" para todos.
+          example: productos
+        tags:
+          type: array
+          description: Lista de tags a revalidar.
+          items:
+            type: string
+          example:
+            - productos
+            - categorias
+
+    RevalidateResponse:
+      type: object
+      required: [revalidated, tags, timestamp]
+      properties:
+        revalidated:
+          type: boolean
+          description: Indica si la revalidacion fue exitosa.
+          example: true
+        tags:
+          type: array
+          description: Lista de tags que fueron revalidados.
+          items:
+            type: string
+          example:
+            - productos
+            - categorias
+        timestamp:
+          type: string
+          format: date-time
+          description: Momento en que se ejecuto la revalidacion en ISO 8601 UTC.
+          example: "2026-06-11T12:00:00.000Z"

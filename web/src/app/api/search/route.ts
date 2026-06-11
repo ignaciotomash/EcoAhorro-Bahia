@@ -1,0 +1,41 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { apiErrorResponse } from '@/shared/lib/api-error';
+import { resolverBusqueda } from '@/features/productos/services/semanticResolver';
+
+export const revalidate = 3600;
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const query = searchParams.get('q');
+
+  if (!query || query.trim().length < 2) {
+    return apiErrorResponse(
+      'BUSQUEDA_INVALIDA',
+      'Ingresa al menos 2 caracteres para buscar.',
+      400,
+      query ? `q: ${query}` : 'q no informado'
+    );
+  }
+
+  try {
+    const productos = await resolverBusqueda(query);
+
+    return NextResponse.json({
+      query,
+      total: productos.length,
+      resultados: productos,
+    }, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+      },
+    });
+  } catch (error) {
+    console.error('[search] Error:', error);
+
+    return apiErrorResponse(
+      'ERROR_BUSCANDO_PRODUCTOS',
+      'No se pudo resolver la busqueda de productos.',
+      500
+    );
+  }
+}

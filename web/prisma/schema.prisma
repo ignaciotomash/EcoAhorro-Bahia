@@ -18,7 +18,10 @@ model Producto {
 
   HistorialPrecios  HistorialPrecios[]
   PreciosUnificados PreciosUnificados[]
+  CarritoItems      CarritoItem[]
   Categoria         Categoria           @relation(fields: [idCategoria], references: [id])
+
+  @@index([idCategoria])
 }
 
 model Supermercado {
@@ -38,20 +41,23 @@ model Sucursal {
   supermercadoId String
 
   Supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
+
+  @@index([supermercadoId])
 }
 
 model HistorialPrecios {
   id             String
   fechaGuardado  DateTime
-  precioPromedio Decimal
+  precioPromedio Float    @db.Real
 
   Producto       Producto @relation(fields: [id], references: [id])
   @@id([id, fechaGuardado])
+  @@index([id])
 }
 
 model precioDolar {
   fechaGuardado  DateTime @id
-  precioPromedio Decimal
+  precioPromedio Float
 }
 
 model Categoria {
@@ -68,25 +74,39 @@ model PreciosUnificados {
   precio         Float        @db.Real
   actualizacion  DateTime     @default(now())
 
-  Carrito        Carrito[] 
   Producto       Producto     @relation(fields: [idProducto], references: [id])
-  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id])  
+  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id])
+
+  @@index([idProducto])
+  @@index([idSupermercado])
+  @@index([precio])
 }
 
 model Usuario {
   id            String   @id
-  nombreUsuario String
+  nombreUsuario String?
   email         String   @unique
-  telefono      String   @unique
+  telefono      String?  @unique
   Carrito       Carrito?
 }
 
 model Carrito {
-  id                String              @id
-  usuarioId         String              @unique
+  id        String @id
+  usuarioId String @unique
 
-  Usuario           Usuario             @relation(fields: [usuarioId], references: [id])
-  PreciosUnificados PreciosUnificados[] 
+  Usuario Usuario @relation(fields: [usuarioId], references: [id])
+
+  items CarritoItem[]
 }
 
+model CarritoItem {
+  carritoId  String
+  idProducto String
+  cantidad   Int    @default(1)
+
+  Carrito  Carrito  @relation(fields: [carritoId], references: [id], onDelete: Cascade)
+  Producto Producto @relation(fields: [idProducto], references: [id])
+
+  @@id([carritoId, idProducto])
+}
 
