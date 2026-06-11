@@ -7,7 +7,7 @@ import { calcularTotalesPorSuper, optimizarCarrito } from '@/features/carrito/se
 import type { ResultadoOptimizacion } from '@/features/carrito/types';
 import type { Supermercado } from '@/features/supermercados/types';
 import CarritoSidebar from './CarritoSidebar';
-import AuthCartPrompt from '../../../components/AuthCartPrompt';
+import AuthCartPrompt from '@/features/auth/components/AuthCartPrompt';
 
 export default function CarritoPage() {
   const { items, isLoadingCart, removeFromCart, updateCantidad, clearCart } = useCart();

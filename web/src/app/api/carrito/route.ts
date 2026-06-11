@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { apiErrorResponse } from '@/shared/lib/api-error';
 import { getOrCreateCarrito, findCartItems, clearCartItems } from '@/features/carrito/repositories/carritoRepository';
-import { getCurrentUsuario } from '@/lib/usuarios';
+import { getCurrentUsuario } from '@/features/auth/services/usuarioService';
 
 function formatCart(items: Awaited<ReturnType<typeof findCartItems>>) {
   return {

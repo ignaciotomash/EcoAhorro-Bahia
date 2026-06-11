@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { apiErrorResponse } from '@/shared/lib/api-error';
 import { getOrCreateCarrito, upsertCartItem, deleteCartItem, findProductoById } from '@/features/carrito/repositories/carritoRepository';
-import { getCurrentUsuario } from '@/lib/usuarios';
+import { getCurrentUsuario } from '@/features/auth/services/usuarioService';
 
 type RouteContext = {
   params: Promise<{
