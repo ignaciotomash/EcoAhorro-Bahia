@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { fetchProductoPorEAN } from '@/features/productos/services/productoEanClient';
 import type { ProductoDetalleEan as ProductoDetalle } from '@/features/productos/types';
 import { useCart } from '@/features/carrito/context/CartContext';
@@ -204,9 +205,9 @@ export default function EscanerPage() {
         {estado === 'found' && producto && (
           <div className="space-y-4">
             <Link href={`/producto/${producto.ean}`} className="bg-white rounded-2xl p-3 md:p-4 flex gap-3 md:gap-4 items-start hover:bg-gray-50 transition-colors block" style={{ border: '1px solid #E5E7EB' }}>
-              <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-xl bg-gray-50 overflow-hidden flex items-center justify-center border border-gray-100">
+              <div className="w-16 h-16 md:w-20 md:h-20 relative flex-shrink-0 rounded-xl bg-gray-50 overflow-hidden flex items-center justify-center border border-gray-100">
                 {producto.imagen
-                  ? <img src={producto.imagen} alt={producto.nombreProducto} className="object-contain w-full h-full p-1" />
+                  ? <Image src={producto.imagen} alt={producto.nombreProducto} fill sizes="80px" className="object-contain p-1" />
                   : <span className="text-gray-200 text-xs">—</span>
                 }
               </div>

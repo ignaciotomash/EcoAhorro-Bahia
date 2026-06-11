@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import type { ResultadoOptimizacion, TotalPorSuper } from '@/features/carrito/types';
 import FiltroSupermercados from './FiltroSupermercados';
 import SelectorMaxSupers from './SelectorMaxSupers';
@@ -183,8 +184,8 @@ export default function CarritoSidebar({
                           style={{ borderBottom: j < s.productos.length - 1 ? '1px solid #F3F4F6' : 'none' }}>
                           <div className="flex items-center gap-2 min-w-0">
                             {prod.imagen
-                              ? <img src={prod.imagen} alt={prod.nombre}
-                                  className="w-8 h-8 rounded-lg object-contain bg-white flex-shrink-0 p-0.5 border border-gray-100" />
+                              ? <Image src={prod.imagen} alt={prod.nombre} width={32} height={32}
+                                  className="rounded-lg object-contain bg-white flex-shrink-0 p-0.5 border border-gray-100" />
                               : <div className="w-8 h-8 rounded-lg bg-gray-100 flex-shrink-0" />
                             }
                             <div className="min-w-0">

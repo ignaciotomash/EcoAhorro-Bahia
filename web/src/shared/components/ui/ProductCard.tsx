@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '@/features/carrito/context/CartContext';
 
 import { formatearNombreCategoria } from '../../utils/format';
@@ -31,9 +32,9 @@ export default function ProductCard({ producto }: { producto: any }) {
         {/* IMAGEN */}
         <div className="relative w-full h-32 md:h-48 bg-white p-3 flex items-center justify-center border-b border-gray-50">
           {producto.imagen && !producto.imagen.includes('placehold.co') && producto.imagen !== 'Sin imagen' && !imgError
-            ? <img src={producto.imagen} alt={producto.nombre} loading="lazy" decoding="async" className="object-contain w-full h-full mix-blend-multiply group-hover:scale-105 transition-transform duration-500" onError={() => setImgError(true)} />
+            ? <Image src={producto.imagen} alt={producto.nombre} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" onError={() => setImgError(true)} />
             : <div className="w-full h-full flex items-center justify-center bg-gray-50 opacity-70">
-                <img src="/logo.png" alt="Sin imagen" className="w-12 h-12 md:w-16 md:h-16 object-contain grayscale opacity-40" />
+                <Image src="/logo.png" alt="Sin imagen" width={64} height={64} className="object-contain grayscale opacity-40" />
               </div>
           }
 

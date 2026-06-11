@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '@/features/carrito/context/CartContext';
 import { calcularTotalesPorSuper, optimizarCarrito } from '@/features/carrito/services/cartOptimizer';
 import type { ResultadoOptimizacion } from '@/features/carrito/types';
@@ -173,7 +174,7 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
                 <div className="flex gap-3 md:gap-4 items-start">
                   <div className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center border border-gray-100">
                     {item.producto.imagen
-                      ? <img src={item.producto.imagen} alt={item.producto.nombre} className="object-contain w-full h-full p-1" />
+                      ? <Image src={item.producto.imagen} alt={item.producto.nombre} width={64} height={64} className="object-contain w-full h-full p-1" />
                       : <span className="text-gray-200 text-xs">—</span>
                     }
                   </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useCart } from '@/features/carrito/context/CartContext';
 import type { ProductoDetalleData } from '@/features/productos/types';
 
@@ -70,10 +71,12 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
           {/* LEFT: Image */}
           <div className="md:w-1/2 relative h-72 md:h-[500px] bg-gray-50 overflow-hidden flex items-center justify-center">
             {producto.imagen ? (
-              <img
+              <Image
                 src={producto.imagen}
                 alt={producto.nombre}
-                className="object-contain w-full h-full p-4"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain p-4"
               />
             ) : (
               <span className="text-gray-300 text-sm font-medium">Sin foto</span>
