@@ -1,10 +1,11 @@
 'use client';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import SucursalesMapSkeleton from '@/shared/components/ui/SucursalesMapSkeleton';
 
 const MapaSucursales = dynamic(() => import('./MapaSucursales'), {
   ssr: false,
-  loading: () => <div className="h-[500px] bg-gray-100 animate-pulse flex items-center justify-center">Cargando mapa...</div>
+  loading: () => <SucursalesMapSkeleton />
 });
 
 type Sucursal = {

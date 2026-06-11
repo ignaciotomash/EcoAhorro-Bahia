@@ -206,7 +206,7 @@ export default function CatalogoClient({
       </div>
 
       <div className="max-w-7xl mx-auto py-3 md:py-8 px-4">
-        <div className="mb-4 md:mb-10 flex flex-col md:flex-row justify-between md:items-start gap-4 relative z-20" style={isLoading ? { opacity: 0.5, pointerEvents: 'none' } : {}}>
+        <div className="mb-4 md:mb-10 flex flex-col md:flex-row justify-between md:items-start gap-4 relative z-20" style={isLoading ? { pointerEvents: 'none' } : {}}>
           {/* Contenedor ajustado al contenido */}
           <div className="flex flex-col gap-3 md:gap-4 w-full md:w-max">
             {/* Buscador */}
@@ -263,8 +263,6 @@ export default function CatalogoClient({
 
         {isLoading && !error && (
           <>
-            {/* Overlay para prevenir interacción */}
-            <div className="fixed inset-0 bg-white/40 pointer-events-none"></div>
             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5">
               {Array.from({ length: productos.length || 24 }).map((_, i) => (
                 <ProductSkeleton key={i} />

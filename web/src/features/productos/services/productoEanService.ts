@@ -23,7 +23,7 @@ async function _getProductoEanResponse(ean: string) {
       sucursal: {
         idSucursal: Number(precio.id),
         nombre: nombreSuper,
-        ubicacionMaps: 'https://maps.google.com',
+        ubicacionMaps: `https://www.google.com/maps/search/${encodeURIComponent(nombreSuper)} Bahía Blanca`,
       },
     });
     return acc;
