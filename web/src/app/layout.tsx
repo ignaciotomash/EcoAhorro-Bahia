@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
-import { CartProvider } from '../context/CartContext';
+import { CartProvider } from '@/features/carrito/context/CartContext';
 import CartIcon from '@/shared/components/layout/CartIcon';
 import ClerkUserSync from '@/features/auth/components/ClerkUserSync';
 import Navbar from '@/shared/components/layout/Navbar';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useCart } from '../../../context/CartContext';
+import { useCart } from '@/features/carrito/context/CartContext';
 import type { ProductoDetalleData } from '@/features/productos/types';
 
 export default function ProductoDetalleClient({ producto }: { producto: ProductoDetalleData }) {
