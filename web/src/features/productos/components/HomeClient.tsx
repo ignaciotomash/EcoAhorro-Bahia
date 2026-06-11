@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import ProductCard from '../../../components/ProductCard';
+import ProductCard from '../../../shared/components/ui/ProductCard';
 
 export default function HomeClient({ productosLocales, totalProductos, totalSupermercados }: { productosLocales: any[]; totalProductos: number; totalSupermercados: number }) {
   const [busqueda, setBusqueda] = useState('');

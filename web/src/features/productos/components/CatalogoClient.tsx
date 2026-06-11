@@ -3,8 +3,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import CategoryFilter from './CategoryFilter';
 import PriceFilter from './PriceFilter';
-import ProductCard from '../../../components/ProductCard';
-import ProductSkeleton from '../../../components/ProductSkeleton';
+import ProductCard from '../../../shared/components/ui/ProductCard';
+import ProductSkeleton from '../../../shared/components/ui/ProductSkeleton';
 import type { ProductoCatalogo as Producto, CatalogoResponse } from '@/features/productos/types';
 
 export default function CatalogoClient({
