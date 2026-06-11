@@ -8,6 +8,7 @@ const isInternalApiRoute = createRouteMatcher([
   '/api/search(.*)',
   '/api/supermercados(.*)',
   '/api/carrito(.*)',
+  '/api/admin(.*)',
 ]);
 
 const isProtectedRoute = createRouteMatcher([
