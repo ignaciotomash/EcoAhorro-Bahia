@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/shared/lib/prisma';
+import { getSupermercados } from '@/features/supermercados/services/supermercadoService';
 import { apiErrorResponse } from '@/shared/lib/api-error';
 
 export async function GET() {
   try {
-    const supermercados = await prisma.supermercado.findMany({
-      orderBy: { nombre: 'asc' },
-    });
-
+    const supermercados = await getSupermercados();
     return NextResponse.json(supermercados);
   } catch (error) {
     console.error(error);
