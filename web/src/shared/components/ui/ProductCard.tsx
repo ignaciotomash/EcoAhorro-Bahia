@@ -7,7 +7,7 @@ import { useCart } from '@/features/carrito/context/CartContext';
 
 import { formatearNombreCategoria } from '../../utils/format';
 
-export default function ProductCard({ producto }: { producto: any }) {
+export default React.memo(function ProductCard({ producto }: { producto: any }) {
   const { addToCart, items } = useCart();
   const [added, setAdded] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -135,4 +135,4 @@ export default function ProductCard({ producto }: { producto: any }) {
       </div>
     </div>
   );
-}
+});

@@ -1,7 +1,7 @@
 'use client';
 
 import { useUser } from '@clerk/nextjs';
-import React, { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState, useCallback, ReactNode } from 'react';
 import type { CartItem, ProductoCarrito, CartContextType } from '@/features/carrito/types';
 import * as api from '@/features/carrito/services/cartApiClient';
 
@@ -102,7 +102,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     };
   }, [isLoaded, isSignedIn, user?.id]);
 
-  const addToCart = (producto: ProductoCarrito) => {
+  const addToCart = useCallback((producto: ProductoCarrito) => {
     setItems(prev => {
       const existing = prev.find(i => i.producto.id === producto.id);
       if (existing) {
@@ -118,16 +118,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (isSignedIn) {
       void api.addItem(producto.id);
     }
-  };
+  }, [isSignedIn]);
 
-  const removeFromCart = (id: string) => {
+  const removeFromCart = useCallback((id: string) => {
     setItems(prev => prev.filter(i => i.producto.id !== id));
     if (isSignedIn) {
       void api.removeItem(id);
     }
-  };
+  }, [isSignedIn]);
 
-  const updateCantidad = (id: string, cantidad: number) => {
+  const updateCantidad = useCallback((id: string, cantidad: number) => {
     if (cantidad <= 0) {
       removeFromCart(id);
       return;
@@ -138,16 +138,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (isSignedIn) {
       void api.updateItem(id, cantidad);
     }
-  };
+  }, [isSignedIn, removeFromCart]);
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setItems([]);
     if (isSignedIn) {
       void api.clearCartRemoto();
     }
-  };
+  }, [isSignedIn]);
 
-  const totalItems = items.reduce((sum, i) => sum + i.cantidad, 0);
+  const totalItems = useMemo(() => items.reduce((sum, i) => sum + i.cantidad, 0), [items]);
 
   return (
     <CartContext.Provider value={{ items, isLoadingCart, addToCart, removeFromCart, updateCantidad, totalItems, clearCart }}>

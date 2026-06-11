@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/features/carrito/context/CartContext';
 
-export default function CartIcon() {
+export default memo(function CartIcon() {
   const { totalItems } = useCart();
   const [pulse, setPulse] = useState(false);
 
@@ -42,4 +42,4 @@ export default function CartIcon() {
       </button>
     </Link>
   );
-}
+});
