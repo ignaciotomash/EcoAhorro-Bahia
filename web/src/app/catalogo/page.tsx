@@ -1,5 +1,5 @@
-import CatalogoClient from '../../components/CatalogoClient';
-import { getProductosCatalogo, getCategorias } from '../../services/db';
+import CatalogoClient from '@/features/productos/components/CatalogoClient';
+import { getProductosCatalogo, getCategorias } from '@/features/productos/services/catalogoService';
 
 export const revalidate = 3600; // ISR para el catálogo
 

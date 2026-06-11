@@ -1,5 +1,5 @@
-import { prisma } from "../shared/lib/prisma";
-import { SINONIMOS } from "./sinonimos";
+import { prisma } from "@/shared/lib/prisma";
+import { SINONIMOS } from "../repositories/sinonimos";
 import type { ProductoResuelto, PrecioSupermercado, ProductoFuzzyRaw } from "@/features/productos/types";
 
 export function normalizar(texto: string): string {

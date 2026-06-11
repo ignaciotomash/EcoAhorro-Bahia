@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProductosCatalogo } from '../../../services/db';
+import { getProductosCatalogo } from '@/features/productos/services/catalogoService';
 import { apiErrorResponse } from '@/shared/lib/api-error';
 
 export const revalidate = 3600;

@@ -1,5 +1,5 @@
-import HomeClient from '../components/HomeClient';
-import { getProductosCatalogo, getSupermercadosCount } from '../services/db';
+import HomeClient from '@/features/productos/components/HomeClient';
+import { getProductosCatalogo, getSupermercadosCount } from '@/features/productos/services/catalogoService';
 
 export const revalidate = 3600; // Revalida la home cada 1 hora
 

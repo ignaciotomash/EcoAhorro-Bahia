@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { apiErrorResponse } from '@/shared/lib/api-error';
-import { resolverBusqueda } from '@/lib/semanticResolver';
+import { resolverBusqueda } from '@/features/productos/services/semanticResolver';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);

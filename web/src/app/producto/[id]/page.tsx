@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getProductoDetalle } from '@/services/productoDetalle';
-import ProductoDetalleClient from '@/components/ProductoDetalleClient';
+import { getProductoDetalle } from '@/features/productos/services/productoDetalleService';
+import ProductoDetalleClient from '@/features/productos/components/ProductoDetalleClient';
 
 type Props = { params: Promise<{ id: string }> };
 

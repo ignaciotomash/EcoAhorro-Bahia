@@ -2,12 +2,12 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { fetchProductoPorEAN } from '../../services/productos';
+import { fetchProductoPorEAN } from '@/features/productos/services/productoEanClient';
 import type { ProductoDetalleEan as ProductoDetalle } from '@/features/productos/types';
 import { useCart } from '../../context/CartContext';
 import Link from 'next/link';
 
-const BarcodeScanner = dynamic(() => import('../../components/BarcodeScanner'), { ssr: false });
+const BarcodeScanner = dynamic(() => import('@/features/productos/components/BarcodeScanner'), { ssr: false });
 
 const SUPER_LABELS: Record<string, string> = {
   Vea: 'Vea',
