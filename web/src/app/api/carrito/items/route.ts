@@ -1,23 +1,11 @@
-import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
 import { apiErrorResponse } from '@/shared/lib/api-error';
-import { prisma } from '@/shared/lib/prisma';
-import { getCurrentUsuario } from '../../../../lib/usuarios';
+import { getOrCreateCarrito, upsertCartItem, findProductoById } from '@/features/carrito/repositories/carritoRepository';
+import { getCurrentUsuario } from '@/lib/usuarios';
 
 type AddItemBody = {
   productoId?: string;
 };
-
-async function getOrCreateCarrito(usuarioId: string) {
-  return prisma.carrito.upsert({
-    where: { usuarioId },
-    create: {
-      id: randomUUID(),
-      usuarioId,
-    },
-    update: {},
-  });
-}
 
 export async function POST(request: Request) {
   try {
@@ -53,10 +41,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const producto = await prisma.producto.findUnique({
-      where: { id: productoId },
-      select: { id: true },
-    });
+    const producto = await findProductoById(productoId);
 
     if (!producto) {
       return apiErrorResponse(
@@ -69,24 +54,7 @@ export async function POST(request: Request) {
 
     const carrito = await getOrCreateCarrito(usuario.id);
 
-    const item = await prisma.carritoItem.upsert({
-      where: {
-        carritoId_idProducto: {
-          carritoId: carrito.id,
-          idProducto: productoId,
-        },
-      },
-      create: {
-        carritoId: carrito.id,
-        idProducto: productoId,
-        cantidad: 1,
-      },
-      update: {
-        cantidad: {
-          increment: 1,
-        },
-      },
-    });
+    const item = await upsertCartItem(carrito.id, productoId, 1);
 
     return NextResponse.json(item, { status: 201 });
   } catch (error) {

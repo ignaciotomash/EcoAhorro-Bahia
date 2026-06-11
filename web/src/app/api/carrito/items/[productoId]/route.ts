@@ -1,8 +1,7 @@
-import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
 import { apiErrorResponse } from '@/shared/lib/api-error';
-import { prisma } from '@/shared/lib/prisma';
-import { getCurrentUsuario } from '../../../../../lib/usuarios';
+import { getOrCreateCarrito, upsertCartItem, deleteCartItem, findProductoById } from '@/features/carrito/repositories/carritoRepository';
+import { getCurrentUsuario } from '@/lib/usuarios';
 
 type RouteContext = {
   params: Promise<{
@@ -13,17 +12,6 @@ type RouteContext = {
 type UpdateItemBody = {
   cantidad?: number;
 };
-
-async function getOrCreateCarrito(usuarioId: string) {
-  return prisma.carrito.upsert({
-    where: { usuarioId },
-    create: {
-      id: randomUUID(),
-      usuarioId,
-    },
-    update: {},
-  });
-}
 
 export async function PATCH(request: Request, context: RouteContext) {
   try {
@@ -62,23 +50,13 @@ export async function PATCH(request: Request, context: RouteContext) {
     }
 
     const carrito = await getOrCreateCarrito(usuario.id);
-    const itemKey = {
-      carritoId: carrito.id,
-      idProducto: productoId,
-    };
 
     if (cantidad <= 0) {
-      await prisma.carritoItem.deleteMany({
-        where: itemKey,
-      });
-
+      await deleteCartItem(carrito.id, productoId);
       return NextResponse.json({ ok: true });
     }
 
-    const producto = await prisma.producto.findUnique({
-      where: { id: productoId },
-      select: { id: true },
-    });
+    const producto = await findProductoById(productoId);
 
     if (!producto) {
       return apiErrorResponse(
@@ -89,18 +67,7 @@ export async function PATCH(request: Request, context: RouteContext) {
       );
     }
 
-    const item = await prisma.carritoItem.upsert({
-      where: {
-        carritoId_idProducto: itemKey,
-      },
-      create: {
-        ...itemKey,
-        cantidad,
-      },
-      update: {
-        cantidad,
-      },
-    });
+    const item = await upsertCartItem(carrito.id, productoId, cantidad);
 
     return NextResponse.json(item);
   } catch (error) {
@@ -129,12 +96,7 @@ export async function DELETE(_request: Request, context: RouteContext) {
     const { productoId } = await context.params;
     const carrito = await getOrCreateCarrito(usuario.id);
 
-    await prisma.carritoItem.deleteMany({
-      where: {
-        carritoId: carrito.id,
-        idProducto: productoId,
-      },
-    });
+    await deleteCartItem(carrito.id, productoId);
 
     return NextResponse.json({ ok: true });
   } catch (error) {

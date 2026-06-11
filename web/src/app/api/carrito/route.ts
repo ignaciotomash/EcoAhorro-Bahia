@@ -1,19 +1,7 @@
-import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
 import { apiErrorResponse } from '@/shared/lib/api-error';
-import { prisma } from '@/shared/lib/prisma';
-import { getCurrentUsuario } from '../../../lib/usuarios';
-
-async function getOrCreateCarrito(usuarioId: string) {
-  return prisma.carrito.upsert({
-    where: { usuarioId },
-    create: {
-      id: randomUUID(),
-      usuarioId,
-    },
-    update: {},
-  });
-}
+import { getOrCreateCarrito, findCartItems, clearCartItems } from '@/features/carrito/repositories/carritoRepository';
+import { getCurrentUsuario } from '@/lib/usuarios';
 
 function formatCart(items: Awaited<ReturnType<typeof findCartItems>>) {
   return {
@@ -34,29 +22,6 @@ function formatCart(items: Awaited<ReturnType<typeof findCartItems>>) {
       cantidad: item.cantidad,
     })),
   };
-}
-
-async function findCartItems(carritoId: string) {
-  return prisma.carritoItem.findMany({
-    where: { carritoId },
-    include: {
-      Producto: {
-        include: {
-          Categoria: true,
-          PreciosUnificados: {
-            include: {
-              Supermercado: true,
-            },
-          },
-        },
-      },
-    },
-    orderBy: {
-      Producto: {
-        nombreProducto: 'asc',
-      },
-    },
-  });
 }
 
 export async function GET() {
@@ -99,10 +64,7 @@ export async function DELETE() {
     }
 
     const carrito = await getOrCreateCarrito(usuario.id);
-
-    await prisma.carritoItem.deleteMany({
-      where: { carritoId: carrito.id },
-    });
+    await clearCartItems(carrito.id);
 
     return NextResponse.json({ ok: true });
   } catch (error) {
