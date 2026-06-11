@@ -53,7 +53,7 @@ export async function PATCH(request: Request, context: RouteContext) {
 
     if (cantidad <= 0) {
       await deleteCartItem(carrito.id, productoId);
-      return NextResponse.json({ ok: true });
+      return NextResponse.json({ ok: true }, { headers: { 'Cache-Control': 'private, no-store' } });
     }
 
     const producto = await findProductoById(productoId);
@@ -69,7 +69,7 @@ export async function PATCH(request: Request, context: RouteContext) {
 
     const item = await upsertCartItem(carrito.id, productoId, cantidad);
 
-    return NextResponse.json(item);
+    return NextResponse.json(item, { headers: { 'Cache-Control': 'private, no-store' } });
   } catch (error) {
     console.error('[carrito-item] Error:', error);
 
@@ -98,7 +98,7 @@ export async function DELETE(_request: Request, context: RouteContext) {
 
     await deleteCartItem(carrito.id, productoId);
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true }, { headers: { 'Cache-Control': 'private, no-store' } });
   } catch (error) {
     console.error('[carrito-item] Error:', error);
 

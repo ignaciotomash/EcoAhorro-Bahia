@@ -39,7 +39,11 @@ export async function GET() {
     const carrito = await getOrCreateCarrito(usuario.id);
     const items = await findCartItems(carrito.id);
 
-    return NextResponse.json(formatCart(items));
+    return NextResponse.json(formatCart(items), {
+      headers: {
+        'Cache-Control': 'private, no-store',
+      },
+    });
   } catch (error) {
     console.error('[carrito] Error:', error);
 
@@ -66,7 +70,11 @@ export async function DELETE() {
     const carrito = await getOrCreateCarrito(usuario.id);
     await clearCartItems(carrito.id);
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true }, {
+      headers: {
+        'Cache-Control': 'private, no-store',
+      },
+    });
   } catch (error) {
     console.error('[carrito] Error:', error);
 

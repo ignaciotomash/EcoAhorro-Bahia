@@ -56,7 +56,7 @@ export async function POST(request: Request) {
 
     const item = await upsertCartItem(carrito.id, productoId, 1);
 
-    return NextResponse.json(item, { status: 201 });
+    return NextResponse.json(item, { status: 201, headers: { 'Cache-Control': 'private, no-store' } });
   } catch (error) {
     console.error('[carrito-items] Error:', error);
 
