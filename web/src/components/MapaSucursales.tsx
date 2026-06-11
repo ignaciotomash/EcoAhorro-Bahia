@@ -49,15 +49,7 @@ function RecenterMap({ coords }: { coords: [number, number] }) {
   return null;
 }
 
-// --- INTERFACES ---
-interface Sucursal {
-  id: number;
-  nombre: string;
-  lat: number;
-  lng: number;
-  direccion: string;
-  supermercadoId: number;
-}
+import type { Sucursal } from '@/features/sucursales/types';
 
 interface MapaProps {
   sucursales: Sucursal[];

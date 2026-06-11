@@ -1,43 +1,7 @@
-// src/lib/semanticResolver.ts
-
 import { prisma } from "../shared/lib/prisma";
 import { SINONIMOS } from "./sinonimos";
+import type { ProductoResuelto, PrecioSupermercado, ProductoFuzzyRaw } from "@/features/productos/types";
 
-// ────────────────────────────────────────────────────────────
-// TIPOS
-// ────────────────────────────────────────────────────────────
-
-interface PrecioSupermercado {
-  supermercado: string;
-  precio: number;
-  actualizacion: Date;
-}
-
-export interface ProductoResuelto {
-  id: string;
-  nombreProducto: string;
-  marca: string;
-  presentacion: string;
-  imagen: string | null;
-  relevancia: string;
-  precios: PrecioSupermercado[];
-  mejorPrecio: PrecioSupermercado | null;
-}
-
-// Tipo interno para el resultado crudo del $queryRaw
-export interface ProductoFuzzyRaw {
-  id: string;
-  nombreProducto: string;
-  marca: string;
-  presentacion: string;
-  imagen: string | null;
-  score: number; //indica que tan parecido es el producto con el texto, entre 0 y 1.
-}
-
-// ────────────────────────────────────────────────────────────
-// NORMALIZACIÓN
-// ────────────────────────────────────────────────────────────
-//Todo lo cargado se vuelve en minuscula, saca acentos y espacios innecesarios
 export function normalizar(texto: string): string {
   return texto
     .toLowerCase()
@@ -48,24 +12,15 @@ export function normalizar(texto: string): string {
     .trim();
 }
 
-// ────────────────────────────────────────────────────────────
-// PASO 2: RESOLUCIÓN DE SINÓNIMOS
-// Devuelve un array con el término original ingresado por el usuario
-// después, si hay más de una palabra en el array, las separa y las busca una por separado.
-// ────────────────────────────────────────────────────────────
-
 export function resolverSinonimos(textoNormalizado: string): string[] {
   const terminos = new Set<string>();
 
-  // Siempre incluir el texto original
   terminos.add(textoNormalizado);
 
-  // Buscar la frase completa en el diccionario
   if (SINONIMOS[textoNormalizado]) {
     terminos.add(normalizar(SINONIMOS[textoNormalizado]));
   }
 
-  // Buscar cada palabra suelta en el diccionario
   for (const palabra of textoNormalizado.split(" ")) {
     if (SINONIMOS[palabra]) {
       terminos.add(normalizar(SINONIMOS[palabra]));
@@ -75,9 +30,6 @@ export function resolverSinonimos(textoNormalizado: string): string[] {
   return [...terminos];
 }
 
-// ────────────────────────────────────────────────────────────
-// PASO 3: BÚSQUEDA FUZZY CON pg_trgm
-// Requiere: CREATE EXTENSION IF NOT EXISTS pg_trgm; en Supabase
 async function buscarPorTermino(
   termino: string,
   umbral: number,
@@ -93,8 +45,7 @@ async function buscarPorTermino(
         producto.imagen,
         GREATEST(
           similarity(lower(producto."nombreProducto"), ${termino}),
-          --lo de abajo se podría borrar directamente.
-          similarity(lower(producto.marca), ${termino}) * 0.3  -- penalizar marca
+          similarity(lower(producto.marca), ${termino}) * 0.3
         ) AS score
       FROM "Producto" producto
       WHERE
@@ -112,14 +63,10 @@ export async function buscarFuzzy(
   umbral: number,
   limite: number = 20
 ): Promise<ProductoFuzzyRaw[]> {
-  // Ejecutar una query por cada término en paralelo
-  // hace una query sobre  toda la base de datos por cada término encontrado.
   const resultadosPorTermino = await Promise.all(
     terminos.map((termino) => buscarPorTermino(termino, umbral, limite))
   );
 
-  // Mergear todos los resultados en un solo mapa, quedándonos con
-  // el score más alto cuando un mismo producto aparece en varios términos
   const mergeado = new Map<string, ProductoFuzzyRaw>();
 
   for (const resultados of resultadosPorTermino) {
@@ -131,20 +78,9 @@ export async function buscarFuzzy(
     }
   }
 
-  // Convertir a array y ordenar por score descendente
   return [...mergeado.values()].sort((a, b) => b.score - a.score);
 }
 
-// ────────────────────────────────────────────────────────────
-// FUNCIÓN PRINCIPAL EXPORTABLE
-// ────────────────────────────────────────────────────────────
-
-/**
- * Convierte texto libre del usuario en productos del catálogo con precios.
- *
- * query  - Lo que escribe el usuario 
- * umbral - Qué tan estricto es el match. Default 0.15.
- */
 export async function resolverBusqueda(
   query: string,
   umbral: number = 0.20
@@ -155,7 +91,6 @@ export async function resolverBusqueda(
 
   if (productosBase.length === 0) return [];
 
-  // Traer todos los precios de los productos encontrados
   const ids = productosBase.map((p) => p.id);
 
   const precios = await prisma.preciosUnificados.findMany({
@@ -164,7 +99,6 @@ export async function resolverBusqueda(
     orderBy: { precio: "asc" },
   });
 
-  // Agrupar precios por idProducto
   const preciosPorProducto = precios.reduce<Record<string, PrecioSupermercado[]>>(
     (acc: Record<string, PrecioSupermercado[]>, p: any) => {
       if (!acc[p.idProducto]) acc[p.idProducto] = [];
@@ -178,7 +112,6 @@ export async function resolverBusqueda(
     {}
   );
 
-  // Combinar datos y devolver resultado final
   return productosBase.map((producto) => ({
     id: producto.id,
     nombreProducto: producto.nombreProducto,

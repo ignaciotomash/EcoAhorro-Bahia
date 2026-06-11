@@ -5,26 +5,7 @@ import CategoryFilter from './CategoryFilter';
 import PriceFilter from './PriceFilter';
 import ProductCard from './ProductCard';
 import ProductSkeleton from './ProductSkeleton';
-
-type Precio = {
-  super: string;
-  valor: number;
-};
-
-type Producto = {
-  id: string;
-  nombre: string;
-  marca: string;
-  categoria: string;
-  imagen: string;
-  precios: Precio[];
-};
-
-type CatalogoResponse = {
-  productos: Producto[];
-  totalPages: number;
-  totalProductos: number;
-};
+import type { ProductoCatalogo as Producto, CatalogoResponse } from '@/features/productos/types';
 
 export default function CatalogoClient({
   categorias,

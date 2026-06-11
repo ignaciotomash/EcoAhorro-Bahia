@@ -3,10 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '../../context/CartContext';
-import { calcularTotalesPorSuper, optimizarCarrito, ResultadoOptimizacion } from '../../utils/cartOptimizer';
+import { calcularTotalesPorSuper, optimizarCarrito } from '../../utils/cartOptimizer';
+import type { ResultadoOptimizacion } from '@/features/carrito/types';
 import CarritoSidebar from '../../components/carrito/CarritoSidebar';
 
-type Supermercado = { id: string; nombre: string };
+import type { Supermercado } from '@/features/supermercados/types';
 import AuthCartPrompt from '../../components/AuthCartPrompt';
 
 export default function CarritoPage() {

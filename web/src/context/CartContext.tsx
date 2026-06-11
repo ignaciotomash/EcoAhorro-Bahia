@@ -2,35 +2,7 @@
 
 import { useUser } from '@clerk/nextjs';
 import React, { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
-
-export type PrecioItem = {
-  super: string;
-  valor: number;
-};
-
-export type Producto = {
-  id: string;
-  nombre: string;
-  marca: string;
-  categoria: string;
-  imagen?: string;
-  precios: PrecioItem[];
-};
-
-export type CartItem = {
-  producto: Producto;
-  cantidad: number;
-};
-
-type CartContextType = {
-  items: CartItem[];
-  isLoadingCart: boolean;
-  addToCart: (producto: Producto) => void;
-  removeFromCart: (id: string) => void;
-  updateCantidad: (id: string, cantidad: number) => void;
-  totalItems: number;
-  clearCart: () => void;
-};
+import type { CartItem, ProductoCarrito, CartContextType } from '@/features/carrito/types';
 
 const CartContext = createContext<CartContextType | null>(null);
 
@@ -186,7 +158,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const addToCart = (producto: Producto) => {
+  const addToCart = (producto: ProductoCarrito) => {
     setItems(prev => {
       const existing = prev.find(i => i.producto.id === producto.id);
       if (existing) {

@@ -2,7 +2,8 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { fetchProductoPorEAN, type ProductoDetalle } from '../../services/productos';
+import { fetchProductoPorEAN } from '../../services/productos';
+import type { ProductoDetalleEan as ProductoDetalle } from '@/features/productos/types';
 import { useCart } from '../../context/CartContext';
 import Link from 'next/link';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ResultadoOptimizacion, TotalPorSuper } from '../../utils/cartOptimizer';
+import type { ResultadoOptimizacion, TotalPorSuper } from '@/features/carrito/types';
 import FiltroSupermercados from './FiltroSupermercados';
 import SelectorMaxSupers from './SelectorMaxSupers';
 

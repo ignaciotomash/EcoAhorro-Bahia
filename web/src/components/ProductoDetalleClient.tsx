@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import type { ProductoDetalleData } from '../services/productoDetalle';
+import type { ProductoDetalleData } from '@/features/productos/types';
 
 export default function ProductoDetalleClient({ producto }: { producto: ProductoDetalleData }) {
   const { addToCart, items } = useCart();

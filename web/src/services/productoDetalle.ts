@@ -1,28 +1,6 @@
 import prisma from '../shared/lib/prisma';
 import { unstable_cache } from 'next/cache';
-
-export type HistorialEntry = {
-    fecha: string;
-    precioPromedio: number;
-    precioUSD?: number;
-    esReal: boolean;
-};
-
-export type ProductoDetalleData = {
-    ean: string;
-    nombre: string;
-    marca: string;
-    presentacion: string;
-    categoria: string;
-    imagen: string | null;
-    preciosPorSuper: {
-        supermercado: string;
-        precio: number;
-    }[];
-    historialPrecios: HistorialEntry[];
-    precioMinimo: number;
-    supermercadoMinimo: string;
-};
+import type { ProductoDetalleData, HistorialEntry } from '@/features/productos/types';
 
 async function _getProductoDetalle(ean: string): Promise<ProductoDetalleData | null> {
     const producto = await prisma.producto.findUnique({
@@ -56,7 +34,6 @@ async function _getProductoDetalle(ean: string): Promise<ProductoDetalleData | n
             precio: pu.precio,
         }))
         .sort((a, b) => a.precio - b.precio);
-    //Agrupa precios por cadena de supermercado. cada item en la estrctura tiene: |Supermercado, precio 
     const precioMinimo = preciosPorSuper[0]?.precio ?? 0;
     const supermercadoMinimo = preciosPorSuper[0]?.supermercado ?? '';
 

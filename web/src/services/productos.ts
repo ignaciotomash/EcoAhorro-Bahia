@@ -1,45 +1,8 @@
-// ============================================================
-// TIPOS
-// ============================================================
-
-export type Supermercado = {
-  idSucursal: number;
-  nombre: string;
-  ubicacionMaps: string;
-};
-
-export type PrecioSucursal = {
-  sucursal: Supermercado;
-  precio: number;
-};
-
-export type PreciosPorSuper = {
-  supermercado: string;
-  precios: PrecioSucursal[];
-};
-
-export type HistorialPrecio = {
-  fecha: string;
-  precioPromedio: number;
-};
-
-export type ProductoDetalle = {
-  ean: string;
-  categoria: string;
-  nombreProducto: string;
-  marca: string;
-  imagen?: string;
-  preciosPorSuper: PreciosPorSuper[];
-  historialPrecios: HistorialPrecio[];
-};
-
-// ============================================================
-// API REAL CON NEXT + PRISMA
-// ============================================================
+import type { ProductoDetalleEan } from '@/features/productos/types';
 
 export async function fetchProductoPorEAN(
   ean: string
-): Promise<ProductoDetalle | null> {
+): Promise<ProductoDetalleEan | null> {
 
   const response =
     await fetch(

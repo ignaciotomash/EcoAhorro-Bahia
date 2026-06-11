@@ -1,6 +1,6 @@
 'use client';
 
-type Supermercado = { id: string; nombre: string };
+import type { Supermercado } from '@/features/supermercados/types';
 
 type Props = {
   supermercados: Supermercado[];
