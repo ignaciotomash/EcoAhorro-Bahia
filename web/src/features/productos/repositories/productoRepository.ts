@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import prisma from '@/shared/lib/prisma';
 import type { RawProductoRow, ProductoFuzzyRaw } from '@/features/productos/types';
 
@@ -14,49 +15,51 @@ export async function findProductosRaw(
 ) {
   const skip = (page - 1) * limit;
 
-  const whereConditions: string[] = [];
+  const whereConditions: Prisma.Sql[] = [];
   if (categoriaIds.length > 0) {
-    whereConditions.push(`p."idCategoria" IN ('${categoriaIds.join("','")}')`);
+    whereConditions.push(Prisma.sql`p."idCategoria" IN (${Prisma.join(categoriaIds)})`);
   }
   if (fuzzyIds) {
-    whereConditions.push(`p.id IN ('${fuzzyIds.join("','")}')`);
+    whereConditions.push(Prisma.sql`p.id IN (${Prisma.join(fuzzyIds)})`);
   } else if (tieneSearch) {
-    const safeSearch = searchString.replace(/'/g, "''");
-    whereConditions.push(`p."nombreProducto" ILIKE '%${safeSearch}%'`);
+    whereConditions.push(Prisma.sql`p."nombreProducto" ILIKE ${'%' + searchString + '%'}`);
   }
-  const whereClause = whereConditions.length > 0 ? `WHERE ${whereConditions.join(' AND ')}` : '';
+  const whereClause = whereConditions.length > 0
+    ? Prisma.sql`WHERE ${Prisma.join(whereConditions, ' AND ')}`
+    : Prisma.empty;
 
   const hayFiltrosPrecio = !!sortBy || minPrice !== undefined || maxPrice !== undefined;
-  const havingConditions: string[] = [];
+  const havingConditions: Prisma.Sql[] = [];
   if (hayFiltrosPrecio) {
-    havingConditions.push(`MIN(pu.precio) > 0`);
+    havingConditions.push(Prisma.sql`MIN(pu.precio) > 0`);
   }
   if (minPrice !== undefined) {
-    havingConditions.push(`MIN(pu.precio) >= ${minPrice}`);
+    havingConditions.push(Prisma.sql`MIN(pu.precio) >= ${minPrice}`);
   }
   if (maxPrice !== undefined) {
-    havingConditions.push(`MIN(pu.precio) <= ${maxPrice}`);
+    havingConditions.push(Prisma.sql`MIN(pu.precio) <= ${maxPrice}`);
   }
-  const havingClause = havingConditions.length > 0 ? `HAVING ${havingConditions.join(' AND ')}` : '';
+  const havingClause = havingConditions.length > 0
+    ? Prisma.sql`HAVING ${Prisma.join(havingConditions, ' AND ')}`
+    : Prisma.empty;
 
-  let orderClause: string;
-  let finalOrderClause: string;
+  let orderClause: Prisma.Sql;
+  let finalOrderClause: Prisma.Sql;
   if (sortBy === 'price_desc') {
-    orderClause = 'ORDER BY min_precio DESC';
-    finalOrderClause = 'ORDER BY fp.min_precio DESC, pu.precio ASC';
+    orderClause = Prisma.sql`ORDER BY min_precio DESC`;
+    finalOrderClause = Prisma.sql`ORDER BY fp.min_precio DESC, pu.precio ASC`;
   } else if (sortBy === 'price_asc') {
-    orderClause = 'ORDER BY min_precio ASC';
-    finalOrderClause = 'ORDER BY fp.min_precio ASC, pu.precio ASC';
+    orderClause = Prisma.sql`ORDER BY min_precio ASC`;
+    finalOrderClause = Prisma.sql`ORDER BY fp.min_precio ASC, pu.precio ASC`;
   } else if (fuzzyIds) {
-    const idsList = fuzzyIds.map(id => `'${id}'`).join(',');
-    orderClause = `ORDER BY array_position(ARRAY[${idsList}]::text[], id)`;
-    finalOrderClause = `ORDER BY array_position(ARRAY[${idsList}]::text[], p.id), pu.precio ASC`;
+    orderClause = Prisma.sql`ORDER BY array_position(ARRAY[${Prisma.join(fuzzyIds)}]::text[], id)`;
+    finalOrderClause = Prisma.sql`ORDER BY array_position(ARRAY[${Prisma.join(fuzzyIds)}]::text[], p.id), pu.precio ASC`;
   } else {
-    orderClause = 'ORDER BY nombre_producto ASC';
-    finalOrderClause = 'ORDER BY p."nombreProducto" ASC, pu.precio ASC';
+    orderClause = Prisma.sql`ORDER BY nombre_producto ASC`;
+    finalOrderClause = Prisma.sql`ORDER BY p."nombreProducto" ASC, pu.precio ASC`;
   }
 
-  const mainQuery = `
+  const mainQuery = Prisma.sql`
     WITH filtered_products AS (
       SELECT 
         p.id,
@@ -91,7 +94,7 @@ export async function findProductosRaw(
     ${finalOrderClause}
   `;
 
-  return prisma.$queryRawUnsafe<RawProductoRow[]>(mainQuery);
+  return prisma.$queryRaw<RawProductoRow[]>(mainQuery);
 }
 
 export async function findCategoriaIdsByNamesOrIds(listaCategorias: string[]) {

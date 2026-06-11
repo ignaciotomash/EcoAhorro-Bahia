@@ -20,6 +20,8 @@ model Producto {
   PreciosUnificados PreciosUnificados[]
   CarritoItems      CarritoItem[]
   Categoria         Categoria           @relation(fields: [idCategoria], references: [id])
+
+  @@index([idCategoria])
 }
 
 model Supermercado {
@@ -39,6 +41,8 @@ model Sucursal {
   supermercadoId String
 
   Supermercado   Supermercado @relation(fields: [supermercadoId], references: [id])
+
+  @@index([supermercadoId])
 }
 
 model HistorialPrecios {
@@ -48,6 +52,7 @@ model HistorialPrecios {
 
   Producto       Producto @relation(fields: [id], references: [id])
   @@id([id, fechaGuardado])
+  @@index([id])
 }
 
 model precioDolar {
@@ -70,7 +75,11 @@ model PreciosUnificados {
   actualizacion  DateTime     @default(now())
 
   Producto       Producto     @relation(fields: [idProducto], references: [id])
-  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id])  
+  Supermercado   Supermercado @relation(fields: [idSupermercado], references: [id])
+
+  @@index([idProducto])
+  @@index([idSupermercado])
+  @@index([precio])
 }
 
 model Usuario {
