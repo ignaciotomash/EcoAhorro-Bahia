@@ -14,7 +14,14 @@ export default async function CatalogoPage({
   const searchQuery = params.search || '';
   const limit = 24;
 
-  const categorias = await getCategorias();
+  const categoriasPromise = getCategorias();
+
+  const productosPromise = queryCategorias.length === 0
+    ? getProductosCatalogo(currentPage, limit, undefined, undefined, undefined, undefined, searchQuery)
+    : Promise.resolve(null);
+
+  const [categorias, initialData] = await Promise.all([categoriasPromise, productosPromise]);
+
   const selectedCategorias = queryCategorias
     .map((value) => {
       const match = categorias.find(cat => cat.id === value || cat.nombre === value);
@@ -22,7 +29,7 @@ export default async function CatalogoPage({
     })
     .filter((id): id is string => Boolean(id));
 
-  const initialData = await getProductosCatalogo(
+  const resolvedInitialData = initialData ?? await getProductosCatalogo(
     currentPage,
     limit,
     selectedCategorias.length > 0 ? selectedCategorias : undefined,
@@ -36,7 +43,7 @@ export default async function CatalogoPage({
     <CatalogoClient
       categorias={categorias}
       initialSelectedCategorias={selectedCategorias}
-      initialData={initialData}
+      initialData={resolvedInitialData}
       initialPage={currentPage}
       initialSearch={searchQuery}
     />
