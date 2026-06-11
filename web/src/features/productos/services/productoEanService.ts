@@ -1,6 +1,7 @@
+import { unstable_cache } from 'next/cache';
 import prisma from '@/shared/lib/prisma';
 
-export async function getProductoEanResponse(ean: string) {
+async function _getProductoEanResponse(ean: string) {
   const producto = await prisma.producto.findUnique({
     where: { id: ean },
     include: {
@@ -41,3 +42,9 @@ export async function getProductoEanResponse(ean: string) {
     preciosPorSuper: Object.values(preciosAgrupados),
   };
 }
+
+export const getProductoEanResponse = unstable_cache(
+  _getProductoEanResponse,
+  ['producto-ean'],
+  { revalidate: 3600, tags: ['productos'] }
+);

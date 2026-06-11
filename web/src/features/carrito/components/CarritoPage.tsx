@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/features/carrito/context/CartContext';
 import { calcularTotalesPorSuper, optimizarCarrito } from '@/features/carrito/services/cartOptimizer';
@@ -9,27 +9,15 @@ import type { Supermercado } from '@/features/supermercados/types';
 import CarritoSidebar from './CarritoSidebar';
 import AuthCartPrompt from '@/features/auth/components/AuthCartPrompt';
 
-export default function CarritoPage() {
+export default function CarritoPage({ supermercados }: { supermercados: Supermercado[] }) {
   const { items, isLoadingCart, removeFromCart, updateCantidad, clearCart } = useCart();
 
-  const [supermercados, setSupermercados] = useState<Supermercado[]>([]);
-  const [seleccionados, setSeleccionados] = useState<string[]>([]);
-  const [aplicados, setAplicados] = useState<string[]>([]);
+  const [seleccionados, setSeleccionados] = useState<string[]>(() => supermercados.map(s => s.nombre));
+  const [aplicados, setAplicados] = useState<string[]>(() => supermercados.map(s => s.nombre));
   const [maxSupers, setMaxSupers] = useState<number | null>(null);
   const [maxSupersAplicado, setMaxSupersAplicado] = useState<number | null>(null);
   const [hayCambios, setHayCambios] = useState(false);
   const [supersAbiertos, setSupersAbiertos] = useState<Set<string>>(new Set());
-
-  useEffect(() => {
-    fetch('/api/supermercados')
-      .then(res => res.json())
-      .then((data: Supermercado[]) => {
-        setSupermercados(data);
-        const nombres = data.map(s => s.nombre);
-        setSeleccionados(nombres);
-        setAplicados(nombres);
-      });
-  }, []);
 
   const detectarCambios = (nuevosSeleccionados: string[], nuevoMax: number | null) => {
     const seleccionadosCambiaron =
