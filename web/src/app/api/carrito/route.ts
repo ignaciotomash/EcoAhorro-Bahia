@@ -1,21 +1,10 @@
-import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
-import { apiErrorResponse } from '../../../lib/api-error';
-import { prisma } from '../../../lib/prisma';
-import { getCurrentUsuario } from '../../../lib/usuarios';
+import { apiErrorResponse } from '@/shared/lib/api-error';
+import { getOrCreateCarrito, findCartItems, clearCartItems } from '@/features/carrito/repositories/carritoRepository';
+import type { CartItemWithProduct } from '@/features/carrito/repositories/carritoRepository';
+import { getCurrentUsuario } from '@/features/auth/services/usuarioService';
 
-async function getOrCreateCarrito(usuarioId: string) {
-  return prisma.carrito.upsert({
-    where: { usuarioId },
-    create: {
-      id: randomUUID(),
-      usuarioId,
-    },
-    update: {},
-  });
-}
-
-function formatCart(items: Awaited<ReturnType<typeof findCartItems>>) {
+function formatCart(items: CartItemWithProduct[]) {
   return {
     items: items.map(item => ({
       producto: {
@@ -36,29 +25,6 @@ function formatCart(items: Awaited<ReturnType<typeof findCartItems>>) {
   };
 }
 
-async function findCartItems(carritoId: string) {
-  return prisma.carritoItem.findMany({
-    where: { carritoId },
-    include: {
-      Producto: {
-        include: {
-          Categoria: true,
-          PreciosUnificados: {
-            include: {
-              Supermercado: true,
-            },
-          },
-        },
-      },
-    },
-    orderBy: {
-      Producto: {
-        nombreProducto: 'asc',
-      },
-    },
-  });
-}
-
 export async function GET() {
   try {
     const usuario = await getCurrentUsuario();
@@ -74,7 +40,11 @@ export async function GET() {
     const carrito = await getOrCreateCarrito(usuario.id);
     const items = await findCartItems(carrito.id);
 
-    return NextResponse.json(formatCart(items));
+    return NextResponse.json(formatCart(items), {
+      headers: {
+        'Cache-Control': 'private, no-store',
+      },
+    });
   } catch (error) {
     console.error('[carrito] Error:', error);
 
@@ -99,12 +69,13 @@ export async function DELETE() {
     }
 
     const carrito = await getOrCreateCarrito(usuario.id);
+    await clearCartItems(carrito.id);
 
-    await prisma.carritoItem.deleteMany({
-      where: { carritoId: carrito.id },
+    return NextResponse.json({ ok: true }, {
+      headers: {
+        'Cache-Control': 'private, no-store',
+      },
     });
-
-    return NextResponse.json({ ok: true });
   } catch (error) {
     console.error('[carrito] Error:', error);
 

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { apiErrorResponse } from '@/lib/api-error';
-import { resolverBusqueda } from '@/lib/semanticResolver';
+import { apiErrorResponse } from '@/shared/lib/api-error';
+import { resolverBusqueda } from '@/features/productos/services/semanticResolver';
+
+export const revalidate = 3600;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -22,6 +24,10 @@ export async function GET(request: NextRequest) {
       query,
       total: productos.length,
       resultados: productos,
+    }, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+      },
     });
   } catch (error) {
     console.error('[search] Error:', error);
