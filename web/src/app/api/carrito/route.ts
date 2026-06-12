@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { apiErrorResponse } from '@/shared/lib/api-error';
 import { getOrCreateCarrito, findCartItems, clearCartItems } from '@/features/carrito/repositories/carritoRepository';
+import type { CartItemWithProduct } from '@/features/carrito/repositories/carritoRepository';
 import { getCurrentUsuario } from '@/features/auth/services/usuarioService';
 
-function formatCart(items: Awaited<ReturnType<typeof findCartItems>>) {
+function formatCart(items: CartItemWithProduct[]) {
   return {
     items: items.map(item => ({
       producto: {
