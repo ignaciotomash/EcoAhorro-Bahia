@@ -18,30 +18,43 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
   const [aplicados, setAplicados] = useState<string[]>(() => supermercados.map(s => s.nombre));
   const [maxSupers, setMaxSupers] = useState<number | null>(null);
   const [maxSupersAplicado, setMaxSupersAplicado] = useState<number | null>(null);
+  const [soloCompletas, setSoloCompletas] = useState(false);
+  const [soloCompletasAplicado, setSoloCompletasAplicado] = useState(false);
   const [hayCambios, setHayCambios] = useState(false);
   const [supersAbiertos, setSupersAbiertos] = useState<Set<string>>(new Set());
 
-  const detectarCambios = (nuevosSeleccionados: string[], nuevoMax: number | null) => {
+  const detectarCambios = (
+    nuevosSeleccionados: string[],
+    nuevoMax: number | null,
+    nuevoSoloCompletas: boolean
+  ) => {
     const seleccionadosCambiaron =
       nuevosSeleccionados.length !== aplicados.length ||
       nuevosSeleccionados.some(s => !aplicados.includes(s));
     const maxCambio = nuevoMax !== maxSupersAplicado;
-    setHayCambios(seleccionadosCambiaron || maxCambio);
+    const soloCompletasCambio = nuevoSoloCompletas !== soloCompletasAplicado;
+    setHayCambios(seleccionadosCambiaron || maxCambio || soloCompletasCambio);
   };
 
   const handleFiltroChange = (nuevos: string[]) => {
     setSeleccionados(nuevos);
-    detectarCambios(nuevos, maxSupers);
+    detectarCambios(nuevos, maxSupers, soloCompletas);
   };
 
   const handleMaxSupersChange = (value: number | null) => {
     setMaxSupers(value);
-    detectarCambios(seleccionados, value);
+    detectarCambios(seleccionados, value, soloCompletas);
+  };
+
+  const handleSoloCompletasChange = (value: boolean) => {
+    setSoloCompletas(value);
+    detectarCambios(seleccionados, maxSupers, value);
   };
 
   const handleOptimizar = () => {
     setAplicados(seleccionados);
     setMaxSupersAplicado(maxSupers);
+    setSoloCompletasAplicado(soloCompletas);
     setHayCambios(false);
     setSupersAbiertos(new Set());
   };
@@ -56,9 +69,9 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
 
   const modoMulti = maxSupersAplicado !== null;
 
-  const resultadoMulti: ResultadoOptimizacion | null = modoMulti
-    ? optimizarCarrito(items, aplicados, maxSupersAplicado)
-    : null;
+  const { resultado: resultadoMulti, huboFallback: huboFallbackMulti } = modoMulti
+    ? optimizarCarrito(items, aplicados, maxSupersAplicado, soloCompletasAplicado)
+    : { resultado: null as ResultadoOptimizacion | null, huboFallback: false };
 
   const mapaAsignacion = new Map<string, { superNombre: string; precio: number }>();
   if (modoMulti && resultadoMulti) {
@@ -69,7 +82,9 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
     });
   }
 
-  const totalesPorSuper = !modoMulti ? calcularTotalesPorSuper(items, aplicados) : [];
+  const { resultados: totalesPorSuper, huboFallback: huboFallbackNormal } = !modoMulti
+    ? calcularTotalesPorSuper(items, aplicados, soloCompletasAplicado)
+    : { resultados: [], huboFallback: false };
 
   if (isLoadingCart) {
     return <CartSkeleton />;
@@ -191,11 +206,15 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
           onFiltroChange={handleFiltroChange}
           maxSupers={maxSupers}
           onMaxSupersChange={handleMaxSupersChange}
+          soloCompletas={soloCompletas}
+          onSoloCompletasChange={handleSoloCompletasChange}
           hayCambios={hayCambios}
           onOptimizar={handleOptimizar}
           modoMulti={modoMulti}
           resultadoMulti={resultadoMulti}
           totalesPorSuper={totalesPorSuper}
+          huboFallbackNormal={huboFallbackNormal}
+          huboFallbackMulti={huboFallbackMulti}
           supersAbiertos={supersAbiertos}
           onToggleSuper={handleToggleSuper}
         />

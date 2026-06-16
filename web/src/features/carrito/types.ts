@@ -35,9 +35,16 @@ export type CartContextType = {
 // OPTIMIZACIÓN — tipos para el optimizador (cartOptimizer.ts)
 // ============================================================
 
+export type ProductoFaltante = {
+  id: string;
+  nombre: string;
+  imagen?: string;
+};
+
 export type TotalPorSuper = {
   nombre: string;
   total: number;
+  faltantes: ProductoFaltante[];
 };
 
 export type ProductoEnSuper = {
@@ -59,4 +66,5 @@ export type SupermercadoResultado = {
 export type ResultadoOptimizacion = {
   supermercados: SupermercadoResultado[];
   totalGeneral: number;
+  faltantes: ProductoFaltante[];
 };
