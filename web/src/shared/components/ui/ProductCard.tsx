@@ -1,16 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/features/carrito/context/CartContext';
+import { useUser, SignInButton } from '@clerk/nextjs';
 
 import { formatearNombreCategoria } from '../../utils/format';
 
 export default React.memo(function ProductCard({ producto }: { producto: any }) {
   const { addToCart, items } = useCart();
+  const { isSignedIn, isLoaded } = useUser();
   const [added, setAdded] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [showAuthWarning, setShowAuthWarning] = useState(false);
+
+  useEffect(() => {
+    if (!showAuthWarning) return;
+    const t = setTimeout(() => setShowAuthWarning(false), 3000);
+    return () => clearTimeout(t);
+  }, [showAuthWarning]);
 
   const precioMasBajo = producto.precios?.[0];
   const otrosPrecios = producto.precios?.slice(1) || [];
@@ -21,6 +30,7 @@ export default React.memo(function ProductCard({ producto }: { producto: any }) 
     e.preventDefault();
     e.stopPropagation();
     if (!tienePrecionValido) return;
+    if (isLoaded && !isSignedIn) { setShowAuthWarning(true); return; }
     addToCart(producto);
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
@@ -133,6 +143,27 @@ export default React.memo(function ProductCard({ producto }: { producto: any }) 
           )}
         </button>
       </div>
+
+        {showAuthWarning && (
+          <div className="fixed top-4 left-0 right-0 flex justify-center z-[999] pointer-events-none">
+            <div className="px-4 md:px-6 py-2 md:py-3 rounded-lg text-[10px] md:text-xs font-semibold text-white shadow-lg animate-fadeIn pointer-events-auto flex items-center gap-3"
+              style={{ backgroundColor: '#1A237E' }}>
+              <span>Necesitás iniciar sesión para agregar productos al carrito</span>
+              <SignInButton mode="modal">
+                <button type="button" className="font-black underline whitespace-nowrap">
+                  Iniciar sesión
+                </button>
+              </SignInButton>
+            </div>
+            <style>{`
+              @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+              }
+              .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+            `}</style>
+          </div>
+        )}
     </div>
   );
 });

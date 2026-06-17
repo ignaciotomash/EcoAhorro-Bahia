@@ -99,7 +99,7 @@ export default function Navbar() {
                   </span>
                 )}
               </span>
-              {totalItems > 0 ? `${totalItems} PRODUCTO${totalItems !== 1 ? 'S' : ''}` : 'Mi carrito'}
+              {totalItems > 0 ? 'Carrito' : 'Mi carrito'}
             </Link>
           )}
 

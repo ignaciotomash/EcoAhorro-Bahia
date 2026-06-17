@@ -6,14 +6,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/features/carrito/context/CartContext';
+import { useUser, SignInButton } from '@clerk/nextjs';
 import type { ProductoDetalleData } from '@/features/productos/types';
 import { formatearNombreCategoria } from '@/shared/utils/format';
 
 export default function ProductoDetalleClient({ producto }: { producto: ProductoDetalleData }) {
   const { addToCart, items } = useCart();
+  const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
   const [added, setAdded] = useState(false);
   const [mostrarEnUSD, setMostrarEnUSD] = useState(false);
+  const [showAuthWarning, setShowAuthWarning] = useState(false);
+
+  useEffect(() => {
+    if (!showAuthWarning) return;
+    const t = setTimeout(() => setShowAuthWarning(false), 3000);
+    return () => clearTimeout(t);
+  }, [showAuthWarning]);
   const categoriaFormateada = formatearNombreCategoria(producto.categoria);
 
   const [inflacion, setInflacion] = useState<{ fecha: string; valor: number }[] | null>(null);
@@ -36,6 +45,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   }, []);
 
   const handleAdd = () => {
+    if (isLoaded && !isSignedIn) { setShowAuthWarning(true); return; }
     addToCart({
       id: producto.ean,
       nombre: producto.nombre,
@@ -425,6 +435,27 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
             {tooltip.label}
           </div>
         )}
+
+      {showAuthWarning && (
+        <div className="fixed top-4 left-0 right-0 flex justify-center z-[999] pointer-events-none">
+          <div className="px-4 md:px-6 py-2 md:py-3 rounded-lg text-[10px] md:text-xs font-semibold text-white shadow-lg animate-fadeIn pointer-events-auto flex items-center gap-3"
+            style={{ backgroundColor: '#1A237E' }}>
+            <span>Necesitás iniciar sesión para agregar productos al carrito</span>
+            <SignInButton mode="modal">
+              <button type="button" className="font-black underline whitespace-nowrap">
+                Iniciar sesión
+              </button>
+            </SignInButton>
+          </div>
+          <style>{`
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(-10px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+          `}</style>
+        </div>
+      )}
       </div>
     </main>
   );

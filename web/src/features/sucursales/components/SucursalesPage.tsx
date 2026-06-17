@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import { MapPin } from 'lucide-react';
 import SucursalesMapSkeleton from '@/shared/components/ui/SucursalesMapSkeleton';
 
 const MapaSucursales = dynamic(() => import('./MapaSucursales'), {
@@ -45,7 +46,7 @@ export default function SucursalesPage({ sucursales: todasLasSucursales }: { suc
         onClick={handleGetLocation}
         className="mb-6 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-md flex items-center gap-2"
       >
-        📍 Usar mi ubicación actual
+        <MapPin size={18} /> Usar mi ubicación actual
       </button>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

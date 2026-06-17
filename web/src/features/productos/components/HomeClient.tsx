@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Store, Package, Zap } from 'lucide-react';
 import ProductCard from '../../../shared/components/ui/ProductCard';
 
 export default function HomeClient({ productosLocales, totalProductos, totalSupermercados }: { productosLocales: any[]; totalProductos: number; totalSupermercados: number }) {
@@ -26,10 +27,7 @@ export default function HomeClient({ productosLocales, totalProductos, totalSupe
 
           {/* Izquierda: texto */}
           <div className="flex-1 text-center md:text-left">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-semibold mb-2 md:mb-4"
-              style={{ backgroundColor: 'rgba(255,107,53,0.2)', color: '#FFCBB5' }}>
-              🏪 Bahía Blanca · {totalSupermercados} Supermercado{totalSupermercados !== 1 ? 's' : ''}
-            </div>
+
             <h1 className="text-2xl md:text-5xl font-black text-white leading-tight mb-1.5 md:mb-3"
               style={{ fontFamily: "'Oswald', sans-serif" }}>
               COMPARÁ PRECIOS.<br />
@@ -74,9 +72,9 @@ export default function HomeClient({ productosLocales, totalProductos, totalSupe
       {/* STATS BAR */}
       <div className="border-b" style={{ backgroundColor: '#FAFAFA', borderColor: '#E5E7EB' }}>
         <div className="max-w-5xl mx-auto px-4 py-2 md:py-3 flex flex-wrap gap-x-4 md:gap-x-6 gap-y-0.5 text-[10px] md:text-sm text-gray-500 font-medium">
-          <span>🏪 <strong className="text-gray-700">{totalSupermercados}</strong> Supermercados</span>
-          <span>📦 <strong className="text-gray-700">{totalProductos}</strong> Productos</span>
-          <span>⚡ Precios actualizados</span>
+          <span><Store size={14} className="inline-block mr-1" /><strong className="text-gray-700">{totalSupermercados}</strong> Supermercados</span>
+          <span><Package size={14} className="inline-block mr-1" /><strong className="text-gray-700">{totalProductos}</strong> Productos</span>
+          <span><Zap size={14} className="inline-block mr-1" />Precios actualizados</span>
         </div>
       </div>
 

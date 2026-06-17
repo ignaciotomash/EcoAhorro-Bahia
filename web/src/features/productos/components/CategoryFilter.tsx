@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useTransition } from 'react';
+import { Tag } from 'lucide-react';
 import { formatearNombreCategoria } from '../../../shared/utils/format';
 
 export default function CategoryFilter({
@@ -60,7 +61,7 @@ export default function CategoryFilter({
             {isPending ? (
               <div className="w-4 h-4 border-2 border-[#FF6B35] border-t-transparent rounded-full animate-spin"></div>
             ) : (
-              <span className="text-[#FF6B35]">🏷️</span>
+              <Tag size={16} className="text-[#FF6B35]" />
             )}
             {currentCategorias.length === 0 
               ? 'Todas las categorías' 

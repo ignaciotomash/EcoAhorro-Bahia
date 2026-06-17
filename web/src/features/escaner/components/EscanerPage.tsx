@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { fetchProductoPorEAN } from '@/features/productos/services/productoEanClient';
 import type { ProductoDetalleEan as ProductoDetalle } from '@/features/productos/types';
 import { useCart } from '@/features/carrito/context/CartContext';
+import { useUser, SignInButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import EscanerSkeleton from '@/shared/components/ui/EscanerSkeleton';
 
@@ -27,11 +28,19 @@ export default function EscanerPage() {
   const [producto, setProducto] = useState<ProductoDetalle | null>(null);
   const [added, setAdded] = useState(false);
   const { addToCart, items } = useCart();
+  const { isSignedIn, isLoaded } = useUser();
+  const [showAuthWarning, setShowAuthWarning] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    if (!showAuthWarning) return;
+    const t = setTimeout(() => setShowAuthWarning(false), 3000);
+    return () => clearTimeout(t);
+  }, [showAuthWarning]);
 
   const buscarProducto = useCallback(async (ean: string) => {
     if (!ean.trim()) return;
@@ -52,6 +61,7 @@ export default function EscanerPage() {
 
   const handleAddToCart = () => {
     if (!producto) return;
+    if (isLoaded && !isSignedIn) { setShowAuthWarning(true); return; }
     const preciosOrdenados = producto.preciosPorSuper
       .map(s => ({ super: SUPER_LABELS[s.supermercado] ?? s.supermercado, valor: Math.min(...s.precios.map(p => p.precio)) }))
       .sort((a, b) => a.valor - b.valor);
@@ -261,6 +271,27 @@ export default function EscanerPage() {
       </div>
 
       {showScanner && <BarcodeScanner onDetected={handleScanDetected} onClose={() => setShowScanner(false)} />}
+
+      {showAuthWarning && (
+        <div className="fixed top-4 left-0 right-0 flex justify-center z-[999] pointer-events-none">
+          <div className="px-4 md:px-6 py-2 md:py-3 rounded-lg text-[10px] md:text-xs font-semibold text-white shadow-lg animate-fadeIn pointer-events-auto flex items-center gap-3"
+            style={{ backgroundColor: '#1A237E' }}>
+            <span>Necesitás iniciar sesión para agregar productos al carrito</span>
+            <SignInButton mode="modal">
+              <button type="button" className="font-black underline whitespace-nowrap">
+                Iniciar sesión
+              </button>
+            </SignInButton>
+          </div>
+          <style>{`
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(-10px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+          `}</style>
+        </div>
+      )}
     </div>
   );
 }
