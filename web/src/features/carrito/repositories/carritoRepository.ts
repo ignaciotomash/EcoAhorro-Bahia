@@ -1,6 +1,25 @@
 import { randomUUID } from 'crypto';
 import prisma from '@/shared/lib/prisma';
 
+export type CartItemWithProduct = {
+  cantidad: number;
+  Producto: {
+    id: string;
+    nombreProducto: string;
+    marca: string;
+    imagen: string | null;
+    Categoria: {
+      nombre: string;
+    } | null;
+    PreciosUnificados: {
+      precio: number;
+      Supermercado: {
+        nombre: string;
+      };
+    }[];
+  };
+};
+
 export async function getOrCreateCarrito(usuarioId: string) {
   return prisma.carrito.upsert({
     where: { usuarioId },
@@ -9,7 +28,7 @@ export async function getOrCreateCarrito(usuarioId: string) {
   });
 }
 
-export async function findCartItems(carritoId: string) {
+export async function findCartItems(carritoId: string): Promise<CartItemWithProduct[]> {
   return prisma.carritoItem.findMany({
     where: { carritoId },
     include: {
