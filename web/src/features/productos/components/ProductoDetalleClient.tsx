@@ -17,6 +17,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const [added, setAdded] = useState(false);
   const [mostrarEnUSD, setMostrarEnUSD] = useState(false);
   const [showAuthWarning, setShowAuthWarning] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (!showAuthWarning) return;
@@ -150,6 +151,8 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
     };
   });
 
+  const mejorPrecio = producto.preciosPorSuper[0]?.precio ?? 0;
+
   return (
     <main className="min-h-screen bg-white">
       <div className="max-w-6xl mx-auto">
@@ -195,27 +198,42 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               </div>
 
               <div className="mt-4 md:mt-6 space-y-2.5">
-                {producto.preciosPorSuper.map((p, i) => (
-                  <div
-                    key={p.supermercado}
-                    className={`flex items-center justify-between p-3 md:p-4 rounded-xl border transition-all ${i === 0
-                      ? 'bg-green-50 border-green-200 shadow-sm'
-                      : 'bg-gray-50 border-gray-100'
-                      }`}
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="text-xs md:text-sm font-semibold text-gray-700 truncate">{p.supermercado}</span>
-                      {i === 0 && (
-                        <span className="text-[9px] md:text-[10px] font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded-full whitespace-nowrap">
-                          Mejor precio
+                {producto.preciosPorSuper.map((p, i) => {
+                  const diff = i > 0 ? Math.round(((p.precio - mejorPrecio) / mejorPrecio) * 100) : 0;
+                  const isHovered = hoveredIndex === i;
+                  return (
+                    <div
+                      key={p.supermercado}
+                      onPointerEnter={() => setHoveredIndex(i)}
+                      onPointerLeave={() => setHoveredIndex(null)}
+                      className={`flex items-center justify-between p-3 md:p-4 rounded-xl border transition-all cursor-pointer ${i === 0
+                        ? 'bg-green-50 border-green-200 shadow-sm'
+                        : isHovered
+                          ? 'bg-red-50 border-red-300 shadow-sm'
+                          : 'bg-gray-50 border-gray-100'
+                        }`}
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className={`text-xs md:text-sm font-semibold truncate ${i > 0 && isHovered ? 'text-red-700' : 'text-gray-700'}`}>
+                          {p.supermercado}
                         </span>
-                      )}
+                        {i === 0 && (
+                          <span className="text-[9px] md:text-[10px] font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded-full whitespace-nowrap">
+                            Mejor precio
+                          </span>
+                        )}
+                        {i > 0 && isHovered && (
+                          <span className="text-[9px] md:text-[10px] font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded-full whitespace-nowrap">
+                            +{diff}%
+                          </span>
+                        )}
+                      </div>
+                      <span className={`text-lg md:text-2xl font-black ml-3 ${i > 0 && isHovered ? 'text-red-700' : 'text-gray-900'}`} style={{ fontFamily: "'Oswald', sans-serif" }}>
+                        ${p.precio.toLocaleString('es-AR')}
+                      </span>
                     </div>
-                    <span className="text-lg md:text-2xl font-black text-gray-900 ml-3" style={{ fontFamily: "'Oswald', sans-serif" }}>
-                      ${p.precio.toLocaleString('es-AR')}
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
