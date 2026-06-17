@@ -102,7 +102,7 @@ export default function ComparativaNormal({ totalesPorSuper, huboFallback }: Pro
           );
         })}
       </div>
-      <p className="text-[10px] text-gray-300 text-center">* Precio estimado si el producto no está disponible en algún supermercado.</p>
+      <p className="text-[10px] text-gray-400 text-center">* Precio estimado si el producto no está disponible en algún supermercado.</p>
     </>
   );
 }

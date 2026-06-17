@@ -16,8 +16,8 @@ interface CarritoSidebarProps {
   onFiltroChange: (nuevos: string[]) => void;
 
   // Max supermercados
-  maxSupers: number | null;
-  onMaxSupersChange: (value: number | null) => void;
+  maxSupers: number;
+  onMaxSupersChange: (value: number) => void;
 
   // Solo combinaciones completas
   soloCompletas: boolean;

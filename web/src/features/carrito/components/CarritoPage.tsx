@@ -17,8 +17,8 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
 
   const [seleccionados, setSeleccionados] = useState<string[]>(() => supermercados.map(s => s.nombre));
   const [aplicados, setAplicados] = useState<string[]>(() => supermercados.map(s => s.nombre));
-  const [maxSupers, setMaxSupers] = useState<number | null>(null);
-  const [maxSupersAplicado, setMaxSupersAplicado] = useState<number | null>(null);
+  const [maxSupers, setMaxSupers] = useState<number>(1);
+  const [maxSupersAplicado, setMaxSupersAplicado] = useState<number>(1);
   const [soloCompletas, setSoloCompletas] = useState(false);
   const [soloCompletasAplicado, setSoloCompletasAplicado] = useState(false);
   const [hayCambios, setHayCambios] = useState(false);
@@ -26,7 +26,7 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
 
   const detectarCambios = (
     nuevosSeleccionados: string[],
-    nuevoMax: number | null,
+    nuevoMax: number,
     nuevoSoloCompletas: boolean
   ) => {
     const seleccionadosCambiaron =
@@ -42,7 +42,7 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
     detectarCambios(nuevos, maxSupers, soloCompletas);
   };
 
-  const handleMaxSupersChange = (value: number | null) => {
+  const handleMaxSupersChange = (value: number) => {
     setMaxSupers(value);
     detectarCambios(seleccionados, value, soloCompletas);
   };
@@ -68,7 +68,9 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
     });
   };
 
-  const modoMulti = maxSupersAplicado !== null;
+  // "1 supermercado" ES el modo normal (comparar cada super por separado).
+  // El modo multi (búsqueda de combinaciones) solo aplica para 2 o más.
+  const modoMulti = maxSupersAplicado > 1;
 
   const { resultado: resultadoMulti, huboFallback: huboFallbackMulti } = modoMulti
     ? optimizarCarrito(items, aplicados, maxSupersAplicado, soloCompletasAplicado)
