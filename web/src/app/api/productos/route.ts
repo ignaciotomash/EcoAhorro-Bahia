@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getProductosCatalogo } from '@/features/productos/services/catalogoService';
 import { apiErrorResponse } from '@/shared/lib/api-error';
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 const SORT_OPTIONS = new Set(['price_asc', 'price_desc']);
 

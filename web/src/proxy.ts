@@ -12,7 +12,6 @@ const isInternalApiRoute = createRouteMatcher([
 ]);
 
 const isProtectedRoute = createRouteMatcher([
-  '/carrito(.*)',
   '/api/carrito(.*)',
 ]);
 
