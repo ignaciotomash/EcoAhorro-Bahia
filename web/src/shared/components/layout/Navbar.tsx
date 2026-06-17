@@ -5,11 +5,15 @@ import { SignInButton, SignUpButton, UserButton, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useCart } from '@/features/carrito/context/CartContext';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isSignedIn } = useUser();
+  const { isLoaded, isSignedIn } = useUser();
+  const { totalItems, isLoadingCart } = useCart();
+  const isResolvingCart = !isLoaded || isLoadingCart;
+  const cartHref = isLoaded && !isSignedIn ? '/carrito/acceso' : '/carrito';
 
   const links = [
     { href: '/', label: 'Inicio' },
@@ -63,6 +67,41 @@ export default function Navbar() {
             </svg>
             Escáner
           </Link>
+
+          {isResolvingCart ? (
+            <button
+              type="button"
+              disabled
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-white transition-all disabled:cursor-wait"
+              style={{ backgroundColor: '#1A237E', fontFamily: "'Oswald', sans-serif", letterSpacing: '0.3px' }}
+              aria-label="Cargando carrito"
+            >
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/35 border-t-white" />
+              Carrito
+            </button>
+          ) : (
+            <Link
+              href={cartHref}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-white transition-all hover:opacity-90"
+              style={{ backgroundColor: '#1A237E', fontFamily: "'Oswald', sans-serif", letterSpacing: '0.3px' }}
+              aria-label="Ver carrito"
+            >
+              <span className="relative flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                {totalItems > 0 && (
+                  <span
+                    className="absolute -top-2 -right-2 h-4 min-w-4 rounded-full px-1 text-[9px] font-black leading-4 text-white border border-white text-center"
+                    style={{ backgroundColor: '#FF6B35' }}
+                  >
+                    {totalItems > 9 ? '9+' : totalItems}
+                  </span>
+                )}
+              </span>
+              {totalItems > 0 ? `${totalItems} PRODUCTO${totalItems !== 1 ? 'S' : ''}` : 'Mi carrito'}
+            </Link>
+          )}
 
           <div className="ml-3 flex items-center gap-2">
             {!isSignedIn && (

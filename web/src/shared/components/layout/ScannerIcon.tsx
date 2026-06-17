@@ -1,8 +1,18 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useCatalogPaginationVisibility } from '@/shared/hooks/useCatalogPaginationVisibility';
 
 export default function ScannerIcon() {
+  const pathname = usePathname();
+  const isCatalogPaginationVisible = useCatalogPaginationVisibility();
+  const isScannerRoute = pathname.startsWith('/escaner');
+
+  if (isScannerRoute || isCatalogPaginationVisible) {
+    return null;
+  }
+
   return (
     <Link
       href="/escaner"

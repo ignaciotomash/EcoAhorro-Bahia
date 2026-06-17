@@ -79,12 +79,6 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
           >
             Volver
           </button>
-          <Link
-            href="/catalogo"
-            className="text-xs md:text-sm font-semibold text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            Ir al catalogo
-          </Link>
         </div>
 
         {/* HERO */}
