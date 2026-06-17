@@ -49,7 +49,7 @@ export default function SucursalesPage({ sucursales: todasLasSucursales }: { suc
       </button>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 shadow-xl border rounded-2xl overflow-hidden">
+        <div className="relative z-0 md:col-span-2 shadow-xl border rounded-2xl overflow-hidden">
           <MapaSucursales
             sucursales={todasLasSucursales}
             userLocation={userLocation}

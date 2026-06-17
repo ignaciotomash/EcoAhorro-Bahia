@@ -16,7 +16,7 @@ export default memo(function CartIcon() {
   const [pulse, setPulse] = useState(false);
   const isResolvingCart = !isLoaded || isLoadingCart;
   const cartHref = isLoaded && !isSignedIn ? '/carrito/acceso' : '/carrito';
-  const className = 'fixed bottom-4 right-4 z-50 flex md:hidden items-center gap-2 text-white px-3 py-2.5 rounded-xl font-bold text-xs transition-all duration-200';
+  const className = 'fixed bottom-4 right-4 z-[1200] flex md:hidden items-center gap-2 text-white px-3 py-2.5 rounded-xl font-bold text-xs transition-all duration-200';
   const style = {
     backgroundColor: '#1A237E',
     boxShadow: '0 4px 20px rgba(26,35,126,0.35)',

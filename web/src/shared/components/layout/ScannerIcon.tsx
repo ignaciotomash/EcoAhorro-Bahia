@@ -17,7 +17,7 @@ export default function ScannerIcon() {
     <Link
       href="/escaner"
       aria-label="Abrir escaner"
-      className="fixed bottom-4 left-4 z-50 flex md:hidden items-center gap-2 text-white px-3 py-2.5 rounded-xl font-bold text-xs transition-all duration-200 hover:opacity-90"
+      className="fixed bottom-4 left-4 z-[1200] flex md:hidden items-center gap-2 text-white px-3 py-2.5 rounded-xl font-bold text-xs transition-all duration-200 hover:opacity-90"
       style={{
         backgroundColor: '#FF6B35',
         boxShadow: '0 4px 20px rgba(255,107,53,0.35)',
