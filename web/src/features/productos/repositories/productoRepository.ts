@@ -43,20 +43,28 @@ export async function findProductosRaw(
     ? Prisma.sql`HAVING ${Prisma.join(havingConditions, ' AND ')}`
     : Prisma.empty;
 
+  const priorizarComparables = categoriaIds.length > 0;
+  const comparablesOrder = priorizarComparables
+    ? Prisma.sql`(super_count >= 2) DESC, super_count DESC,`
+    : Prisma.empty;
+  const finalComparablesOrder = priorizarComparables
+    ? Prisma.sql`fp.super_count DESC,`
+    : Prisma.empty;
+
   let orderClause: Prisma.Sql;
   let finalOrderClause: Prisma.Sql;
   if (sortBy === 'price_desc') {
-    orderClause = Prisma.sql`ORDER BY min_precio DESC`;
-    finalOrderClause = Prisma.sql`ORDER BY fp.min_precio DESC, pu.precio ASC`;
+    orderClause = Prisma.sql`ORDER BY min_precio DESC, ${comparablesOrder} nombre_producto ASC`;
+    finalOrderClause = Prisma.sql`ORDER BY fp.min_precio DESC, ${finalComparablesOrder} p."nombreProducto" ASC, pu.precio ASC`;
   } else if (sortBy === 'price_asc') {
-    orderClause = Prisma.sql`ORDER BY min_precio ASC`;
-    finalOrderClause = Prisma.sql`ORDER BY fp.min_precio ASC, pu.precio ASC`;
+    orderClause = Prisma.sql`ORDER BY min_precio ASC, ${comparablesOrder} nombre_producto ASC`;
+    finalOrderClause = Prisma.sql`ORDER BY fp.min_precio ASC, ${finalComparablesOrder} p."nombreProducto" ASC, pu.precio ASC`;
   } else if (fuzzyIds) {
-    orderClause = Prisma.sql`ORDER BY array_position(ARRAY[${Prisma.join(fuzzyIds)}]::text[], id)`;
-    finalOrderClause = Prisma.sql`ORDER BY array_position(ARRAY[${Prisma.join(fuzzyIds)}]::text[], p.id), pu.precio ASC`;
+    orderClause = Prisma.sql`ORDER BY array_position(ARRAY[${Prisma.join(fuzzyIds)}]::text[], id), ${comparablesOrder} nombre_producto ASC`;
+    finalOrderClause = Prisma.sql`ORDER BY array_position(ARRAY[${Prisma.join(fuzzyIds)}]::text[], p.id), ${finalComparablesOrder} p."nombreProducto" ASC, pu.precio ASC`;
   } else {
-    orderClause = Prisma.sql`ORDER BY nombre_producto ASC`;
-    finalOrderClause = Prisma.sql`ORDER BY p."nombreProducto" ASC, pu.precio ASC`;
+    orderClause = Prisma.sql`ORDER BY ${comparablesOrder} nombre_producto ASC`;
+    finalOrderClause = Prisma.sql`ORDER BY ${finalComparablesOrder} p."nombreProducto" ASC, pu.precio ASC`;
   }
 
   const mainQuery = Prisma.sql`
@@ -65,6 +73,7 @@ export async function findProductosRaw(
         p.id,
         p."nombreProducto" as nombre_producto,
         MIN(pu.precio) as min_precio,
+        COUNT(DISTINCT pu."idSupermercado") as super_count,
         COUNT(*) OVER() as total_count
       FROM "Producto" p
       LEFT JOIN "PreciosUnificados" pu ON p.id = pu."idProducto"
@@ -82,7 +91,7 @@ export async function findProductosRaw(
       pu.precio as "precioValor",
       s.nombre as "supermercadoNombre"
     FROM (
-      SELECT id, total_count, min_precio
+      SELECT id, total_count, min_precio, super_count
       FROM filtered_products
       ${orderClause}
       LIMIT ${limit} OFFSET ${skip}

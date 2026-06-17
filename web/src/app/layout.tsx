@@ -4,6 +4,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 import { CartProvider } from '@/features/carrito/context/CartContext';
 import CartIcon from '@/shared/components/layout/CartIcon';
+import ScannerIcon from '@/shared/components/layout/ScannerIcon';
 import ClerkUserSync from '@/features/auth/components/ClerkUserSync';
 import Navbar from '@/shared/components/layout/Navbar';
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartProvider>
             <Navbar />
             {children}
+            <ScannerIcon />
             <CartIcon />
           </CartProvider>
         </ClerkProvider>

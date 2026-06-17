@@ -2,13 +2,18 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCart } from '@/features/carrito/context/CartContext';
 import type { ProductoDetalleData } from '@/features/productos/types';
+import { formatearNombreCategoria } from '@/shared/utils/format';
 
 export default function ProductoDetalleClient({ producto }: { producto: ProductoDetalleData }) {
   const { addToCart, items } = useCart();
+  const router = useRouter();
   const [added, setAdded] = useState(false);
   const [mostrarEnUSD, setMostrarEnUSD] = useState(false);
+  const categoriaFormateada = formatearNombreCategoria(producto.categoria);
 
   const handleAdd = () => {
     addToCart({
@@ -66,6 +71,22 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   return (
     <main className="min-h-screen bg-white">
       <div className="max-w-6xl mx-auto">
+        <div className="flex items-center justify-between px-4 py-3 md:py-4">
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="text-xs md:text-sm font-semibold text-gray-500 hover:text-[#1A237E] transition-colors"
+          >
+            Volver
+          </button>
+          <Link
+            href="/catalogo"
+            className="text-xs md:text-sm font-semibold text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            Ir al catalogo
+          </Link>
+        </div>
+
         {/* HERO */}
         <div className="flex flex-col md:flex-row">
           {/* LEFT: Image */}
@@ -93,7 +114,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               <p className="text-[9px] md:text-[10px] font-mono text-gray-300 mt-1">EAN: {producto.ean}</p>
               <div className="mt-3 md:mt-4">
                 <span className="inline-block text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-lg bg-gray-900/5 text-gray-600">
-                  {producto.categoria}
+                  {categoriaFormateada}
                 </span>
               </div>
 

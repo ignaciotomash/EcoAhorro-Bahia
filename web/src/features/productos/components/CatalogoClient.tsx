@@ -7,6 +7,62 @@ import ProductCard from '../../../shared/components/ui/ProductCard';
 import ProductSkeleton from '../../../shared/components/ui/ProductSkeleton';
 import type { ProductoCatalogo as Producto, CatalogoResponse } from '@/features/productos/types';
 
+function getVisiblePages(currentPage: number, totalPages: number) {
+  const maxVisible = 5;
+  const safeTotal = Math.max(totalPages, 0);
+
+  if (safeTotal <= maxVisible) {
+    return Array.from({ length: safeTotal }, (_, index) => index + 1);
+  }
+
+  const half = Math.floor(maxVisible / 2);
+  let start = currentPage - half;
+  let end = currentPage + half;
+
+  if (start < 1) {
+    start = 1;
+    end = maxVisible;
+  }
+
+  if (end > safeTotal) {
+    end = safeTotal;
+    start = safeTotal - maxVisible + 1;
+  }
+
+  return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+}
+
+function PageJumpInput({
+  totalPages,
+  onGoToPage,
+  className,
+}: {
+  totalPages: number;
+  onGoToPage: (value: string, reset: () => void) => void;
+  className: string;
+}) {
+  return (
+    <input
+      type="text"
+      inputMode="numeric"
+      placeholder="Ir a..."
+      maxLength={5}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          onGoToPage(e.currentTarget.value, () => {
+            e.currentTarget.value = '';
+          });
+        }
+      }}
+      onChange={(e) => {
+        e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '');
+      }}
+      className={className}
+      title={`Ingresa un numero entre 1 y ${totalPages}`}
+    />
+  );
+}
+
 export default function CatalogoClient({
   categorias,
   initialSelectedCategorias,
@@ -162,6 +218,18 @@ export default function CatalogoClient({
   };
 
   const { productos, totalPages, totalProductos } = productosData;
+  const visiblePages = getVisiblePages(currentPage, totalPages);
+
+  const handleGoToPage = (value: string, reset: () => void) => {
+    const pageNum = parseInt(value);
+    if (value.trim() === '' || isNaN(pageNum) || pageNum < 1 || pageNum > totalPages) {
+      showNotification(`Nro entre 1 y ${totalPages}`);
+      reset();
+      return;
+    }
+    handlePageChange(pageNum);
+    reset();
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -279,7 +347,111 @@ export default function CatalogoClient({
               ))}
             </div>
 
-            <div className="mt-6 md:mt-12 flex flex-wrap justify-center items-center gap-1 md:gap-2">
+            {totalPages > 1 && (
+              <div className="mt-6 md:mt-12 pb-24 md:pb-0">
+                <div className="hidden md:flex flex-wrap justify-center items-center gap-2">
+                  {currentPage > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      className="min-w-10 px-3 py-2 rounded-xl font-bold text-white text-xs transition-all hover:opacity-90"
+                      style={{ backgroundColor: '#FF6B35' }}
+                      aria-label="Pagina anterior"
+                    >
+                      ←
+                    </button>
+                  )}
+
+                  {visiblePages.map((pageNum) => (
+                    <button
+                      key={pageNum}
+                      type="button"
+                      onClick={() => handlePageChange(pageNum)}
+                      className={`min-w-10 px-3 py-2 rounded-xl text-xs transition-all ${
+                        pageNum === currentPage
+                          ? 'font-bold text-white'
+                          : 'font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200'
+                      }`}
+                      style={pageNum === currentPage ? { backgroundColor: '#1A237E' } : undefined}
+                      aria-current={pageNum === currentPage ? 'page' : undefined}
+                    >
+                      {pageNum}
+                    </button>
+                  ))}
+
+                  {currentPage < totalPages && (
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      className="min-w-10 px-3 py-2 rounded-xl font-bold text-white text-xs transition-all hover:opacity-90"
+                      style={{ backgroundColor: '#FF6B35' }}
+                      aria-label="Pagina siguiente"
+                    >
+                      →
+                    </button>
+                  )}
+
+                  {currentPage < totalPages && (
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(totalPages)}
+                      className="px-3 py-2 rounded-xl font-bold text-white text-xs transition-all hover:opacity-90"
+                      style={{ backgroundColor: '#1A237E' }}
+                      title="Ultima pagina"
+                    >
+                      {totalPages}
+                    </button>
+                  )}
+
+                  <PageJumpInput
+                    totalPages={totalPages}
+                    onGoToPage={handleGoToPage}
+                    className="w-20 px-2 py-2 border border-gray-300 rounded-xl text-center text-xs focus:outline-none focus:border-[#FF6B35] focus:ring-1 focus:ring-orange-100"
+                  />
+                </div>
+
+                <div className="flex md:hidden justify-center items-center gap-2">
+                  {currentPage > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      className="min-w-9 px-3 py-2 rounded-xl font-bold text-white text-xs transition-all hover:opacity-90"
+                      style={{ backgroundColor: '#FF6B35' }}
+                      aria-label="Pagina anterior"
+                    >
+                      ←
+                    </button>
+                  )}
+
+                  <span
+                    className="min-w-14 px-3 py-2 rounded-xl font-bold text-white text-xs text-center"
+                    style={{ backgroundColor: '#1A237E' }}
+                  >
+                    {currentPage}
+                  </span>
+
+                  {currentPage < totalPages && (
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      className="min-w-9 px-3 py-2 rounded-xl font-bold text-white text-xs transition-all hover:opacity-90"
+                      style={{ backgroundColor: '#FF6B35' }}
+                      aria-label="Pagina siguiente"
+                    >
+                      →
+                    </button>
+                  )}
+
+                  <PageJumpInput
+                    totalPages={totalPages}
+                    onGoToPage={handleGoToPage}
+                    className="w-16 px-2 py-2 border border-gray-300 rounded-xl text-center text-xs focus:outline-none focus:border-[#FF6B35] focus:ring-1 focus:ring-orange-100"
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className="hidden">
               {currentPage > 1 && (
                 <button
                   type="button"
