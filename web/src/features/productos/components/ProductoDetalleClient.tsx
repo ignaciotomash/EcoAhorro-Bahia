@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -14,6 +14,23 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const [added, setAdded] = useState(false);
   const [mostrarEnUSD, setMostrarEnUSD] = useState(false);
   const categoriaFormateada = formatearNombreCategoria(producto.categoria);
+
+  const [inflacion, setInflacion] = useState<{ fecha: string; valor: number }[] | null>(null);
+  const [mostrarConInflacion, setMostrarConInflacion] = useState(false);
+  const [inflacionLoading, setInflacionLoading] = useState(true);
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; label: string } | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    const ctrl = new AbortController();
+    abortRef.current = ctrl;
+    fetch('/api/inflacion', { signal: ctrl.signal })
+      .then(r => { if (!r.ok) throw new Error('Error cargando inflación'); return r.json(); })
+      .then(d => setInflacion(d.mensual))
+      .catch(e => { if (e.name === 'AbortError') return; console.error(e); })
+      .finally(() => setInflacionLoading(false));
+    return () => ctrl.abort();
+  }, []);
 
   const handleAdd = () => {
     addToCart({
@@ -45,10 +62,23 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const chartW = svgW - pad.left - pad.right;
   const chartH = svgH - pad.top - pad.bottom;
 
-  const vals = historialFiltrado.map(h => mostrarEnUSD ? h.precioUSD! : h.precioPromedio);
+  const preciosAjustados = useMemo(() => {
+    if (!inflacion || !mostrarConInflacion) return null;
+    return historialFiltrado.map((h, i) => {
+      if (i === 0) return mostrarEnUSD ? (h.precioUSD ?? 0) : h.precioPromedio;
+      const realAnterior = mostrarEnUSD
+        ? (historialFiltrado[i - 1].precioUSD ?? 0)
+        : historialFiltrado[i - 1].precioPromedio;
+      const inflacionMes = inflacion[i - 1]?.valor ?? 0;
+      return realAnterior * (1 + inflacionMes / 100);
+    });
+  }, [inflacion, mostrarConInflacion, historialFiltrado, mostrarEnUSD]);
 
-  const rawMin = Math.min(...vals);
-  const rawMax = Math.max(...vals);
+  const vals = historialFiltrado.map(h => mostrarEnUSD ? h.precioUSD! : h.precioPromedio);
+  const allVals = preciosAjustados ? [...vals, ...preciosAjustados] : vals;
+
+  const rawMin = Math.min(...allVals);
+  const rawMax = Math.max(...allVals);
   const range = rawMax - rawMin;
   const padding = range * 2.5 || 1;
   const minV = Math.max(0, rawMin - padding);
@@ -185,7 +215,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               ARS $
             </button>
             <button
-              onClick={() => setMostrarEnUSD(true)}
+              onClick={() => { setMostrarEnUSD(true); setMostrarConInflacion(false); }}
               className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${mostrarEnUSD
                 ? 'bg-[#1A237E] text-white shadow'
                 : 'bg-gray-100 text-gray-500'
@@ -194,7 +224,18 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               USD
             </button>
           </div>
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3 md:p-8">
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3 md:p-8 overflow-visible relative">
+            {!mostrarEnUSD && !inflacionLoading && (
+              <button
+                onClick={() => setMostrarConInflacion(!mostrarConInflacion)}
+                className={`absolute top-2 right-2 md:top-4 md:right-4 px-3 py-1 rounded-lg text-[10px] md:text-xs font-bold transition-all z-10 ${mostrarConInflacion
+                  ? 'bg-[#10B981] text-white shadow'
+                  : 'bg-gray-100 text-gray-500'
+                  }`}
+              >
+                Ver con inflación
+              </button>
+            )}
             <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-48 md:h-64" preserveAspectRatio="xMidYMid meet">
               {/* Grid lines */}
               {gridLines.map((gl, i) => (
@@ -212,6 +253,10 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
                 <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#1A237E" stopOpacity={0.25} />
                   <stop offset="100%" stopColor="#1A237E" stopOpacity={0.05} />
+                </linearGradient>
+                <linearGradient id="areaGradVerde" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#10B981" stopOpacity={0.2} />
+                  <stop offset="100%" stopColor="#10B981" stopOpacity={0.05} />
                 </linearGradient>
               </defs>
               <polygon
@@ -232,12 +277,46 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               {/* Dots */}
               {historialFiltrado.map((h, i) => (
                 <g key={i}>
-                  <circle cx={x(i)} cy={y(vals[i])} r={4} fill="#FF6B35" stroke="white" strokeWidth={2} />
+                  <circle
+                    cx={x(i)} cy={y(vals[i])} r={6}
+                    fill="#FF6B35" stroke="white" strokeWidth={2}
+                    className="cursor-pointer"
+                    onPointerEnter={(e) => setTooltip({ x: e.clientX, y: e.clientY, label: `${h.fecha}: ${mostrarEnUSD ? 'USD ' : '$'}${mostrarEnUSD ? vals[i].toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : vals[i].toLocaleString('es-AR')}` })}
+                    onPointerLeave={() => setTooltip(null)}
+                  />
                   <text x={x(i)} y={y(vals[i]) - 10} textAnchor="middle" className="text-[11px]" fill="#374151" fontWeight="600">
                     {mostrarEnUSD ? 'USD ' : '$'}{mostrarEnUSD ? vals[i].toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : vals[i].toLocaleString('es-AR')}
                   </text>
                 </g>
               ))}
+
+              {/* Inflation-adjusted line */}
+              {preciosAjustados && (
+                <>
+                  <polygon
+                    points={`${x(0)},${pad.top + chartH} ${preciosAjustados.map((v, i) => `${x(i)},${y(v)}`).join(' ')} ${x(historialFiltrado.length - 1)},${pad.top + chartH}`}
+                    fill="url(#areaGradVerde)"
+                  />
+                  <polyline
+                    points={preciosAjustados.map((v, i) => `${x(i)},${y(v)}`).join(' ')}
+                    fill="none"
+                    stroke="#10B981"
+                    strokeWidth={2.5}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeDasharray="6 3"
+                  />
+                  {historialFiltrado.map((h, i) => (
+                    <circle
+                      key={`adj-${i}`} cx={x(i)} cy={y(preciosAjustados[i])} r={6}
+                      fill="#10B981" stroke="white" strokeWidth={2}
+                      className="cursor-pointer"
+                      onPointerEnter={(e) => setTooltip({ x: e.clientX, y: e.clientY, label: `${h.fecha}: ${mostrarEnUSD ? 'USD ' : '$'}${preciosAjustados[i].toLocaleString('es-AR', { minimumFractionDigits: mostrarEnUSD ? 2 : 0, maximumFractionDigits: mostrarEnUSD ? 2 : 0 })} (teórico)` })}
+                      onPointerLeave={() => setTooltip(null)}
+                    />
+                  ))}
+                </>
+              )}
 
               {/* X-axis labels */}
               {historialFiltrado.map((h, i) => (
@@ -248,6 +327,17 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
             </svg>
           </div>
         </section>
+
+        {tooltip && (
+          <div className="fixed bg-gray-900 text-white text-xs px-2.5 py-1.5 rounded-lg shadow-lg pointer-events-none z-50 font-mono whitespace-nowrap"
+            style={{
+              left: tooltip.x + 160 > window.innerWidth ? tooltip.x - 160 : tooltip.x + 12,
+              top: tooltip.y - 12,
+            }}
+          >
+            {tooltip.label}
+          </div>
+        )}
       </div>
     </main>
   );
