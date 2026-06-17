@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useCamera } from '@/features/productos/hooks/useCamera';
+import { useBarcodeDetection } from '@/features/productos/hooks/useBarcodeDetection';
 
 type Props = {
   onDetected: (ean: string) => void;
@@ -8,65 +10,26 @@ type Props = {
 };
 
 export default function BarcodeScanner({ onDetected, onClose }: Props) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-  const readerRef = useRef<any>(null);
+  const { videoRef, status, error, torchSupported, setTorch, startCamera, stopCamera, retry } = useCamera();
+  const [torchOn, setTorchOn] = useState(false);
+  const { state: detectionState } = useBarcodeDetection(videoRef, status === 'ready', onDetected);
 
   useEffect(() => {
-    let stopped = false;
-
-    async function startScanner() {
-      try {
-        // Carga dinámica de zxing para evitar SSR issues
-        const { BrowserMultiFormatReader } = await import('@zxing/library');
-        if (stopped) return;
-
-        const reader = new BrowserMultiFormatReader();
-        readerRef.current = reader;
-
-        // Preferimos cámara trasera en mobile
-        const devices = await reader.listVideoInputDevices();
-        const backCamera = devices.find(d =>
-          d.label.toLowerCase().includes('back') ||
-          d.label.toLowerCase().includes('trasera') ||
-          d.label.toLowerCase().includes('environment')
-        );
-        const deviceId = backCamera?.deviceId || devices[devices.length - 1]?.deviceId;
-
-        setLoading(false);
-
-        await reader.decodeFromVideoDevice(
-          deviceId ?? undefined,
-          videoRef.current!,
-          (result, err) => {
-            if (result && !stopped) {
-              stopped = true;
-              if (typeof navigator !== 'undefined' && navigator.vibrate) {
-                navigator.vibrate(200);
-              }
-              onDetected(result.getText());
-            }
-          }
-        );
-      } catch (e: any) {
-        setError('No se pudo acceder a la cámara. Verificá los permisos.');
-        setLoading(false);
-      }
-    }
-
-    startScanner();
-
+    startCamera();
     return () => {
-      stopped = true;
-      readerRef.current?.reset();
+      stopCamera();
     };
-  }, [onDetected]);
+  }, [startCamera, stopCamera]);
+
+  const handleTorch = async () => {
+    const next = !torchOn;
+    await setTorch(next);
+    setTorchOn(next);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-90">
       <div className="relative w-full max-w-sm mx-4">
-        {/* Header */}
         <div className="flex justify-between items-center mb-4 px-1">
           <p className="text-white font-bold text-sm">Apuntá al código de barras</p>
           <button
@@ -79,22 +42,19 @@ export default function BarcodeScanner({ onDetected, onClose }: Props) {
           </button>
         </div>
 
-        {/* Visor */}
         <div className="relative rounded-2xl overflow-hidden bg-black aspect-square">
-          <video ref={videoRef} className="w-full h-full object-cover" />
+          <video ref={videoRef} className="w-full h-full object-cover" playsInline muted />
 
-          {/* Overlay de guía */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div
               className="w-64 h-40 rounded-xl"
               style={{
-                border: '2px solid #E8920A',
-                boxShadow: '0 0 0 9999px rgba(0,0,0,0.5)',
+                border: `2px solid ${detectionState === 'detected' ? '#16a34a' : '#E8920A'}`,
+                boxShadow: `0 0 0 9999px ${detectionState === 'detected' ? 'rgba(22,163,74,0.4)' : 'rgba(0,0,0,0.5)'}`,
               }}
             />
           </div>
 
-          {/* Línea de escaneo animada */}
           <style>{`
             @keyframes scan {
               0% { top: 20%; }
@@ -112,20 +72,37 @@ export default function BarcodeScanner({ onDetected, onClose }: Props) {
               height: '2px',
               backgroundColor: '#E8920A',
               opacity: 0.8,
-              position: 'absolute',
             }}
           />
 
-          {loading && (
+          {status === 'starting' && (
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60">
               <div className="text-white text-sm font-semibold">Iniciando cámara...</div>
             </div>
           )}
         </div>
 
-        {error && (
-          <div className="mt-4 bg-red-900 text-red-200 text-sm px-4 py-3 rounded-xl text-center">
-            {error}
+        {torchSupported && (
+          <button
+            onClick={handleTorch}
+            className="mt-3 w-14 h-14 rounded-full bg-black/50 hover:bg-black/60 border border-white/30 transition-all flex items-center justify-center mx-auto"
+            title={torchOn ? 'Apagar linterna' : 'Encender linterna'}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill={torchOn ? '#E8920A' : 'none'} stroke={torchOn ? '#E8920A' : 'white'} strokeWidth={2} className="h-6 w-6">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+          </button>
+        )}
+
+        {status === 'error' && (
+          <div className="mt-4 bg-red-900 text-red-200 text-sm px-4 py-3 rounded-xl text-center space-y-2">
+            <p>{error}</p>
+            <button
+              onClick={retry}
+              className="bg-red-700 hover:bg-red-600 text-white px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors"
+            >
+              Reintentar
+            </button>
           </div>
         )}
 
