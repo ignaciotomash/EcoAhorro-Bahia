@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo, useRef } from 'react';
+import { Info } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -19,6 +20,8 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const [mostrarConInflacion, setMostrarConInflacion] = useState(false);
   const [inflacionLoading, setInflacionLoading] = useState(true);
   const [tooltip, setTooltip] = useState<{ x: number; y: number; label: string } | null>(null);
+  const [infoOpen, setInfoOpen] = useState(false);
+  const [infoUsdOpen, setInfoUsdOpen] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -55,6 +58,45 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
     ? historial.filter(h => h.precioUSD !== undefined)
     : historial.filter(h => h.esReal);
 
+  const indicesGraficados = useMemo(
+    () => historialFiltrado.map((_, i) => i),
+    [historialFiltrado]
+  );
+
+  const indicesLabels = useMemo(() => {
+    if (!mostrarEnUSD) return indicesGraficados;
+    const parseFecha = (f: string) => {
+      const [d, m, y] = f.split('/').map(Number);
+      return new Date(y, m - 1, d);
+    };
+    const t0 = parseFecha(historialFiltrado[0].fecha).getTime();
+    const inds: number[] = [0];
+    for (let i = 1; i < historialFiltrado.length; i++) {
+      const dias = (parseFecha(historialFiltrado[i].fecha).getTime() - t0) / 86400000;
+      if (dias >= inds.length * 7) inds.push(i);
+    }
+    if (inds[inds.length - 1] !== historialFiltrado.length - 1) {
+      inds.push(historialFiltrado.length - 1);
+    }
+    return inds;
+  }, [mostrarEnUSD, historialFiltrado, indicesGraficados]);
+
+  const indicesLabelsPrecio = useMemo(() => {
+    if (!mostrarEnUSD) return indicesGraficados;
+    const parseFecha = (f: string) => {
+      const [d, m, y] = f.split('/').map(Number);
+      return new Date(y, m - 1, d);
+    };
+    const t0 = parseFecha(historialFiltrado[0].fecha).getTime();
+    const inds = historialFiltrado
+      .map((h, i) => ({ i, dias: (parseFecha(h.fecha).getTime() - t0) / 86400000 }))
+      .filter(({ dias }) => Math.round(dias) % 7 === 0)
+      .map(({ i }) => i);
+    if (!inds.includes(0)) inds.unshift(0);
+    if (!inds.includes(historialFiltrado.length - 1)) inds.push(historialFiltrado.length - 1);
+    return inds;
+  }, [mostrarEnUSD, historialFiltrado, indicesGraficados]);
+
   // SVG chart dimensions
   const svgW = 600;
   const svgH = 250;
@@ -87,7 +129,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   const x = (i: number) => pad.left + (i / Math.max(historialFiltrado.length - 1, 1)) * chartW;
   const y = (v: number) => pad.top + chartH - ((v - minV) / (maxV - minV)) * chartH;
 
-  const linePoints = historialFiltrado.map((h, i) => `${x(i)},${y(vals[i])}`).join(' ');
+  const linePoints = indicesGraficados.map(i => `${x(i)},${y(vals[i])}`).join(' ');
 
   const gridCount = 4;
   const gridLines = Array.from({ length: gridCount + 1 }, (_, i) => {
@@ -225,16 +267,57 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
             </button>
           </div>
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3 md:p-8 overflow-visible relative">
+            {mostrarEnUSD && (
+              <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10">
+                <div
+                  className="relative"
+                  onMouseEnter={() => setInfoUsdOpen(true)}
+                  onMouseLeave={() => setInfoUsdOpen(false)}
+                  onClick={() => setInfoUsdOpen(!infoUsdOpen)}
+                >
+                  <Info className="w-4 h-4 text-gray-400 cursor-pointer" />
+                  {infoUsdOpen && (
+                    <div className="absolute right-0 top-full mt-1 min-w-[220px] bg-white border border-gray-200 shadow-sm rounded-lg p-3 z-20 whitespace-normal"
+                      onMouseEnter={() => setInfoUsdOpen(true)}
+                      onMouseLeave={() => setInfoUsdOpen(false)}
+                    >
+                      <p className="text-sm font-semibold text-gray-700">Precio en USD</p>
+                      <p className="text-xs text-gray-500 mt-1">Convertido desde ARS usando el tipo de cambio del día de cada registro.</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
             {!mostrarEnUSD && !inflacionLoading && (
-              <button
-                onClick={() => setMostrarConInflacion(!mostrarConInflacion)}
-                className={`absolute top-2 right-2 md:top-4 md:right-4 px-3 py-1 rounded-lg text-[10px] md:text-xs font-bold transition-all z-10 ${mostrarConInflacion
-                  ? 'bg-[#10B981] text-white shadow'
-                  : 'bg-gray-100 text-gray-500'
-                  }`}
-              >
-                Ver con inflación
-              </button>
+              <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10">
+                <button
+                  onClick={() => setMostrarConInflacion(!mostrarConInflacion)}
+                  className={`relative px-3 py-1 rounded-lg text-[10px] md:text-xs font-bold transition-all flex items-center ${mostrarConInflacion
+                    ? 'bg-[#10B981] text-white shadow'
+                    : 'bg-gray-100 text-gray-500'
+                    }`}
+                >
+                  Comparar inflación
+                  <span className={`transition-all duration-300 overflow-hidden inline-flex items-center ${mostrarConInflacion ? 'opacity-100 w-4 ml-1' : 'opacity-0 w-0 ml-0'}`}>
+                    <div
+                      onMouseEnter={(e) => { e.stopPropagation(); setInfoOpen(true); }}
+                      onMouseLeave={(e) => { e.stopPropagation(); setInfoOpen(false); }}
+                      onClick={(e) => { e.stopPropagation(); setInfoOpen(!infoOpen); }}
+                    >
+                      <Info className="w-4 h-4 text-current cursor-pointer" />
+                      {infoOpen && (
+                        <div className="absolute right-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-xs text-gray-700 space-y-2 z-20"
+                          onMouseEnter={() => setInfoOpen(true)}
+                          onMouseLeave={() => setInfoOpen(false)}
+                        >
+                          <p><span className="inline-block w-3 h-0.5 rounded bg-[#1A237E] align-middle mr-1.5"></span><span className="font-semibold">Línea azul</span> — Precio real registrado</p>
+                          <p><span className="inline-block w-3 h-0.5 rounded bg-[#10B981] align-middle mr-1.5"></span><span className="font-semibold">Línea verde punteada</span> — Precio teórico según índice de inflación mensual (INDEC)</p>
+                        </div>
+                      )}
+                    </div>
+                  </span>
+                </button>
+              </div>
             )}
             <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-48 md:h-64" preserveAspectRatio="xMidYMid meet">
               {/* Grid lines */}
@@ -255,16 +338,37 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
                   <stop offset="100%" stopColor="#1A237E" stopOpacity={0.05} />
                 </linearGradient>
                 <linearGradient id="areaGradVerde" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#10B981" stopOpacity={0.2} />
-                  <stop offset="100%" stopColor="#10B981" stopOpacity={0.05} />
+                  <stop offset="0%" stopColor="#10B981" stopOpacity={0.45} />
+                  <stop offset="100%" stopColor="#10B981" stopOpacity={0.15} />
                 </linearGradient>
               </defs>
+              {/* Areas */}
+              {preciosAjustados && (
+                <polygon
+                  points={[
+                    ...indicesGraficados.map(i => `${x(i)},${y(preciosAjustados[i])}`),
+                    ...[...indicesGraficados].reverse().map(i => `${x(i)},${y(vals[i])}`)
+                  ].join(' ')}
+                  fill="url(#areaGradVerde)"
+                />
+              )}
               <polygon
-                points={`${x(0)},${pad.top + chartH} ${linePoints} ${x(historialFiltrado.length - 1)},${pad.top + chartH}`}
+                points={`${x(indicesGraficados[0])},${pad.top + chartH} ${linePoints} ${x(indicesGraficados[indicesGraficados.length - 1])},${pad.top + chartH}`}
                 fill="url(#areaGrad)"
               />
 
-              {/* Line */}
+              {/* Lines */}
+              {preciosAjustados && (
+                <polyline
+                  points={indicesGraficados.map(i => `${x(i)},${y(preciosAjustados[i])}`).join(' ')}
+                  fill="none"
+                  stroke="#10B981"
+                  strokeWidth={2.5}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeDasharray="6 3"
+                />
+              )}
               <polyline
                 points={linePoints}
                 fill="none"
@@ -274,54 +378,37 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
                 strokeLinejoin="round"
               />
 
-              {/* Dots */}
-              {historialFiltrado.map((h, i) => (
+              {/* Dots (rendered last so always on top) */}
+              {preciosAjustados && indicesGraficados.map(i => (
+                <circle
+                  key={`adj-${i}`} cx={x(i)} cy={y(preciosAjustados[i])} r={6}
+                  fill="#10B981" stroke="white" strokeWidth={2}
+                  className="cursor-pointer"
+                  onPointerEnter={(e) => setTooltip({ x: e.clientX, y: e.clientY, label: `${historialFiltrado[i].fecha}: ${mostrarEnUSD ? 'USD ' : '$'}${preciosAjustados[i].toLocaleString('es-AR', { minimumFractionDigits: mostrarEnUSD ? 2 : 0, maximumFractionDigits: mostrarEnUSD ? 2 : 0 })} (teórico)` })}
+                  onPointerLeave={() => setTooltip(null)}
+                />
+              ))}
+              {indicesGraficados.map(i => (
                 <g key={i}>
                   <circle
                     cx={x(i)} cy={y(vals[i])} r={6}
                     fill="#FF6B35" stroke="white" strokeWidth={2}
                     className="cursor-pointer"
-                    onPointerEnter={(e) => setTooltip({ x: e.clientX, y: e.clientY, label: `${h.fecha}: ${mostrarEnUSD ? 'USD ' : '$'}${mostrarEnUSD ? vals[i].toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : vals[i].toLocaleString('es-AR')}` })}
+                    onPointerEnter={(e) => setTooltip({ x: e.clientX, y: e.clientY, label: `${historialFiltrado[i].fecha}: ${mostrarEnUSD ? 'USD ' : '$'}${mostrarEnUSD ? vals[i].toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : vals[i].toLocaleString('es-AR')}` })}
                     onPointerLeave={() => setTooltip(null)}
                   />
-                  <text x={x(i)} y={y(vals[i]) - 10} textAnchor="middle" className="text-[11px]" fill="#374151" fontWeight="600">
-                    {mostrarEnUSD ? 'USD ' : '$'}{mostrarEnUSD ? vals[i].toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : vals[i].toLocaleString('es-AR')}
-                  </text>
+                  {(!mostrarEnUSD || indicesLabelsPrecio.includes(i)) && (
+                    <text x={x(i)} y={y(vals[i]) - 10} textAnchor="middle" className="text-[11px]" fill="#374151" fontWeight="600">
+                      {mostrarEnUSD ? 'USD ' : '$'}{mostrarEnUSD ? vals[i].toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : vals[i].toLocaleString('es-AR')}
+                    </text>
+                  )}
                 </g>
               ))}
 
-              {/* Inflation-adjusted line */}
-              {preciosAjustados && (
-                <>
-                  <polygon
-                    points={`${x(0)},${pad.top + chartH} ${preciosAjustados.map((v, i) => `${x(i)},${y(v)}`).join(' ')} ${x(historialFiltrado.length - 1)},${pad.top + chartH}`}
-                    fill="url(#areaGradVerde)"
-                  />
-                  <polyline
-                    points={preciosAjustados.map((v, i) => `${x(i)},${y(v)}`).join(' ')}
-                    fill="none"
-                    stroke="#10B981"
-                    strokeWidth={2.5}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeDasharray="6 3"
-                  />
-                  {historialFiltrado.map((h, i) => (
-                    <circle
-                      key={`adj-${i}`} cx={x(i)} cy={y(preciosAjustados[i])} r={6}
-                      fill="#10B981" stroke="white" strokeWidth={2}
-                      className="cursor-pointer"
-                      onPointerEnter={(e) => setTooltip({ x: e.clientX, y: e.clientY, label: `${h.fecha}: ${mostrarEnUSD ? 'USD ' : '$'}${preciosAjustados[i].toLocaleString('es-AR', { minimumFractionDigits: mostrarEnUSD ? 2 : 0, maximumFractionDigits: mostrarEnUSD ? 2 : 0 })} (teórico)` })}
-                      onPointerLeave={() => setTooltip(null)}
-                    />
-                  ))}
-                </>
-              )}
-
               {/* X-axis labels */}
-              {historialFiltrado.map((h, i) => (
+              {indicesLabels.map(i => (
                 <text key={i} x={x(i)} y={svgH - 8} textAnchor="middle" className="text-[12px]" fill="#9CA3AF">
-                  {h.fecha}
+                  {historialFiltrado[i].fecha}
                 </text>
               ))}
             </svg>
