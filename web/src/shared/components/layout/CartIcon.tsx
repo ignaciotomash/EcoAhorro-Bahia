@@ -2,16 +2,21 @@
 
 import React, { memo, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { useCart } from '@/features/carrito/context/CartContext';
+import { useCatalogPaginationVisibility } from '@/shared/hooks/useCatalogPaginationVisibility';
 
 export default memo(function CartIcon() {
   const { totalItems, isLoadingCart } = useCart();
   const { isLoaded, isSignedIn } = useUser();
+  const pathname = usePathname();
+  const isCatalogPaginationVisible = useCatalogPaginationVisibility();
+  const isCartRoute = pathname.startsWith('/carrito');
   const [pulse, setPulse] = useState(false);
   const isResolvingCart = !isLoaded || isLoadingCart;
   const cartHref = isLoaded && !isSignedIn ? '/carrito/acceso' : '/carrito';
-  const className = 'fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex items-center gap-2 md:gap-2.5 text-white px-3 py-2.5 md:px-5 md:py-3 rounded-xl md:rounded-2xl font-bold text-xs md:text-sm transition-all duration-200';
+  const className = 'fixed bottom-4 right-4 z-[1200] flex md:hidden items-center gap-2 text-white px-3 py-2.5 rounded-xl font-bold text-xs transition-all duration-200';
   const style = {
     backgroundColor: '#1A237E',
     boxShadow: '0 4px 20px rgba(26,35,126,0.35)',
@@ -27,6 +32,10 @@ export default memo(function CartIcon() {
       return () => window.clearTimeout(timeoutId);
     }
   }, [isResolvingCart, totalItems]);
+
+  if (isCartRoute || isCatalogPaginationVisible) {
+    return null;
+  }
 
   const content = (
     <>

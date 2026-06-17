@@ -52,7 +52,7 @@ async function _getProductosCatalogo(
 
 export const getProductosCatalogo = unstable_cache(
   _getProductosCatalogo,
-  ['productos-catalogo-v3'],
+  ['productos-catalogo-v4'],
   { revalidate: 3600, tags: ['productos'] }
 );
 

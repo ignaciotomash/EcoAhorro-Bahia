@@ -43,13 +43,8 @@ export async function findProductosRaw(
     ? Prisma.sql`HAVING ${Prisma.join(havingConditions, ' AND ')}`
     : Prisma.empty;
 
-  const priorizarComparables = categoriaIds.length > 0;
-  const comparablesOrder = priorizarComparables
-    ? Prisma.sql`(super_count >= 2) DESC, super_count DESC,`
-    : Prisma.empty;
-  const finalComparablesOrder = priorizarComparables
-    ? Prisma.sql`fp.super_count DESC,`
-    : Prisma.empty;
+  const comparablesOrder = Prisma.sql`(super_count >= 2) DESC, super_count DESC,`;
+  const finalComparablesOrder = Prisma.sql`fp.super_count DESC,`;
 
   let orderClause: Prisma.Sql;
   let finalOrderClause: Prisma.Sql;

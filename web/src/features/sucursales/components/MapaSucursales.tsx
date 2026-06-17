@@ -77,6 +77,7 @@ export default function MapaSucursales({
     <MapContainer 
       center={centroInicial} 
       zoom={13} 
+      className="relative z-0"
       style={{ height: '500px', width: '100%', borderRadius: '10px' }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
