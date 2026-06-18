@@ -9,6 +9,7 @@ import { useCart } from '@/features/carrito/context/CartContext';
 import { useUser, SignInButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import EscanerSkeleton from '@/shared/components/ui/EscanerSkeleton';
+import { formatearNombreCategoria } from '@/shared/utils/format';
 
 const BarcodeScanner = dynamic(() => import('@/features/productos/components/BarcodeScanner'), { ssr: false });
 
@@ -72,6 +73,7 @@ export default function EscanerPage() {
 
   const precioMinimo = producto ? Math.min(...producto.preciosPorSuper.flatMap(s => s.precios.map(p => p.precio))) : 0;
   const enCarrito = producto ? items.find(i => i.producto.id === producto.ean) : null;
+  const categoriaFormateada = producto ? formatearNombreCategoria(producto.categoria) : '';
 
   return (
     <div className="min-h-screen bg-white">
@@ -188,7 +190,7 @@ export default function EscanerPage() {
                 }
               </div>
               <div className="flex-1 min-w-0">
-                <span className="text-[8px] md:text-[9px] font-semibold text-gray-400 uppercase tracking-widest">{producto.categoria}</span>
+                <span className="text-[8px] md:text-[9px] font-semibold text-gray-400 uppercase tracking-widest">{categoriaFormateada}</span>
                 <h2 className="text-base md:text-xl font-black leading-tight truncate hover:underline" style={{ color: '#1A237E', fontFamily: "'Oswald', sans-serif" }}>
                   {producto.nombreProducto}
                 </h2>
