@@ -44,14 +44,14 @@ async function buscarPorTermino(
         producto.presentacion,
         producto.imagen,
         GREATEST(
-          similarity(lower(producto."nombreProducto"), ${termino}),
-          similarity(lower(producto.marca), ${termino}) * 0.3
+          similarity(unaccent(lower(producto."nombreProducto")), unaccent(lower(${termino}))),
+          similarity(unaccent(lower(producto.marca)), unaccent(lower(${termino}))) * 0.3
         ) AS score
       FROM "Producto" producto
       WHERE
-        lower(producto."nombreProducto") ILIKE ${'%' + termino + '%'}
-        OR similarity(lower(producto."nombreProducto"), ${termino}) > ${umbral}
-        OR similarity(lower(producto.marca), ${termino}) > ${umbral}
+        unaccent(lower(producto."nombreProducto")) ILIKE unaccent(lower(${'%' + termino + '%'}))
+        OR similarity(unaccent(lower(producto."nombreProducto")), unaccent(lower(${termino}))) > ${umbral}
+        OR similarity(unaccent(lower(producto.marca)), unaccent(lower(${termino}))) > ${umbral}
     ) sub
     ORDER BY score DESC
     LIMIT ${limite}
