@@ -43,7 +43,7 @@ export default function BarcodeScanner({ onDetected, onClose }: Props) {
         </div>
 
         <div className="relative rounded-2xl overflow-hidden bg-black aspect-square">
-          <video ref={videoRef} className="w-full h-full object-cover" playsInline muted />
+          <video ref={videoRef} className="w-full h-full object-cover" playsInline muted autoPlay />
 
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div

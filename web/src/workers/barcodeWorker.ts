@@ -7,10 +7,23 @@ const hints = new Map<any, any>([
 
 const ctx = self as any;
 
+function rgbaToLuminance(rgba: Uint8ClampedArray, width: number, height: number): Uint8ClampedArray {
+  const size = width * height;
+  const luminances = new Uint8ClampedArray(size);
+  for (let i = 0; i < size; i++) {
+    const o = i * 4;
+    // Green-favouring average cheaply (same formula ZXing uses for Int32Array)
+    luminances[i] = ((rgba[o] + 2 * rgba[o + 1] + rgba[o + 2]) / 4) & 0xFF;
+  }
+  return luminances;
+}
+
 ctx.onmessage = (event: { data: { data: ArrayBuffer; width: number; height: number } }) => {
   try {
     const { data, width, height } = event.data;
-    const luminanceSource = new RGBLuminanceSource(new Uint8ClampedArray(data), width, height);
+    const rgba = new Uint8ClampedArray(data);
+    const luminances = rgbaToLuminance(rgba, width, height);
+    const luminanceSource = new RGBLuminanceSource(luminances, width, height);
     const binaryBitmap = new BinaryBitmap(new HybridBinarizer(luminanceSource));
     const reader = new MultiFormatReader();
     const result = reader.decode(binaryBitmap, hints);

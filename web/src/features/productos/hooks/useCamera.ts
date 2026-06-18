@@ -33,8 +33,9 @@ export function useCamera() {
     setTorchSupported(false);
     zoomCapabilitiesRef.current = null;
 
+    let stream: MediaStream | null = null;
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
+      stream = await navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: 'environment',
           width: { ideal: 640 },
@@ -42,32 +43,56 @@ export function useCamera() {
         },
         audio: false,
       });
-
-      streamRef.current = stream;
-
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
-
-      const track = stream.getVideoTracks()[0];
-      const caps: any = track.getCapabilities();
-      if (caps.torch) setTorchSupported(true);
-      if (caps.zoom) {
-        zoomCapabilitiesRef.current = { min: caps.zoom.min, max: caps.zoom.max, step: caps.zoom.step ?? 0.1 };
-      }
-
-      setStatus('ready');
     } catch (e: any) {
-      const message =
-        e.name === 'NotAllowedError'
-          ? 'Permiso de cámara denegado. Ajustá los permisos del navegador.'
-          : e.name === 'NotFoundError'
-            ? 'No se encontró ninguna cámara.'
+      if (e.name === 'OverconstrainedError' || e.name === 'NotFoundError') {
+        // Fallback: try any camera (useful on iOS/Safari where environment camera isn't available)
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { width: { ideal: 640 }, height: { ideal: 480 } },
+            audio: false,
+          });
+        } catch (fallbackErr: any) {
+          const message =
+            fallbackErr.name === 'NotAllowedError'
+              ? 'Permiso de cámara denegado. Ajustá los permisos del navegador.'
+              : fallbackErr.name === 'NotFoundError'
+                ? 'No se encontró ninguna cámara.'
+                : 'No se pudo acceder a la cámara. Verificá los permisos.';
+          setError(message);
+          setStatus('error');
+          return;
+        }
+      } else {
+        const message =
+          e.name === 'NotAllowedError'
+            ? 'Permiso de cámara denegado. Ajustá los permisos del navegador.'
             : 'No se pudo acceder a la cámara. Verificá los permisos.';
-      setError(message);
-      setStatus('error');
+        setError(message);
+        setStatus('error');
+        return;
+      }
     }
+
+    streamRef.current = stream;
+
+    if (videoRef.current) {
+      videoRef.current.srcObject = stream;
+      try {
+        await videoRef.current.play();
+      } catch {
+        // Some browsers (Safari) require autoplay or play after user interaction
+        // We already try to play; if it fails, the stream is still attached
+      }
+    }
+
+    const track = stream.getVideoTracks()[0];
+    const caps: any = track.getCapabilities();
+    if (caps.torch) setTorchSupported(true);
+    if (caps.zoom) {
+      zoomCapabilitiesRef.current = { min: caps.zoom.min, max: caps.zoom.max, step: caps.zoom.step ?? 0.1 };
+    }
+
+    setStatus('ready');
   }, []);
 
   const setTorch = useCallback(async (on: boolean) => {
