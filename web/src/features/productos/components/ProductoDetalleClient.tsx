@@ -74,23 +74,10 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
     [historialFiltrado]
   );
 
-  const indicesLabels = useMemo(() => {
-    if (!mostrarEnUSD) return indicesGraficados;
-    const parseFecha = (f: string) => {
-      const [d, m, y] = f.split('/').map(Number);
-      return new Date(y, m - 1, d);
-    };
-    const t0 = parseFecha(historialFiltrado[0].fecha).getTime();
-    const inds: number[] = [0];
-    for (let i = 1; i < historialFiltrado.length; i++) {
-      const dias = (parseFecha(historialFiltrado[i].fecha).getTime() - t0) / 86400000;
-      if (dias >= inds.length * 7) inds.push(i);
-    }
-    if (inds[inds.length - 1] !== historialFiltrado.length - 1) {
-      inds.push(historialFiltrado.length - 1);
-    }
-    return inds;
-  }, [mostrarEnUSD, historialFiltrado, indicesGraficados]);
+  const indicesLabels = useMemo(
+    () => [0, historialFiltrado.length - 1],
+    [historialFiltrado.length]
+  );
 
   const indicesLabelsPrecio = useMemo(() => {
     if (!mostrarEnUSD) return indicesGraficados;
