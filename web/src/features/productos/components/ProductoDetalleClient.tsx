@@ -80,6 +80,7 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
   );
 
   const indicesLabelsPrecio = useMemo(() => {
+    if (historialFiltrado.length === 0) return [];
     if (!mostrarEnUSD) return indicesGraficados;
     const parseFecha = (f: string) => {
       const [d, m, y] = f.split('/').map(Number);
@@ -257,11 +258,13 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
         {/* PRICE HISTORY */}
         <section className="border-t border-gray-100 px-4 py-8 md:py-12">
           <h2 className="text-base md:text-xl font-black text-gray-900 mb-1" style={{ fontFamily: "'Oswald', sans-serif" }}>
-            📈 HISTORIAL DE PRECIOS
+            HISTORIAL DE PRECIOS
           </h2>
           <p className="text-[10px] md:text-sm text-gray-400 mb-4 md:mb-6">Evolución del precio promedio en los últimos meses</p>
 
-          <div className="flex gap-2 mb-4">
+          {historialFiltrado.length > 0 ? (
+            <>
+              <div className="flex gap-2 mb-4">
             <button
               onClick={() => setMostrarEnUSD(false)}
               className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${!mostrarEnUSD
@@ -428,6 +431,12 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
               ))}
             </svg>
           </div>
+            </>
+          ) : (
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+              <p className="text-sm text-gray-400">Este producto aún no tiene precios registrados.</p>
+            </div>
+          )}
         </section>
 
         {tooltip && (
