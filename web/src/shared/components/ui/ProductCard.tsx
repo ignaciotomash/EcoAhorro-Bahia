@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import SafeProductImage from '@/shared/components/ui/SafeProductImage';
 import { useCart } from '@/features/carrito/context/CartContext';
 import { useUser, SignInButton } from '@clerk/nextjs';
 
@@ -12,7 +13,6 @@ export default React.memo(function ProductCard({ producto }: { producto: any }) 
   const { addToCart, items } = useCart();
   const { isSignedIn, isLoaded } = useUser();
   const [added, setAdded] = useState(false);
-  const [imgError, setImgError] = useState(false);
   const [showAuthWarning, setShowAuthWarning] = useState(false);
 
   useEffect(() => {
@@ -41,8 +41,17 @@ export default React.memo(function ProductCard({ producto }: { producto: any }) 
       <Link href={`/producto/${producto.id}`} className="flex flex-col flex-1">
         {/* IMAGEN */}
         <div className="relative w-full h-32 md:h-48 bg-white p-3 flex items-center justify-center border-b border-gray-50">
-          {producto.imagen && !producto.imagen.includes('placehold.co') && producto.imagen !== 'Sin imagen' && !imgError
-            ? <Image src={producto.imagen} alt={producto.nombre} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" onError={() => setImgError(true)} />
+          {producto.imagen && !producto.imagen.includes('placehold.co') && producto.imagen !== 'Sin imagen'
+            ? <SafeProductImage
+                src={producto.imagen}
+                alt={producto.nombre}
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                fallback={
+                  <Image src="/logo.png" alt="Sin imagen" width={64} height={64} className="object-contain opacity-50" />
+                }
+              />
             : <div className="w-full h-full flex items-center justify-center bg-gray-50 opacity-70">
                 <Image src="/logo.png" alt="Sin imagen" width={64} height={64} className="object-contain grayscale opacity-40" />
               </div>

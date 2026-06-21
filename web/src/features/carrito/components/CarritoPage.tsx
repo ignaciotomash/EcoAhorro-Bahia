@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import SafeProductImage from '@/shared/components/ui/SafeProductImage';
 import { useCart } from '@/features/carrito/context/CartContext';
 import { calcularTotalesPorSuper } from '@/features/carrito/services/cartOptimizer/totalesPorSuper';
 import { optimizarCarrito } from '@/features/carrito/services/cartOptimizer/buscarMejorCombinacion';
@@ -148,10 +148,14 @@ export default function CarritoPage({ supermercados }: { supermercados: Supermer
                 style={{ border: '1px solid #E5E7EB', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
                 <div className="flex gap-3 md:gap-4 items-start">
                   <div className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center border border-gray-100">
-                    {item.producto.imagen
-                      ? <Image src={item.producto.imagen} alt={item.producto.nombre} width={64} height={64} className="object-contain w-full h-full p-1" />
-                      : <span className="text-gray-200 text-xs">—</span>
-                    }
+                    <SafeProductImage
+                      src={item.producto.imagen}
+                      alt={item.producto.nombre}
+                      width={64}
+                      height={64}
+                      className="object-contain w-full h-full p-1"
+                      fallback={<span className="text-gray-200 text-xs">—</span>}
+                    />
                   </div>
 
                   <div className="flex-1 min-w-0">

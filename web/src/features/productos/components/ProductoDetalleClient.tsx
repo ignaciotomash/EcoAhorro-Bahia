@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Info } from 'lucide-react';
-import Image from 'next/image';
+import SafeProductImage from '@/shared/components/ui/SafeProductImage';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/features/carrito/context/CartContext';
@@ -158,17 +158,15 @@ export default function ProductoDetalleClient({ producto }: { producto: Producto
         <div className="flex flex-col md:flex-row">
           {/* LEFT: Image */}
           <div className="md:w-1/2 relative h-72 md:h-[500px] bg-gray-50 overflow-hidden flex items-center justify-center">
-            {producto.imagen ? (
-              <Image
-                src={producto.imagen}
-                alt={producto.nombre}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain p-4"
-              />
-            ) : (
-              <span className="text-gray-300 text-sm font-medium">Sin foto</span>
-            )}
+            <SafeProductImage
+              src={producto.imagen}
+              alt={producto.nombre}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-contain p-4"
+              loading="eager"
+              fallback={<span className="text-gray-300 text-sm font-medium">Sin foto</span>}
+            />
           </div>
 
           {/* RIGHT: Name, Prices + CTA */}
