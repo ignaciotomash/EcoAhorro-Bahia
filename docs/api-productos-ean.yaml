@@ -3,9 +3,10 @@ info:
   title: API Eco Ahorro Bahia
   version: 1.0.0
   description: >
-    Contrato publico para consultar productos por codigo EAN en Eco Ahorro
-    Bahia. La API permite obtener informacion del producto, historial de
-    precios y precios agrupados por supermercado.
+    Contrato para consultar productos por codigo EAN en Eco Ahorro Bahia.
+    La API permite obtener informacion del producto, historial de precios y
+    precios agrupados por supermercado. Requiere una API key enviada en el
+    header x-api-key.
 
 servers:
   - url: https://ecoahorro-bahia.vercel.app/api
@@ -15,7 +16,7 @@ servers:
 
 tags:
   - name: Productos
-    description: Operaciones publicas para consultar productos y precios.
+    description: Operaciones para consultar productos y precios por EAN.
 
 paths:
   /productos/{ean}:
@@ -27,7 +28,8 @@ paths:
         disponibles agrupados por supermercado.
       tags:
         - Productos
-      security: []
+      security:
+        - apiKeyAuth: []
       parameters:
         - in: path
           name: ean
@@ -61,6 +63,16 @@ paths:
                           idSucursal: 123
                           nombre: Vea
                           ubicacionMaps: https://maps.google.com
+        '401':
+          description: API key ausente o invalida.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: API_KEY_INVALIDA
+                  message: La API requiere una API key valida en el header x-api-key.
         '404':
           description: Producto no encontrado.
           content:
@@ -82,8 +94,24 @@ paths:
                 error:
                   code: ERROR_BUSCANDO_PRODUCTO
                   message: No se pudo obtener el producto solicitado.
+        '503':
+          description: API key no configurada en el servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error:
+                  code: API_KEY_NO_CONFIGURADA
+                  message: La API key para consultar productos por EAN no esta configurada en el servidor.
 
 components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+
   schemas:
     ProductoDetalle:
       type: object

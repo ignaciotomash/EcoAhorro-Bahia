@@ -5,8 +5,14 @@ import { apiError } from '@/shared/lib/api-error';
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
 };
+
+const API_KEY_HEADER = 'x-api-key';
+
+function getExpectedApiKey() {
+  return process.env.PRODUCTOS_EAN_API_KEY ?? process.env.INTERNAL_API_KEY;
+}
 
 function jsonWithCors(body: unknown, init?: ResponseInit) {
   return NextResponse.json(body, {
@@ -28,6 +34,28 @@ export async function GET(
   { params }: { params: Promise<{ ean: string }> }
 ) {
   try {
+    const expectedApiKey = getExpectedApiKey();
+
+    if (!expectedApiKey) {
+      return jsonWithCors(
+        apiError(
+          'API_KEY_NO_CONFIGURADA',
+          'La API key para consultar productos por EAN no esta configurada en el servidor.'
+        ),
+        { status: 503, headers: { 'Cache-Control': 'no-store' } }
+      );
+    }
+
+    if (request.headers.get(API_KEY_HEADER) !== expectedApiKey) {
+      return jsonWithCors(
+        apiError(
+          'API_KEY_INVALIDA',
+          'La API requiere una API key valida en el header x-api-key.'
+        ),
+        { status: 401, headers: { 'Cache-Control': 'no-store' } }
+      );
+    }
+
     const { ean } = await params;
     const data = await getProductoEanResponse(ean);
 
