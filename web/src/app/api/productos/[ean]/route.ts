@@ -9,9 +9,16 @@ const corsHeaders = {
 };
 
 const API_KEY_HEADER = 'x-api-key';
+const INTERNAL_API_KEY_HEADER = 'x-internal-api-key';
 
-function getExpectedApiKey() {
-  return process.env.PRODUCTOS_EAN_API_KEY ?? process.env.INTERNAL_API_KEY;
+function getAllowedApiKeys() {
+  return [process.env.PRODUCTOS_EAN_API_KEY, process.env.INTERNAL_API_KEY]
+    .filter((key): key is string => Boolean(key));
+}
+
+function isSameOriginBrowserRequest(request: Request) {
+  const secFetchSite = request.headers.get('sec-fetch-site');
+  return secFetchSite === 'same-origin' || secFetchSite === 'same-site';
 }
 
 function jsonWithCors(body: unknown, init?: ResponseInit) {
@@ -34,9 +41,10 @@ export async function GET(
   { params }: { params: Promise<{ ean: string }> }
 ) {
   try {
-    const expectedApiKey = getExpectedApiKey();
+    const allowedApiKeys = getAllowedApiKeys();
+    const requestApiKey = request.headers.get(API_KEY_HEADER) ?? request.headers.get(INTERNAL_API_KEY_HEADER);
 
-    if (!expectedApiKey) {
+    if (allowedApiKeys.length === 0) {
       return jsonWithCors(
         apiError(
           'API_KEY_NO_CONFIGURADA',
@@ -46,7 +54,11 @@ export async function GET(
       );
     }
 
-    if (request.headers.get(API_KEY_HEADER) !== expectedApiKey) {
+    const isAuthorizedRequest =
+      (requestApiKey && allowedApiKeys.includes(requestApiKey)) ||
+      (!requestApiKey && isSameOriginBrowserRequest(request));
+
+    if (!isAuthorizedRequest) {
       return jsonWithCors(
         apiError(
           'API_KEY_INVALIDA',
